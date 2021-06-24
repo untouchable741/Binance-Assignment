@@ -3,13 +3,18 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		798540128843D4F0EA1806D3 /* Pods_BinanceOrderBook_BinanceOrderBookUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCD03B24057936D546EBDB2 /* Pods_BinanceOrderBook_BinanceOrderBookUITests.framework */; };
 		917D8CE8B575F0406BAF6AF7 /* Pods_BinanceOrderBookTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E42F6E12A2E3F146362EB2A4 /* Pods_BinanceOrderBookTests.framework */; };
 		A2F450DD145975BA64A46BB8 /* Pods_BinanceOrderBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3F5FBFCD77BA141487F3E7A /* Pods_BinanceOrderBook.framework */; };
+		D14CB1A1268478B000EA4538 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14CB1A0268478B000EA4538 /* StringExtension.swift */; };
+		D14CB1A326847A9F00EA4538 /* DepthSocketResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14CB1A226847A9F00EA4538 /* DepthSocketResponse.swift */; };
+		D14CB1A52684912E00EA4538 /* PriceLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14CB1A42684912E00EA4538 /* PriceLevel.swift */; };
+		D14CB1A72684917E00EA4538 /* CurrencyPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14CB1A62684917E00EA4538 /* CurrencyPair.swift */; };
+		D14CB1A9268491E600EA4538 /* DepthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14CB1A8268491E600EA4538 /* DepthResponse.swift */; };
 		D1E49143268419D0006CD105 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E49142268419D0006CD105 /* AppDelegate.swift */; };
 		D1E49145268419D0006CD105 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E49144268419D0006CD105 /* SceneDelegate.swift */; };
 		D1E49147268419D0006CD105 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E49146268419D0006CD105 /* ViewController.swift */; };
@@ -19,6 +24,9 @@
 		D1E4915A268419D1006CD105 /* BinanceOrderBookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E49159268419D1006CD105 /* BinanceOrderBookTests.swift */; };
 		D1E49165268419D1006CD105 /* BinanceOrderBookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E49164268419D1006CD105 /* BinanceOrderBookUITests.swift */; };
 		D1E491772684445B006CD105 /* SocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E491762684445B006CD105 /* SocketManager.swift */; };
+		D1F3195826844AB20082E527 /* SocketConnectionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F3195726844AB20082E527 /* SocketConnectionProvider.swift */; };
+		D1F3195A26844B630082E527 /* StreamRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F3195926844B630082E527 /* StreamRequest.swift */; };
+		D1F3195F26846DBF0082E527 /* CodableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F3195E26846DBF0082E527 /* CodableExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +53,11 @@
 		5CC7660C89545EE4423C03C0 /* Pods-BinanceOrderBookTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BinanceOrderBookTests.release.xcconfig"; path = "Target Support Files/Pods-BinanceOrderBookTests/Pods-BinanceOrderBookTests.release.xcconfig"; sourceTree = "<group>"; };
 		72A97BBF2CCF13D3C166E55A /* Pods-BinanceOrderBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BinanceOrderBook.debug.xcconfig"; path = "Target Support Files/Pods-BinanceOrderBook/Pods-BinanceOrderBook.debug.xcconfig"; sourceTree = "<group>"; };
 		A956EAE008776750ED137845 /* Pods-BinanceOrderBook-BinanceOrderBookUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BinanceOrderBook-BinanceOrderBookUITests.release.xcconfig"; path = "Target Support Files/Pods-BinanceOrderBook-BinanceOrderBookUITests/Pods-BinanceOrderBook-BinanceOrderBookUITests.release.xcconfig"; sourceTree = "<group>"; };
+		D14CB1A0268478B000EA4538 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		D14CB1A226847A9F00EA4538 /* DepthSocketResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepthSocketResponse.swift; sourceTree = "<group>"; };
+		D14CB1A42684912E00EA4538 /* PriceLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceLevel.swift; sourceTree = "<group>"; };
+		D14CB1A62684917E00EA4538 /* CurrencyPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPair.swift; sourceTree = "<group>"; };
+		D14CB1A8268491E600EA4538 /* DepthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepthResponse.swift; sourceTree = "<group>"; };
 		D1E4913F268419D0006CD105 /* BinanceOrderBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BinanceOrderBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1E49142268419D0006CD105 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D1E49144268419D0006CD105 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +73,9 @@
 		D1E49164268419D1006CD105 /* BinanceOrderBookUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinanceOrderBookUITests.swift; sourceTree = "<group>"; };
 		D1E49166268419D1006CD105 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D1E491762684445B006CD105 /* SocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketManager.swift; sourceTree = "<group>"; };
+		D1F3195726844AB20082E527 /* SocketConnectionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketConnectionProvider.swift; sourceTree = "<group>"; };
+		D1F3195926844B630082E527 /* StreamRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamRequest.swift; sourceTree = "<group>"; };
+		D1F3195E26846DBF0082E527 /* CodableExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableExtensions.swift; sourceTree = "<group>"; };
 		D3F5FBFCD77BA141487F3E7A /* Pods_BinanceOrderBook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BinanceOrderBook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3EC81908F2DE084D67CD5CD /* Pods-BinanceOrderBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BinanceOrderBook.release.xcconfig"; path = "Target Support Files/Pods-BinanceOrderBook/Pods-BinanceOrderBook.release.xcconfig"; sourceTree = "<group>"; };
 		E42F6E12A2E3F146362EB2A4 /* Pods_BinanceOrderBookTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BinanceOrderBookTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,7 +119,6 @@
 				038BF28CC321B9EC0C99F71E /* Pods-BinanceOrderBookTests.debug.xcconfig */,
 				5CC7660C89545EE4423C03C0 /* Pods-BinanceOrderBookTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -142,6 +157,7 @@
 		D1E49141268419D0006CD105 /* BinanceOrderBook */ = {
 			isa = PBXGroup;
 			children = (
+				D1F3195D26846D950082E527 /* Extension */,
 				D1E491732684442D006CD105 /* Services */,
 				D1E4917226844428006CD105 /* Models */,
 				D1E49142268419D0006CD105 /* AppDelegate.swift */,
@@ -176,6 +192,10 @@
 		D1E4917226844428006CD105 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D14CB1A62684917E00EA4538 /* CurrencyPair.swift */,
+				D14CB1A8268491E600EA4538 /* DepthResponse.swift */,
+				D14CB1A226847A9F00EA4538 /* DepthSocketResponse.swift */,
+				D14CB1A42684912E00EA4538 /* PriceLevel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -192,7 +212,9 @@
 		D1E4917426844437006CD105 /* Websocket */ = {
 			isa = PBXGroup;
 			children = (
+				D1F3195726844AB20082E527 /* SocketConnectionProvider.swift */,
 				D1E491762684445B006CD105 /* SocketManager.swift */,
+				D1F3195926844B630082E527 /* StreamRequest.swift */,
 			);
 			path = Websocket;
 			sourceTree = "<group>";
@@ -202,6 +224,15 @@
 			children = (
 			);
 			path = NetworkClient;
+			sourceTree = "<group>";
+		};
+		D1F3195D26846D950082E527 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				D1F3195E26846DBF0082E527 /* CodableExtensions.swift */,
+				D14CB1A0268478B000EA4538 /* StringExtension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -443,9 +474,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1E49147268419D0006CD105 /* ViewController.swift in Sources */,
+				D1F3195826844AB20082E527 /* SocketConnectionProvider.swift in Sources */,
 				D1E49143268419D0006CD105 /* AppDelegate.swift in Sources */,
+				D14CB1A72684917E00EA4538 /* CurrencyPair.swift in Sources */,
+				D14CB1A9268491E600EA4538 /* DepthResponse.swift in Sources */,
+				D1F3195F26846DBF0082E527 /* CodableExtensions.swift in Sources */,
+				D14CB1A52684912E00EA4538 /* PriceLevel.swift in Sources */,
+				D14CB1A1268478B000EA4538 /* StringExtension.swift in Sources */,
+				D14CB1A326847A9F00EA4538 /* DepthSocketResponse.swift in Sources */,
 				D1E491772684445B006CD105 /* SocketManager.swift in Sources */,
 				D1E49145268419D0006CD105 /* SceneDelegate.swift in Sources */,
+				D1F3195A26844B630082E527 /* StreamRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

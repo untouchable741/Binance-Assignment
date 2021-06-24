@@ -1,16 +1,30 @@
 PODS:
+  - RxCocoa (6.2.0):
+    - RxRelay (= 6.2.0)
+    - RxSwift (= 6.2.0)
+  - RxRelay (6.2.0):
+    - RxSwift (= 6.2.0)
+  - RxSwift (6.2.0)
   - Starscream (4.0.4)
 
 DEPENDENCIES:
+  - RxCocoa (~> 6.2.0)
+  - RxSwift (~> 6.2.0)
   - Starscream (~> 4.0.0)
 
 SPEC REPOS:
   trunk:
+    - RxCocoa
+    - RxRelay
+    - RxSwift
     - Starscream
 
 SPEC CHECKSUMS:
+  RxCocoa: 4baf94bb35f2c0ab31bc0cb9f1900155f646ba42
+  RxRelay: e72dbfd157807478401ef1982e1c61c945c94b2f
+  RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
   Starscream: 5178aed56b316f13fa3bc55694e583d35dd414d9
 
-PODFILE CHECKSUM: 7fa90330fcb6f1a946e8ed109f38a471fe7c1ad5
+PODFILE CHECKSUM: 49d520c6a81e7dc21895619b1468f44404e8f828
 
 COCOAPODS: 1.10.1

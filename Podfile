@@ -7,6 +7,8 @@ target 'BinanceOrderBook' do
 
   # Pods for BinanceOrderBook
   pod 'Starscream', '~> 4.0.0'
+  pod 'RxSwift', '~> 6.2.0'
+  pod 'RxCocoa', '~> 6.2.0'
   
   target 'BinanceOrderBookTests' do
     inherit! :search_paths
