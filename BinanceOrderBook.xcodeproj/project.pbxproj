@@ -15,6 +15,9 @@
 		D14CB1A52684912E00EA4538 /* PriceLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14CB1A42684912E00EA4538 /* PriceLevel.swift */; };
 		D14CB1A72684917E00EA4538 /* CurrencyPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14CB1A62684917E00EA4538 /* CurrencyPair.swift */; };
 		D14CB1A9268491E600EA4538 /* DepthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14CB1A8268491E600EA4538 /* DepthResponse.swift */; };
+		D14CB1AB2684931B00EA4538 /* APIServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14CB1AA2684931B00EA4538 /* APIServices.swift */; };
+		D14CB1AD268493F200EA4538 /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14CB1AC268493F200EA4538 /* APIEndpoint.swift */; };
+		D14CB1AF2684D09E00EA4538 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14CB1AE2684D09E00EA4538 /* APIError.swift */; };
 		D1E49143268419D0006CD105 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E49142268419D0006CD105 /* AppDelegate.swift */; };
 		D1E49145268419D0006CD105 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E49144268419D0006CD105 /* SceneDelegate.swift */; };
 		D1E49147268419D0006CD105 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E49146268419D0006CD105 /* ViewController.swift */; };
@@ -58,6 +61,9 @@
 		D14CB1A42684912E00EA4538 /* PriceLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceLevel.swift; sourceTree = "<group>"; };
 		D14CB1A62684917E00EA4538 /* CurrencyPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPair.swift; sourceTree = "<group>"; };
 		D14CB1A8268491E600EA4538 /* DepthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepthResponse.swift; sourceTree = "<group>"; };
+		D14CB1AA2684931B00EA4538 /* APIServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServices.swift; sourceTree = "<group>"; };
+		D14CB1AC268493F200EA4538 /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
+		D14CB1AE2684D09E00EA4538 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		D1E4913F268419D0006CD105 /* BinanceOrderBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BinanceOrderBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1E49142268419D0006CD105 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D1E49144268419D0006CD105 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -222,6 +228,9 @@
 		D1E491752684443E006CD105 /* NetworkClient */ = {
 			isa = PBXGroup;
 			children = (
+				D14CB1AA2684931B00EA4538 /* APIServices.swift */,
+				D14CB1AC268493F200EA4538 /* APIEndpoint.swift */,
+				D14CB1AE2684D09E00EA4538 /* APIError.swift */,
 			);
 			path = NetworkClient;
 			sourceTree = "<group>";
@@ -473,12 +482,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D14CB1AB2684931B00EA4538 /* APIServices.swift in Sources */,
 				D1E49147268419D0006CD105 /* ViewController.swift in Sources */,
 				D1F3195826844AB20082E527 /* SocketConnectionProvider.swift in Sources */,
 				D1E49143268419D0006CD105 /* AppDelegate.swift in Sources */,
 				D14CB1A72684917E00EA4538 /* CurrencyPair.swift in Sources */,
 				D14CB1A9268491E600EA4538 /* DepthResponse.swift in Sources */,
 				D1F3195F26846DBF0082E527 /* CodableExtensions.swift in Sources */,
+				D14CB1AD268493F200EA4538 /* APIEndpoint.swift in Sources */,
+				D14CB1AF2684D09E00EA4538 /* APIError.swift in Sources */,
 				D14CB1A52684912E00EA4538 /* PriceLevel.swift in Sources */,
 				D14CB1A1268478B000EA4538 /* StringExtension.swift in Sources */,
 				D14CB1A326847A9F00EA4538 /* DepthSocketResponse.swift in Sources */,
