@@ -1,0 +1,6 @@
+framework module Pods_BinanceOrderBookTests {
+  umbrella header "Pods-BinanceOrderBookTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

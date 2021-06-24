@@ -1,0 +1,783 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		798540128843D4F0EA1806D3 /* Pods_BinanceOrderBook_BinanceOrderBookUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCD03B24057936D546EBDB2 /* Pods_BinanceOrderBook_BinanceOrderBookUITests.framework */; };
+		917D8CE8B575F0406BAF6AF7 /* Pods_BinanceOrderBookTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E42F6E12A2E3F146362EB2A4 /* Pods_BinanceOrderBookTests.framework */; };
+		A2F450DD145975BA64A46BB8 /* Pods_BinanceOrderBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3F5FBFCD77BA141487F3E7A /* Pods_BinanceOrderBook.framework */; };
+		D1E49143268419D0006CD105 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E49142268419D0006CD105 /* AppDelegate.swift */; };
+		D1E49145268419D0006CD105 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E49144268419D0006CD105 /* SceneDelegate.swift */; };
+		D1E49147268419D0006CD105 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E49146268419D0006CD105 /* ViewController.swift */; };
+		D1E4914A268419D0006CD105 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1E49148268419D0006CD105 /* Main.storyboard */; };
+		D1E4914C268419D1006CD105 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1E4914B268419D1006CD105 /* Assets.xcassets */; };
+		D1E4914F268419D1006CD105 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1E4914D268419D1006CD105 /* LaunchScreen.storyboard */; };
+		D1E4915A268419D1006CD105 /* BinanceOrderBookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E49159268419D1006CD105 /* BinanceOrderBookTests.swift */; };
+		D1E49165268419D1006CD105 /* BinanceOrderBookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E49164268419D1006CD105 /* BinanceOrderBookUITests.swift */; };
+		D1E491772684445B006CD105 /* SocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E491762684445B006CD105 /* SocketManager.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D1E49156268419D1006CD105 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D1E49137268419D0006CD105 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D1E4913E268419D0006CD105;
+			remoteInfo = BinanceOrderBook;
+		};
+		D1E49161268419D1006CD105 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D1E49137268419D0006CD105 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D1E4913E268419D0006CD105;
+			remoteInfo = BinanceOrderBook;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		038BF28CC321B9EC0C99F71E /* Pods-BinanceOrderBookTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BinanceOrderBookTests.debug.xcconfig"; path = "Target Support Files/Pods-BinanceOrderBookTests/Pods-BinanceOrderBookTests.debug.xcconfig"; sourceTree = "<group>"; };
+		1050A3AA75E14FD7A6E30A59 /* Pods-BinanceOrderBook-BinanceOrderBookUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BinanceOrderBook-BinanceOrderBookUITests.debug.xcconfig"; path = "Target Support Files/Pods-BinanceOrderBook-BinanceOrderBookUITests/Pods-BinanceOrderBook-BinanceOrderBookUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		4CCD03B24057936D546EBDB2 /* Pods_BinanceOrderBook_BinanceOrderBookUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BinanceOrderBook_BinanceOrderBookUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5CC7660C89545EE4423C03C0 /* Pods-BinanceOrderBookTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BinanceOrderBookTests.release.xcconfig"; path = "Target Support Files/Pods-BinanceOrderBookTests/Pods-BinanceOrderBookTests.release.xcconfig"; sourceTree = "<group>"; };
+		72A97BBF2CCF13D3C166E55A /* Pods-BinanceOrderBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BinanceOrderBook.debug.xcconfig"; path = "Target Support Files/Pods-BinanceOrderBook/Pods-BinanceOrderBook.debug.xcconfig"; sourceTree = "<group>"; };
+		A956EAE008776750ED137845 /* Pods-BinanceOrderBook-BinanceOrderBookUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BinanceOrderBook-BinanceOrderBookUITests.release.xcconfig"; path = "Target Support Files/Pods-BinanceOrderBook-BinanceOrderBookUITests/Pods-BinanceOrderBook-BinanceOrderBookUITests.release.xcconfig"; sourceTree = "<group>"; };
+		D1E4913F268419D0006CD105 /* BinanceOrderBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BinanceOrderBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1E49142268419D0006CD105 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D1E49144268419D0006CD105 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		D1E49146268419D0006CD105 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D1E49149268419D0006CD105 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D1E4914B268419D1006CD105 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D1E4914E268419D1006CD105 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D1E49150268419D1006CD105 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D1E49155268419D1006CD105 /* BinanceOrderBookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BinanceOrderBookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1E49159268419D1006CD105 /* BinanceOrderBookTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinanceOrderBookTests.swift; sourceTree = "<group>"; };
+		D1E4915B268419D1006CD105 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D1E49160268419D1006CD105 /* BinanceOrderBookUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BinanceOrderBookUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1E49164268419D1006CD105 /* BinanceOrderBookUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinanceOrderBookUITests.swift; sourceTree = "<group>"; };
+		D1E49166268419D1006CD105 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D1E491762684445B006CD105 /* SocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketManager.swift; sourceTree = "<group>"; };
+		D3F5FBFCD77BA141487F3E7A /* Pods_BinanceOrderBook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BinanceOrderBook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E3EC81908F2DE084D67CD5CD /* Pods-BinanceOrderBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BinanceOrderBook.release.xcconfig"; path = "Target Support Files/Pods-BinanceOrderBook/Pods-BinanceOrderBook.release.xcconfig"; sourceTree = "<group>"; };
+		E42F6E12A2E3F146362EB2A4 /* Pods_BinanceOrderBookTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BinanceOrderBookTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D1E4913C268419D0006CD105 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A2F450DD145975BA64A46BB8 /* Pods_BinanceOrderBook.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1E49152268419D1006CD105 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				917D8CE8B575F0406BAF6AF7 /* Pods_BinanceOrderBookTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1E4915D268419D1006CD105 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				798540128843D4F0EA1806D3 /* Pods_BinanceOrderBook_BinanceOrderBookUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4EA354B827A3FD93646744FA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				72A97BBF2CCF13D3C166E55A /* Pods-BinanceOrderBook.debug.xcconfig */,
+				E3EC81908F2DE084D67CD5CD /* Pods-BinanceOrderBook.release.xcconfig */,
+				1050A3AA75E14FD7A6E30A59 /* Pods-BinanceOrderBook-BinanceOrderBookUITests.debug.xcconfig */,
+				A956EAE008776750ED137845 /* Pods-BinanceOrderBook-BinanceOrderBookUITests.release.xcconfig */,
+				038BF28CC321B9EC0C99F71E /* Pods-BinanceOrderBookTests.debug.xcconfig */,
+				5CC7660C89545EE4423C03C0 /* Pods-BinanceOrderBookTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		5539BF10FD3A1AA253A1F9E6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D3F5FBFCD77BA141487F3E7A /* Pods_BinanceOrderBook.framework */,
+				4CCD03B24057936D546EBDB2 /* Pods_BinanceOrderBook_BinanceOrderBookUITests.framework */,
+				E42F6E12A2E3F146362EB2A4 /* Pods_BinanceOrderBookTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D1E49136268419D0006CD105 = {
+			isa = PBXGroup;
+			children = (
+				D1E49141268419D0006CD105 /* BinanceOrderBook */,
+				D1E49158268419D1006CD105 /* BinanceOrderBookTests */,
+				D1E49163268419D1006CD105 /* BinanceOrderBookUITests */,
+				D1E49140268419D0006CD105 /* Products */,
+				4EA354B827A3FD93646744FA /* Pods */,
+				5539BF10FD3A1AA253A1F9E6 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		D1E49140268419D0006CD105 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D1E4913F268419D0006CD105 /* BinanceOrderBook.app */,
+				D1E49155268419D1006CD105 /* BinanceOrderBookTests.xctest */,
+				D1E49160268419D1006CD105 /* BinanceOrderBookUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D1E49141268419D0006CD105 /* BinanceOrderBook */ = {
+			isa = PBXGroup;
+			children = (
+				D1E491732684442D006CD105 /* Services */,
+				D1E4917226844428006CD105 /* Models */,
+				D1E49142268419D0006CD105 /* AppDelegate.swift */,
+				D1E49144268419D0006CD105 /* SceneDelegate.swift */,
+				D1E49146268419D0006CD105 /* ViewController.swift */,
+				D1E49148268419D0006CD105 /* Main.storyboard */,
+				D1E4914B268419D1006CD105 /* Assets.xcassets */,
+				D1E4914D268419D1006CD105 /* LaunchScreen.storyboard */,
+				D1E49150268419D1006CD105 /* Info.plist */,
+			);
+			path = BinanceOrderBook;
+			sourceTree = "<group>";
+		};
+		D1E49158268419D1006CD105 /* BinanceOrderBookTests */ = {
+			isa = PBXGroup;
+			children = (
+				D1E49159268419D1006CD105 /* BinanceOrderBookTests.swift */,
+				D1E4915B268419D1006CD105 /* Info.plist */,
+			);
+			path = BinanceOrderBookTests;
+			sourceTree = "<group>";
+		};
+		D1E49163268419D1006CD105 /* BinanceOrderBookUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D1E49164268419D1006CD105 /* BinanceOrderBookUITests.swift */,
+				D1E49166268419D1006CD105 /* Info.plist */,
+			);
+			path = BinanceOrderBookUITests;
+			sourceTree = "<group>";
+		};
+		D1E4917226844428006CD105 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D1E491732684442D006CD105 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				D1E491752684443E006CD105 /* NetworkClient */,
+				D1E4917426844437006CD105 /* Websocket */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		D1E4917426844437006CD105 /* Websocket */ = {
+			isa = PBXGroup;
+			children = (
+				D1E491762684445B006CD105 /* SocketManager.swift */,
+			);
+			path = Websocket;
+			sourceTree = "<group>";
+		};
+		D1E491752684443E006CD105 /* NetworkClient */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = NetworkClient;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D1E4913E268419D0006CD105 /* BinanceOrderBook */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D1E49169268419D1006CD105 /* Build configuration list for PBXNativeTarget "BinanceOrderBook" */;
+			buildPhases = (
+				3B858C354335966928316CBB /* [CP] Check Pods Manifest.lock */,
+				D1E4913B268419D0006CD105 /* Sources */,
+				D1E4913C268419D0006CD105 /* Frameworks */,
+				D1E4913D268419D0006CD105 /* Resources */,
+				618167ADD80AD77959694D23 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BinanceOrderBook;
+			productName = BinanceOrderBook;
+			productReference = D1E4913F268419D0006CD105 /* BinanceOrderBook.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D1E49154268419D1006CD105 /* BinanceOrderBookTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D1E4916C268419D1006CD105 /* Build configuration list for PBXNativeTarget "BinanceOrderBookTests" */;
+			buildPhases = (
+				3A8B598B7069B1912AD58FCA /* [CP] Check Pods Manifest.lock */,
+				D1E49151268419D1006CD105 /* Sources */,
+				D1E49152268419D1006CD105 /* Frameworks */,
+				D1E49153268419D1006CD105 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D1E49157268419D1006CD105 /* PBXTargetDependency */,
+			);
+			name = BinanceOrderBookTests;
+			productName = BinanceOrderBookTests;
+			productReference = D1E49155268419D1006CD105 /* BinanceOrderBookTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D1E4915F268419D1006CD105 /* BinanceOrderBookUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D1E4916F268419D1006CD105 /* Build configuration list for PBXNativeTarget "BinanceOrderBookUITests" */;
+			buildPhases = (
+				4BED3A36008F51F817C4A0E5 /* [CP] Check Pods Manifest.lock */,
+				D1E4915C268419D1006CD105 /* Sources */,
+				D1E4915D268419D1006CD105 /* Frameworks */,
+				D1E4915E268419D1006CD105 /* Resources */,
+				0C332C5DC9AC5E33E6F41F28 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D1E49162268419D1006CD105 /* PBXTargetDependency */,
+			);
+			name = BinanceOrderBookUITests;
+			productName = BinanceOrderBookUITests;
+			productReference = D1E49160268419D1006CD105 /* BinanceOrderBookUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D1E49137268419D0006CD105 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1250;
+				LastUpgradeCheck = 1250;
+				TargetAttributes = {
+					D1E4913E268419D0006CD105 = {
+						CreatedOnToolsVersion = 12.5;
+					};
+					D1E49154268419D1006CD105 = {
+						CreatedOnToolsVersion = 12.5;
+						TestTargetID = D1E4913E268419D0006CD105;
+					};
+					D1E4915F268419D1006CD105 = {
+						CreatedOnToolsVersion = 12.5;
+						TestTargetID = D1E4913E268419D0006CD105;
+					};
+				};
+			};
+			buildConfigurationList = D1E4913A268419D0006CD105 /* Build configuration list for PBXProject "BinanceOrderBook" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D1E49136268419D0006CD105;
+			productRefGroup = D1E49140268419D0006CD105 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D1E4913E268419D0006CD105 /* BinanceOrderBook */,
+				D1E49154268419D1006CD105 /* BinanceOrderBookTests */,
+				D1E4915F268419D1006CD105 /* BinanceOrderBookUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D1E4913D268419D0006CD105 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D1E4914F268419D1006CD105 /* LaunchScreen.storyboard in Resources */,
+				D1E4914C268419D1006CD105 /* Assets.xcassets in Resources */,
+				D1E4914A268419D0006CD105 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1E49153268419D1006CD105 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1E4915E268419D1006CD105 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0C332C5DC9AC5E33E6F41F28 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BinanceOrderBook-BinanceOrderBookUITests/Pods-BinanceOrderBook-BinanceOrderBookUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BinanceOrderBook-BinanceOrderBookUITests/Pods-BinanceOrderBook-BinanceOrderBookUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BinanceOrderBook-BinanceOrderBookUITests/Pods-BinanceOrderBook-BinanceOrderBookUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3A8B598B7069B1912AD58FCA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BinanceOrderBookTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3B858C354335966928316CBB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BinanceOrderBook-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4BED3A36008F51F817C4A0E5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BinanceOrderBook-BinanceOrderBookUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		618167ADD80AD77959694D23 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BinanceOrderBook/Pods-BinanceOrderBook-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BinanceOrderBook/Pods-BinanceOrderBook-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BinanceOrderBook/Pods-BinanceOrderBook-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D1E4913B268419D0006CD105 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D1E49147268419D0006CD105 /* ViewController.swift in Sources */,
+				D1E49143268419D0006CD105 /* AppDelegate.swift in Sources */,
+				D1E491772684445B006CD105 /* SocketManager.swift in Sources */,
+				D1E49145268419D0006CD105 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1E49151268419D1006CD105 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D1E4915A268419D1006CD105 /* BinanceOrderBookTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1E4915C268419D1006CD105 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D1E49165268419D1006CD105 /* BinanceOrderBookUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D1E49157268419D1006CD105 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D1E4913E268419D0006CD105 /* BinanceOrderBook */;
+			targetProxy = D1E49156268419D1006CD105 /* PBXContainerItemProxy */;
+		};
+		D1E49162268419D1006CD105 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D1E4913E268419D0006CD105 /* BinanceOrderBook */;
+			targetProxy = D1E49161268419D1006CD105 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D1E49148268419D0006CD105 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D1E49149268419D0006CD105 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D1E4914D268419D1006CD105 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D1E4914E268419D1006CD105 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D1E49167268419D1006CD105 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D1E49168268419D1006CD105 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D1E4916A268419D1006CD105 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 72A97BBF2CCF13D3C166E55A /* Pods-BinanceOrderBook.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = BinanceOrderBook/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = huutaivuong.BinanceOrderBook;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D1E4916B268419D1006CD105 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E3EC81908F2DE084D67CD5CD /* Pods-BinanceOrderBook.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = BinanceOrderBook/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = huutaivuong.BinanceOrderBook;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D1E4916D268419D1006CD105 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 038BF28CC321B9EC0C99F71E /* Pods-BinanceOrderBookTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = BinanceOrderBookTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = huutaivuong.BinanceOrderBookTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BinanceOrderBook.app/BinanceOrderBook";
+			};
+			name = Debug;
+		};
+		D1E4916E268419D1006CD105 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5CC7660C89545EE4423C03C0 /* Pods-BinanceOrderBookTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = BinanceOrderBookTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = huutaivuong.BinanceOrderBookTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BinanceOrderBook.app/BinanceOrderBook";
+			};
+			name = Release;
+		};
+		D1E49170268419D1006CD105 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1050A3AA75E14FD7A6E30A59 /* Pods-BinanceOrderBook-BinanceOrderBookUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = BinanceOrderBookUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = huutaivuong.BinanceOrderBookUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BinanceOrderBook;
+			};
+			name = Debug;
+		};
+		D1E49171268419D1006CD105 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A956EAE008776750ED137845 /* Pods-BinanceOrderBook-BinanceOrderBookUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = BinanceOrderBookUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = huutaivuong.BinanceOrderBookUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BinanceOrderBook;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D1E4913A268419D0006CD105 /* Build configuration list for PBXProject "BinanceOrderBook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D1E49167268419D1006CD105 /* Debug */,
+				D1E49168268419D1006CD105 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D1E49169268419D1006CD105 /* Build configuration list for PBXNativeTarget "BinanceOrderBook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D1E4916A268419D1006CD105 /* Debug */,
+				D1E4916B268419D1006CD105 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D1E4916C268419D1006CD105 /* Build configuration list for PBXNativeTarget "BinanceOrderBookTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D1E4916D268419D1006CD105 /* Debug */,
+				D1E4916E268419D1006CD105 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D1E4916F268419D1006CD105 /* Build configuration list for PBXNativeTarget "BinanceOrderBookUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D1E49170268419D1006CD105 /* Debug */,
+				D1E49171268419D1006CD105 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D1E49137268419D0006CD105 /* Project object */;
+}
