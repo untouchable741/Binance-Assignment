@@ -17,6 +17,7 @@ final class SocketManager {
     private var socket: WebSocket?
     private var connectionStatusRelay = BehaviorRelay<SocketConnectionStatus>(value: .initial)
     private var dataPublishSubject = PublishSubject<SocketDataResponse>()
+    private var pendingRequest: [StreamRequest] = []
 }
 
 extension SocketManager: SocketDataProvider {
@@ -25,7 +26,10 @@ extension SocketManager: SocketDataProvider {
         return connectionStatusRelay.asObservable()
     }
     
-    func connect() {
+    func connectIfNeeded() {
+        guard connectionStatusRelay.value != .connected else {
+            return
+        }
         var request = URLRequest(url: URL(string: "wss://stream.binance.com/stream")!)
         request.timeoutInterval = 60
         socket = WebSocket(request: request)
@@ -39,10 +43,6 @@ extension SocketManager: SocketDataProvider {
     }
     
     func subscribe<T: Decodable>(streamName streamNames: [String]) -> Observable<T> {
-        guard let socket = socket else {
-            return Observable.error(SocketError.connectionFailure)
-        }
-        
         let subscribeRequest = StreamRequest(
             id: Int(Date.timeIntervalBetween1970AndReferenceDate),
             method: .subscribe,
@@ -53,7 +53,13 @@ extension SocketManager: SocketDataProvider {
             return Observable.error(SocketError.invalidRequest)
         }
         
-        socket.write(string: subscribeRequestJSONString)
+        if let socket = socket {
+            socket.write(string: subscribeRequestJSONString)
+        } else {
+            // Socket not available, put message into stream and processs later
+            pendingRequest.append(subscribeRequest)
+            connectIfNeeded()
+        }
         
         return dataPublishSubject
             .filter { streamNames.contains($0.stream) }
@@ -77,6 +83,13 @@ extension SocketManager: SocketDataProvider {
         
         socket.write(string: unsubscribeRequestJSONString)
     }
+    
+    func send(request: StreamRequest) {
+        guard let subscribeRequestJSONString = request.jsonString else {
+            return
+        }
+        socket?.write(string: subscribeRequestJSONString)
+    }
 }
 
 extension SocketManager: WebSocketDelegate {
@@ -84,6 +97,7 @@ extension SocketManager: WebSocketDelegate {
         switch event {
             case .connected(let headers):
                 connectionStatusRelay.accept(.connected)
+                pendingRequest.forEach(send)
                 print("websocket is connected: \(headers)")
             case .disconnected(let reason, let code):
                 connectionStatusRelay.accept(.disconnected)

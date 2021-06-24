@@ -8,7 +8,7 @@
 import Foundation
 import RxSwift
 
-enum SocketConnectionStatus {
+enum SocketConnectionStatus: Equatable {
     case initial
     case connecting
     case connected
@@ -26,7 +26,7 @@ protocol SocketDataProvider {
     var connectionStatusObservable: Observable<SocketConnectionStatus> { get }
     
     // Public methods to handle connection
-    func connect()
+    func connectIfNeeded()
     func disconnect()
     
     // Public methods to handle subscribe and unsubscribe stream
