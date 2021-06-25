@@ -27,10 +27,12 @@ extension SocketManager: SocketDataProvider {
     }
     
     func connectIfNeeded() {
-        guard connectionStatusRelay.value != .connected else {
+        guard connectionStatusRelay.value != .connected,
+              let websocketURL = URL(string: AppConfiguration.websocketUrlString) else {
             return
         }
-        var request = URLRequest(url: URL(string: "wss://stream.binance.com/stream")!)
+        
+        var request = URLRequest(url: websocketURL)
         request.timeoutInterval = 60
         socket = WebSocket(request: request)
         socket?.delegate = self

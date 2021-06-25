@@ -35,7 +35,7 @@ extension BinanceOrderBook: BinanceAPIEndpoint {
     }
     
     var baseUrlString: String {
-        return "https://api.binance.com/api/v3"
+        return AppConfiguration.baseUrlString
     }
     
     var apiPath: String {

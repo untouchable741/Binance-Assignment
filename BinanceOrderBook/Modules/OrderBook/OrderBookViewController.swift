@@ -10,6 +10,8 @@ import RxSwift
 
 class OrderBookViewController: UIViewController {
     @IBOutlet weak var orderTableView: UITableView!
+    @IBOutlet weak var loadingIndicatorView: UIView!
+    
     let viewModel: OrderBookViewModelProtocol = OrderBookViewModel(interactor: OrderBookInteractor())
     let disposeBag = DisposeBag()
     
@@ -27,8 +29,17 @@ class OrderBookViewController: UIViewController {
             .bind { [weak self] state in
             switch state {
             case .loadedData:
+                UIView.animate(withDuration: 0.5) {
+                    self?.loadingIndicatorView.isHidden = true
+                }
                 self?.orderTableView.reloadData()
-            default:
+            case .loading(_):
+                UIView.animate(withDuration: 0.5) {
+                    self?.loadingIndicatorView.isHidden = false
+                }
+            case .initial:
+                self?.loadingIndicatorView.isHidden = true
+            case .error(let error):
                 break
             }
         }.disposed(by: disposeBag)
@@ -38,10 +49,6 @@ class OrderBookViewController: UIViewController {
 }
 
 extension OrderBookViewController: UITableViewDelegate, UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfOrders
     }

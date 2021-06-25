@@ -27,6 +27,7 @@
 		D19445B726861D9600482A02 /* ThreadSafety.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19445B626861D9600482A02 /* ThreadSafety.swift */; };
 		D19445B92686243A00482A02 /* FractionConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19445B82686243A00482A02 /* FractionConfiguration.swift */; };
 		D19445BB268654E200482A02 /* OrderBookCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19445BA268654E200482A02 /* OrderBookCellViewModel.swift */; };
+		D1B027F626866A9700B9AA82 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B027F526866A9700B9AA82 /* AppConfiguration.swift */; };
 		D1E49143268419D0006CD105 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E49142268419D0006CD105 /* AppDelegate.swift */; };
 		D1E49145268419D0006CD105 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E49144268419D0006CD105 /* SceneDelegate.swift */; };
 		D1E4914A268419D0006CD105 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1E49148268419D0006CD105 /* Main.storyboard */; };
@@ -81,6 +82,7 @@
 		D19445B626861D9600482A02 /* ThreadSafety.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSafety.swift; sourceTree = "<group>"; };
 		D19445B82686243A00482A02 /* FractionConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FractionConfiguration.swift; sourceTree = "<group>"; };
 		D19445BA268654E200482A02 /* OrderBookCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookCellViewModel.swift; sourceTree = "<group>"; };
+		D1B027F526866A9700B9AA82 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		D1E4913F268419D0006CD105 /* BinanceOrderBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BinanceOrderBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1E49142268419D0006CD105 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D1E49144268419D0006CD105 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 			children = (
 				D1E49142268419D0006CD105 /* AppDelegate.swift */,
 				D1E49144268419D0006CD105 /* SceneDelegate.swift */,
+				D1B027F526866A9700B9AA82 /* AppConfiguration.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -572,6 +575,7 @@
 				D14CB1A52684912E00EA4538 /* PriceLevel.swift in Sources */,
 				D14CB1A1268478B000EA4538 /* StringExtension.swift in Sources */,
 				D14CB1A326847A9F00EA4538 /* DepthSocketResponse.swift in Sources */,
+				D1B027F626866A9700B9AA82 /* AppConfiguration.swift in Sources */,
 				D1E491772684445B006CD105 /* SocketManager.swift in Sources */,
 				D1E49145268419D0006CD105 /* SceneDelegate.swift in Sources */,
 				D14CB1B42684D4E200EA4538 /* OrderBookViewController.swift in Sources */,

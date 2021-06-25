@@ -18,17 +18,14 @@ protocol OrderBookViewModelProtocol: RxViewModel {
 final class OrderBookViewModel: OrderBookViewModelProtocol {
     
     // Store properties
-    
     private let currencyPair: CurrencyPair
     private let interactor: OrderBookInteractorProtocol
-    @ThreadSafety(value: makeDefaultCellViewModels())
+    @ThreadSafety(value: generatePlaceholderViewModels())
     private var orderBookCellViewModels: [OrderBookCellViewModel] {
         didSet {
             viewModelStateRelay.accept(.loadedData)
         }
     }
-    
-    var maxDepthQuantity: NSDecimalNumber?
     
     // Relays
     
@@ -38,7 +35,7 @@ final class OrderBookViewModel: OrderBookViewModelProtocol {
     
     // RxViewModel properties
     
-    private let viewModelStateRelay = BehaviorRelay<RxViewModelState>(value: .initial)
+    var viewModelStateRelay = BehaviorRelay<RxViewModelState>(value: .initial)
     
     init(
         currencyPair: CurrencyPair = .BTCUSDT,
@@ -49,8 +46,12 @@ final class OrderBookViewModel: OrderBookViewModelProtocol {
     }
     
     func loadData() {
-        let socketStreamObservable = interactor.subscribeStream(currencyPair: .BTCUSDT)
-        let snapshotObservable = interactor.getDepthData(currencyPair: .BTCUSDT)
+        // Trigger update state
+        update(newState: .loading("Loading data"))
+        
+        // Create observable to retrieve data
+        let socketStreamObservable = interactor.subscribeStream(currencyPair: currencyPair)
+        let snapshotObservable = interactor.getDepthData(currencyPair: currencyPair)
         
         // Firstly subscribe to socket stream
         socketStreamObservable
@@ -81,7 +82,7 @@ final class OrderBookViewModel: OrderBookViewModelProtocol {
                 let totalAskQuantity = mergedLocalOrderBook.asks.reduce(0, { $0 + $1.quantity })
                 var accumulateTotalBid: Decimal = 0
                 var accumulateTotalAsk: Decimal = 0
-                self?.orderBookCellViewModels = (0..<25).map { i in
+                self?.orderBookCellViewModels = (0..<AppConfiguration.orderBookDefaultRowsCount).map { i in
                     accumulateTotalBid += mergedLocalOrderBook.bids[i].quantity
                     accumulateTotalAsk += mergedLocalOrderBook.asks[i].quantity
                     return OrderBookCellViewModel(
@@ -97,8 +98,8 @@ final class OrderBookViewModel: OrderBookViewModelProtocol {
         .disposed(by: disposedBag)
     }
     
-    static func makeDefaultCellViewModels() -> [OrderBookCellViewModel] {
-        return (0..<25).map { i in
+    static func generatePlaceholderViewModels() -> [OrderBookCellViewModel] {
+        return (0..<AppConfiguration.orderBookDefaultRowsCount).map { i in
             return OrderBookCellViewModel(
                 isPlaceholder: true,
                 bidPriceLevel: PriceLevel(price: 0, quantity: 0),
@@ -108,15 +109,6 @@ final class OrderBookViewModel: OrderBookViewModelProtocol {
                 currencyPair: .BTCUSDT
             )
         }
-    }
-}
-
-
-// MARK: - RxViewModel conformance
-
-extension OrderBookViewModel {
-    var viewModelStateObservable: Observable<RxViewModelState> {
-        return viewModelStateRelay.asObservable()
     }
 }
 

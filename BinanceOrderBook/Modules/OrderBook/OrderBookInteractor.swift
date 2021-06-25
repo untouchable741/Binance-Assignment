@@ -33,13 +33,16 @@ final class OrderBookInteractor: OrderBookInteractorProtocol {
     }
     
     func getDepthData(currencyPair: CurrencyPair) -> Single<DepthChartResponseData> {
-        return apiServices.fetchDepthChartSnapshot(currencyPair: currencyPair, limit: 50)
+        return apiServices.fetchDepthChartSnapshot(currencyPair: currencyPair, limit: AppConfiguration.orderBookDefaultRowsCount)
     }
 }
 
 // MARK: - Merge business logic
 extension OrderBookInteractor {
     func merge(snapshot: DepthChartResponseData, socketData: DepthChartSocketResponse) -> DepthChartResponseData? {
+        print("Updated from snapshot lastUpdateID \(snapshot.lastUpdateId)")
+        print("With SocketData firstUpdateID \(socketData.firstUpdateID)")
+        print("With SocketData finalUpdateID \(socketData.finalUpdateID)")
         if socketData.firstUpdateID <= snapshot.lastUpdateId + 1 && socketData.finalUpdateID >=  snapshot.lastUpdateId + 1 {
             return snapshot
         }
@@ -51,7 +54,8 @@ extension OrderBookInteractor {
             while snapshotIndex < asks.count && socketData.asks[i].price > asks[snapshotIndex].price {
                 snapshotIndex += 1
             }
-            if snapshotIndex >= 25 {
+            if snapshotIndex >= AppConfiguration.orderBookDefaultRowsCount {
+                if i == 0 { print("Break because reaching more than \(AppConfiguration.orderBookDefaultRowsCount) asks") }
                 break
             }
             if snapshotIndex < asks.count && socketData.asks[i].price == asks[snapshotIndex].price {
@@ -72,7 +76,8 @@ extension OrderBookInteractor {
             while snapshotIndex < bids.count && socketData.bids[i].price < bids[snapshotIndex].price {
                 snapshotIndex += 1
             }
-            if snapshotIndex >= 25 {
+            if snapshotIndex >= AppConfiguration.orderBookDefaultRowsCount {
+                if i == 0 { print("Break because reaching more than \(AppConfiguration.orderBookDefaultRowsCount) bids") }
                 break
             }
             if snapshotIndex < bids.count && socketData.bids[i].price == bids[snapshotIndex].price {
@@ -87,8 +92,8 @@ extension OrderBookInteractor {
         }
         return DepthChartResponseData(
             lastUpdateId: socketData.finalUpdateID,
-            bids: Array(bids.prefix(25)),
-            asks: Array(asks.prefix(25))
+            bids: Array(bids.prefix(AppConfiguration.orderBookDefaultRowsCount)),
+            asks: Array(asks.prefix(AppConfiguration.orderBookDefaultRowsCount))
         )
     }
 }
