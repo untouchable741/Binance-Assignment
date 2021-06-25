@@ -55,12 +55,12 @@ extension OrderBookInteractor {
                 break
             }
             if snapshotIndex < asks.count && socketData.asks[i].price == asks[snapshotIndex].price {
-                if Decimal(string: socketData.asks[i].quantity) ?? 0 == 0 {
+                if socketData.asks[i].quantity == 0 {
                     asks.remove(at: snapshotIndex)
                 } else {
                     asks[snapshotIndex] = socketData.asks[i]
                 }
-            } else if Decimal(string: socketData.asks[i].quantity) ?? 0 > 0 {
+            } else if socketData.asks[i].quantity > 0 {
                 asks.insert(socketData.asks[i], at: snapshotIndex)
             }
         }
@@ -76,12 +76,12 @@ extension OrderBookInteractor {
                 break
             }
             if snapshotIndex < bids.count && socketData.bids[i].price == bids[snapshotIndex].price {
-                if Decimal(string: socketData.bids[i].quantity) ?? 0 == 0 {
+                if socketData.bids[i].quantity == 0 {
                     bids.remove(at: snapshotIndex)
                 } else {
                     bids[snapshotIndex] = socketData.bids[i]
                 }
-            } else if Decimal(string: socketData.bids[i].quantity) ?? 0 > 0 {
+            } else if socketData.bids[i].quantity > 0 {
                 bids.insert(socketData.bids[i], at: snapshotIndex)
             }
         }

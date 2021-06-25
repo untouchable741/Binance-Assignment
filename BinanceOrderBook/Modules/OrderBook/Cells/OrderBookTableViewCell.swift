@@ -13,6 +13,8 @@ class OrderBookTableViewCell: UITableViewCell {
     @IBOutlet weak var bidPriceLabel: UILabel!
     @IBOutlet weak var askQuantityLabel: UILabel!
     @IBOutlet weak var askPriceLabel: UILabel!
+    @IBOutlet weak var bidQuantityBarWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var askQuantityBarWidthConstraint: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,16 +26,13 @@ class OrderBookTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configure(
-        currencyPair: CurrencyPair,
-        bid: PriceLevel,
-        ask: PriceLevel,
-        formatter: OrderBookNumberFormatter = NumberFormatter.sharedNumberFormatter
-    ) {
-        bidQuantityLabel.text = formatter.quantityString(from: NSDecimalNumber(string: bid.quantity), of: currencyPair)
-        bidPriceLabel.text = formatter.priceString(from: NSDecimalNumber(string: bid.price), of: currencyPair)
-        askQuantityLabel.text = formatter.quantityString(from: NSDecimalNumber(string: ask.quantity), of: currencyPair)
-        askPriceLabel.text = formatter.priceString(from: NSDecimalNumber(string: ask.price), of: currencyPair)
+    func configure(viewModel: OrderBookCellViewModel) {
+        let cellContentViewWidth = contentView.bounds.width / 2
+        bidQuantityLabel.text = viewModel.formattedBidQuantity
+        bidPriceLabel.text = viewModel.formattedBidPrice
+        askQuantityLabel.text = viewModel.formattedAskQuantity
+        askPriceLabel.text = viewModel.formattedAskPrice
+        bidQuantityBarWidthConstraint.constant  = CGFloat((viewModel.bidQuantityPercentage as NSDecimalNumber).floatValue) * cellContentViewWidth
+        askQuantityBarWidthConstraint.constant  = CGFloat((viewModel.askQuantityPercentage as NSDecimalNumber).floatValue) * cellContentViewWidth
     }
-
 }

@@ -16,6 +16,8 @@ class OrderBookViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bindViewModel()
+        
+        orderTableView.tableFooterView = UIView(frame: .zero)
     }
     
     func bindViewModel() {
@@ -46,8 +48,8 @@ extension OrderBookViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "OrderBookTableViewCell", for: indexPath) as! OrderBookTableViewCell
-        if let bid = viewModel.bid(at: indexPath.row), let ask = viewModel.ask(at: indexPath.row) {
-            cell.configure(currencyPair: .BTCUSDT, bid: bid, ask: ask)
+        if let cellViewModel = viewModel.cellViewModel(at: indexPath.row) {
+            cell.configure(viewModel: cellViewModel)
         }
         return cell
     }

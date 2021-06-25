@@ -15,11 +15,7 @@ struct DepthChartSocketResponse: Codable {
     let finalUpdateID: Int
     let bids: [PriceLevel]
     let asks: [PriceLevel]
-}
-
-// MARK: - CodingKeys
-
-private extension DepthChartSocketResponse {
+    
     enum CodingKeys : String, CodingKey {
         case eventType = "e"
         case eventTime = "E"
@@ -30,4 +26,3 @@ private extension DepthChartSocketResponse {
         case asks = "a"
     }
 }
-

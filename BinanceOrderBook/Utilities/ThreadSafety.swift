@@ -10,19 +10,15 @@ import Foundation
 @propertyWrapper
 class ThreadSafety<Value> {
     private let accessingQueue: DispatchQueue
-    private var value: Value?
+    private var value: Value
     
-    var wrappedValue: Value? {
-        get {
-            accessingQueue.sync { value }
-        }
-        
-        set {
-            accessingQueue.async(flags: .barrier) { self.value = newValue }
-        }
+    var wrappedValue: Value {
+        get { accessingQueue.sync { value } }
+        set { accessingQueue.async(flags: .barrier) { self.value = newValue } }
     }
-    
-    init(queue: DispatchQueue? = nil) {
+
+    init(value: Value, queue: DispatchQueue? = nil) {
+        self.value = value
         self.accessingQueue = queue ?? DispatchQueue(label: UUID().uuidString, attributes: .concurrent)
     }
 }

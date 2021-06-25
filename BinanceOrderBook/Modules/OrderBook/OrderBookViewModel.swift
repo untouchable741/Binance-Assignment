@@ -11,9 +11,7 @@ import RxCocoa
 
 protocol OrderBookViewModelProtocol: RxViewModel {
     var numberOfOrders: Int { get }
-    
-    func bid(at index: Int) -> PriceLevel?
-    func ask(at index: Int) -> PriceLevel?
+    func cellViewModel(at index: Int) -> OrderBookCellViewModel?
     func loadData()
 }
 
@@ -23,11 +21,14 @@ final class OrderBookViewModel: OrderBookViewModelProtocol {
     
     private let currencyPair: CurrencyPair
     private let interactor: OrderBookInteractorProtocol
-    @ThreadSafety private var orderBookData: DepthChartResponseData? {
+    @ThreadSafety(value: makeDefaultCellViewModels())
+    private var orderBookCellViewModels: [OrderBookCellViewModel] {
         didSet {
             viewModelStateRelay.accept(.loadedData)
         }
     }
+    
+    var maxDepthQuantity: NSDecimalNumber?
     
     // Relays
     
@@ -76,10 +77,37 @@ final class OrderBookViewModel: OrderBookViewModelProtocol {
                 return
             }
             if let mergedLocalOrderBook = self?.interactor.merge(snapshot: snapshotData, socketData: socketData) {
-                self?.orderBookData = mergedLocalOrderBook
+                let totalBidQuantity = mergedLocalOrderBook.bids.reduce(0, { $0 + $1.quantity })
+                let totalAskQuantity = mergedLocalOrderBook.asks.reduce(0, { $0 + $1.quantity })
+                var accumulateTotalBid: Decimal = 0
+                var accumulateTotalAsk: Decimal = 0
+                self?.orderBookCellViewModels = (0..<25).map { i in
+                    accumulateTotalBid += mergedLocalOrderBook.bids[i].quantity
+                    accumulateTotalAsk += mergedLocalOrderBook.asks[i].quantity
+                    return OrderBookCellViewModel(
+                        bidPriceLevel: mergedLocalOrderBook.bids[i],
+                        askPriceLevel: mergedLocalOrderBook.asks[i],
+                        bidQuantityPercentage: accumulateTotalBid / totalBidQuantity,
+                        askQuantityPercentage: accumulateTotalAsk / totalAskQuantity,
+                        currencyPair: .BTCUSDT
+                    )
+                }
             }
         })
         .disposed(by: disposedBag)
+    }
+    
+    static func makeDefaultCellViewModels() -> [OrderBookCellViewModel] {
+        return (0..<25).map { i in
+            return OrderBookCellViewModel(
+                isPlaceholder: true,
+                bidPriceLevel: PriceLevel(price: 0, quantity: 0),
+                askPriceLevel: PriceLevel(price: 0, quantity: 0),
+                bidQuantityPercentage: 0,
+                askQuantityPercentage: 0,
+                currencyPair: .BTCUSDT
+            )
+        }
     }
 }
 
@@ -96,14 +124,10 @@ extension OrderBookViewModel {
 
 extension OrderBookViewModel {
     var numberOfOrders: Int {
-        return orderBookData?.bids.count ?? 0
+        return orderBookCellViewModels.count
     }
     
-    func bid(at index: Int) -> PriceLevel? {
-        return orderBookData?.bids[index]
-    }
-    
-    func ask(at index: Int) -> PriceLevel? {
-        return orderBookData?.asks[index]
+    func cellViewModel(at index: Int) -> OrderBookCellViewModel? {
+        return orderBookCellViewModels[index]
     }
 }

@@ -26,6 +26,7 @@
 		D19445B52686132100482A02 /* NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19445B42686132100482A02 /* NumberFormatter.swift */; };
 		D19445B726861D9600482A02 /* ThreadSafety.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19445B626861D9600482A02 /* ThreadSafety.swift */; };
 		D19445B92686243A00482A02 /* FractionConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19445B82686243A00482A02 /* FractionConfiguration.swift */; };
+		D19445BB268654E200482A02 /* OrderBookCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19445BA268654E200482A02 /* OrderBookCellViewModel.swift */; };
 		D1E49143268419D0006CD105 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E49142268419D0006CD105 /* AppDelegate.swift */; };
 		D1E49145268419D0006CD105 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E49144268419D0006CD105 /* SceneDelegate.swift */; };
 		D1E4914A268419D0006CD105 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1E49148268419D0006CD105 /* Main.storyboard */; };
@@ -79,6 +80,7 @@
 		D19445B42686132100482A02 /* NumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatter.swift; sourceTree = "<group>"; };
 		D19445B626861D9600482A02 /* ThreadSafety.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSafety.swift; sourceTree = "<group>"; };
 		D19445B82686243A00482A02 /* FractionConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FractionConfiguration.swift; sourceTree = "<group>"; };
+		D19445BA268654E200482A02 /* OrderBookCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookCellViewModel.swift; sourceTree = "<group>"; };
 		D1E4913F268419D0006CD105 /* BinanceOrderBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BinanceOrderBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1E49142268419D0006CD105 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D1E49144268419D0006CD105 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 		D14CB1BA2685001D00EA4538 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				D19445BA268654E200482A02 /* OrderBookCellViewModel.swift */,
 				D14CB1BB2685003900EA4538 /* OrderBookTableViewCell.swift */,
 			);
 			path = Cells;
@@ -269,8 +272,8 @@
 				D14CB1A62684917E00EA4538 /* CurrencyPair.swift */,
 				D14CB1A8268491E600EA4538 /* DepthResponse.swift */,
 				D14CB1A226847A9F00EA4538 /* DepthSocketResponse.swift */,
-				D14CB1A42684912E00EA4538 /* PriceLevel.swift */,
 				D19445B82686243A00482A02 /* FractionConfiguration.swift */,
+				D14CB1A42684912E00EA4538 /* PriceLevel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -572,6 +575,7 @@
 				D1E491772684445B006CD105 /* SocketManager.swift in Sources */,
 				D1E49145268419D0006CD105 /* SceneDelegate.swift in Sources */,
 				D14CB1B42684D4E200EA4538 /* OrderBookViewController.swift in Sources */,
+				D19445BB268654E200482A02 /* OrderBookCellViewModel.swift in Sources */,
 				D1F3195A26844B630082E527 /* StreamRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,22 +8,22 @@
 import Foundation
 
 struct PriceLevel: Codable {
-    let price: String
-    let quantity: String
+    let price: Decimal
+    let quantity: Decimal
     
     public init(from decoder: Decoder) throws {
         var container = try decoder.unkeyedContainer()
-        self.price = try container.decode(String.self)
-        self.quantity = try container.decode(String.self)
+        self.price = Decimal(string: try container.decode(String.self)) ?? 0
+        self.quantity = Decimal(string: try container.decode(String.self)) ?? 0
     }
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.unkeyedContainer()
-        try container.encode(price)
-        try container.encode(quantity)
+        try container.encode((price as NSDecimalNumber).stringValue)
+        try container.encode((quantity as NSDecimalNumber).stringValue)
     }
     
-    init(price: String, quantity: String) {
+    init(price: Decimal, quantity: Decimal) {
         self.price = price
         self.quantity = quantity
     }
