@@ -21,9 +21,13 @@
 		D14CB1B42684D4E200EA4538 /* OrderBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14CB1B32684D4E200EA4538 /* OrderBookViewController.swift */; };
 		D14CB1B72684D4F500EA4538 /* OrderBookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14CB1B62684D4F500EA4538 /* OrderBookViewModel.swift */; };
 		D14CB1B92684D4FD00EA4538 /* OrderBookInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14CB1B82684D4FD00EA4538 /* OrderBookInteractor.swift */; };
+		D14CB1BC2685003900EA4538 /* OrderBookTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14CB1BB2685003900EA4538 /* OrderBookTableViewCell.swift */; };
+		D19445B126860DF000482A02 /* RxViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19445B026860DF000482A02 /* RxViewModel.swift */; };
+		D19445B52686132100482A02 /* NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19445B42686132100482A02 /* NumberFormatter.swift */; };
+		D19445B726861D9600482A02 /* ThreadSafety.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19445B626861D9600482A02 /* ThreadSafety.swift */; };
+		D19445B92686243A00482A02 /* FractionConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19445B82686243A00482A02 /* FractionConfiguration.swift */; };
 		D1E49143268419D0006CD105 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E49142268419D0006CD105 /* AppDelegate.swift */; };
 		D1E49145268419D0006CD105 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E49144268419D0006CD105 /* SceneDelegate.swift */; };
-		D1E49147268419D0006CD105 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E49146268419D0006CD105 /* ViewController.swift */; };
 		D1E4914A268419D0006CD105 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1E49148268419D0006CD105 /* Main.storyboard */; };
 		D1E4914C268419D1006CD105 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1E4914B268419D1006CD105 /* Assets.xcassets */; };
 		D1E4914F268419D1006CD105 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1E4914D268419D1006CD105 /* LaunchScreen.storyboard */; };
@@ -70,10 +74,14 @@
 		D14CB1B32684D4E200EA4538 /* OrderBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookViewController.swift; sourceTree = "<group>"; };
 		D14CB1B62684D4F500EA4538 /* OrderBookViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookViewModel.swift; sourceTree = "<group>"; };
 		D14CB1B82684D4FD00EA4538 /* OrderBookInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookInteractor.swift; sourceTree = "<group>"; };
+		D14CB1BB2685003900EA4538 /* OrderBookTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookTableViewCell.swift; sourceTree = "<group>"; };
+		D19445B026860DF000482A02 /* RxViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxViewModel.swift; sourceTree = "<group>"; };
+		D19445B42686132100482A02 /* NumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatter.swift; sourceTree = "<group>"; };
+		D19445B626861D9600482A02 /* ThreadSafety.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSafety.swift; sourceTree = "<group>"; };
+		D19445B82686243A00482A02 /* FractionConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FractionConfiguration.swift; sourceTree = "<group>"; };
 		D1E4913F268419D0006CD105 /* BinanceOrderBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BinanceOrderBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1E49142268419D0006CD105 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D1E49144268419D0006CD105 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D1E49146268419D0006CD105 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D1E49149268419D0006CD105 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D1E4914B268419D1006CD105 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D1E4914E268419D1006CD105 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -155,11 +163,46 @@
 		D14CB1B52684D4E800EA4538 /* OrderBook */ = {
 			isa = PBXGroup;
 			children = (
+				D14CB1BA2685001D00EA4538 /* Cells */,
 				D14CB1B32684D4E200EA4538 /* OrderBookViewController.swift */,
 				D14CB1B62684D4F500EA4538 /* OrderBookViewModel.swift */,
 				D14CB1B82684D4FD00EA4538 /* OrderBookInteractor.swift */,
 			);
 			path = OrderBook;
+			sourceTree = "<group>";
+		};
+		D14CB1BA2685001D00EA4538 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				D14CB1BB2685003900EA4538 /* OrderBookTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		D19445AF26860DE300482A02 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				D19445B026860DF000482A02 /* RxViewModel.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		D19445B2268612D100482A02 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				D1E49142268419D0006CD105 /* AppDelegate.swift */,
+				D1E49144268419D0006CD105 /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		D19445B32686130A00482A02 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				D19445B42686132100482A02 /* NumberFormatter.swift */,
+				D19445B626861D9600482A02 /* ThreadSafety.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		D1E49136268419D0006CD105 = {
@@ -187,8 +230,7 @@
 		D1E49141268419D0006CD105 /* BinanceOrderBook */ = {
 			isa = PBXGroup;
 			children = (
-				D1E49142268419D0006CD105 /* AppDelegate.swift */,
-				D1E49144268419D0006CD105 /* SceneDelegate.swift */,
+				D19445B2268612D100482A02 /* Application */,
 				D1E4914B268419D1006CD105 /* Assets.xcassets */,
 				D1F3195D26846D950082E527 /* Extension */,
 				D1E49150268419D1006CD105 /* Info.plist */,
@@ -196,8 +238,9 @@
 				D1E49148268419D0006CD105 /* Main.storyboard */,
 				D1E4917226844428006CD105 /* Models */,
 				D14CB1B02684D47A00EA4538 /* Modules */,
+				D19445AF26860DE300482A02 /* Protocols */,
 				D1E491732684442D006CD105 /* Services */,
-				D1E49146268419D0006CD105 /* ViewController.swift */,
+				D19445B32686130A00482A02 /* Utilities */,
 			);
 			path = BinanceOrderBook;
 			sourceTree = "<group>";
@@ -227,6 +270,7 @@
 				D14CB1A8268491E600EA4538 /* DepthResponse.swift */,
 				D14CB1A226847A9F00EA4538 /* DepthSocketResponse.swift */,
 				D14CB1A42684912E00EA4538 /* PriceLevel.swift */,
+				D19445B82686243A00482A02 /* FractionConfiguration.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -508,14 +552,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				D14CB1AB2684931B00EA4538 /* APIServices.swift in Sources */,
-				D1E49147268419D0006CD105 /* ViewController.swift in Sources */,
+				D19445B52686132100482A02 /* NumberFormatter.swift in Sources */,
+				D14CB1BC2685003900EA4538 /* OrderBookTableViewCell.swift in Sources */,
 				D1F3195826844AB20082E527 /* SocketConnectionProvider.swift in Sources */,
 				D1E49143268419D0006CD105 /* AppDelegate.swift in Sources */,
 				D14CB1A72684917E00EA4538 /* CurrencyPair.swift in Sources */,
+				D19445B126860DF000482A02 /* RxViewModel.swift in Sources */,
 				D14CB1A9268491E600EA4538 /* DepthResponse.swift in Sources */,
+				D19445B92686243A00482A02 /* FractionConfiguration.swift in Sources */,
 				D14CB1B92684D4FD00EA4538 /* OrderBookInteractor.swift in Sources */,
 				D1F3195F26846DBF0082E527 /* CodableExtensions.swift in Sources */,
 				D14CB1B72684D4F500EA4538 /* OrderBookViewModel.swift in Sources */,
+				D19445B726861D9600482A02 /* ThreadSafety.swift in Sources */,
 				D14CB1AD268493F200EA4538 /* APIEndpoint.swift in Sources */,
 				D14CB1AF2684D09E00EA4538 /* APIError.swift in Sources */,
 				D14CB1A52684912E00EA4538 /* PriceLevel.swift in Sources */,

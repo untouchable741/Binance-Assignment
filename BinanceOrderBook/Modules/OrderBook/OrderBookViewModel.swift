@@ -9,23 +9,41 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-protocol OrderBookViewModelProtocol {
-    var ordersObservable: Observable<DepthChartResponseData?> { get }
-
+protocol OrderBookViewModelProtocol: RxViewModel {
+    var numberOfOrders: Int { get }
+    
+    func bid(at index: Int) -> PriceLevel?
+    func ask(at index: Int) -> PriceLevel?
     func loadData()
 }
 
-final class OrderBookViewModel {
+final class OrderBookViewModel: OrderBookViewModelProtocol {
     
+    // Store properties
+    
+    private let currencyPair: CurrencyPair
     private let interactor: OrderBookInteractorProtocol
-    private var depthChartDataRelay = BehaviorRelay<DepthChartResponseData?>(value: nil)
-    private let disposedBag = DisposeBag()
+    @ThreadSafety private var orderBookData: DepthChartResponseData? {
+        didSet {
+            viewModelStateRelay.accept(.loadedData)
+        }
+    }
     
+    // Relays
+    
+    private let disposedBag = DisposeBag()
     private let snapshotRelay = BehaviorRelay<DepthChartResponseData?>(value: nil)
     private let socketRelay = BehaviorRelay<DepthChartSocketResponse?>(value: nil)
-    private let orderBookRelay = BehaviorRelay<DepthChartResponseData?>(value: nil)
     
-    init(interactor: OrderBookInteractorProtocol) {
+    // RxViewModel properties
+    
+    private let viewModelStateRelay = BehaviorRelay<RxViewModelState>(value: .initial)
+    
+    init(
+        currencyPair: CurrencyPair = .BTCUSDT,
+        interactor: OrderBookInteractorProtocol = OrderBookInteractor()
+    ) {
+        self.currencyPair = currencyPair
         self.interactor = interactor
     }
     
@@ -57,15 +75,35 @@ final class OrderBookViewModel {
             guard let snapshotData = snapshotData, let socketData = socketData else {
                 return
             }
-            let mergedLocalOrderBook = self?.interactor.merge(snapshot: snapshotData, socketData: socketData)
-            self?.orderBookRelay.accept(mergedLocalOrderBook)
+            if let mergedLocalOrderBook = self?.interactor.merge(snapshot: snapshotData, socketData: socketData) {
+                self?.orderBookData = mergedLocalOrderBook
+            }
         })
         .disposed(by: disposedBag)
     }
 }
 
-extension OrderBookViewModel: OrderBookViewModelProtocol {
-    var ordersObservable: Observable<DepthChartResponseData?> {
-        return orderBookRelay.asObservable()
+
+// MARK: - RxViewModel conformance
+
+extension OrderBookViewModel {
+    var viewModelStateObservable: Observable<RxViewModelState> {
+        return viewModelStateRelay.asObservable()
+    }
+}
+
+// MARK: - DataSource
+
+extension OrderBookViewModel {
+    var numberOfOrders: Int {
+        return orderBookData?.bids.count ?? 0
+    }
+    
+    func bid(at index: Int) -> PriceLevel? {
+        return orderBookData?.bids[index]
+    }
+    
+    func ask(at index: Int) -> PriceLevel? {
+        return orderBookData?.asks[index]
     }
 }

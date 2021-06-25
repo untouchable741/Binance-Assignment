@@ -40,23 +40,27 @@ final class OrderBookInteractor: OrderBookInteractorProtocol {
 // MARK: - Merge business logic
 extension OrderBookInteractor {
     func merge(snapshot: DepthChartResponseData, socketData: DepthChartSocketResponse) -> DepthChartResponseData? {
+        if socketData.firstUpdateID <= snapshot.lastUpdateId + 1 && socketData.finalUpdateID >=  snapshot.lastUpdateId + 1 {
+            return snapshot
+        }
+        
         var asks = snapshot.asks
         // Merge ask
         for i in 0..<socketData.asks.count {
             var snapshotIndex = 0
-            while snapshotIndex < asks.count && socketData.asks[i].price < asks[snapshotIndex].price {
+            while snapshotIndex < asks.count && socketData.asks[i].price > asks[snapshotIndex].price {
                 snapshotIndex += 1
             }
             if snapshotIndex >= 25 {
                 break
             }
-            if socketData.asks[i].price == asks[snapshotIndex].price {
-                if socketData.asks[i].quantity == "0" {
+            if snapshotIndex < asks.count && socketData.asks[i].price == asks[snapshotIndex].price {
+                if Decimal(string: socketData.asks[i].quantity) ?? 0 == 0 {
                     asks.remove(at: snapshotIndex)
                 } else {
                     asks[snapshotIndex] = socketData.asks[i]
                 }
-            } else {
+            } else if Decimal(string: socketData.asks[i].quantity) ?? 0 > 0 {
                 asks.insert(socketData.asks[i], at: snapshotIndex)
             }
         }
@@ -65,19 +69,19 @@ extension OrderBookInteractor {
         var bids = snapshot.bids
         for i in 0..<socketData.bids.count {
             var snapshotIndex = 0
-            while snapshotIndex < bids.count && socketData.bids[i].price > bids[snapshotIndex].price {
+            while snapshotIndex < bids.count && socketData.bids[i].price < bids[snapshotIndex].price {
                 snapshotIndex += 1
             }
             if snapshotIndex >= 25 {
                 break
             }
-            if socketData.bids[i].price == bids[snapshotIndex].price {
-                if socketData.bids[i].quantity == "0" {
+            if snapshotIndex < bids.count && socketData.bids[i].price == bids[snapshotIndex].price {
+                if Decimal(string: socketData.bids[i].quantity) ?? 0 == 0 {
                     bids.remove(at: snapshotIndex)
                 } else {
                     bids[snapshotIndex] = socketData.bids[i]
                 }
-            } else {
+            } else if Decimal(string: socketData.bids[i].quantity) ?? 0 > 0 {
                 bids.insert(socketData.bids[i], at: snapshotIndex)
             }
         }
