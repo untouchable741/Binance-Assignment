@@ -12,4 +12,6 @@ enum AppConfiguration {
     static let baseUrlString = "https://api.binance.com/api/v3"
     static let orderBookDefaultRowsCount = 25
     static let orderBookLimit = 50
+    static let marketHistoryDefaultRowsCount = 25
+    static let marketHistoryLimit = 80
 }

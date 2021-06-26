@@ -1,5 +1,7 @@
 ${PODS_ROOT}/Target Support Files/Pods-BinanceOrderBook/Pods-BinanceOrderBook-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Pageboy/Pageboy.framework
 ${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework
 ${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework
 ${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework
 ${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework
+${BUILT_PRODUCTS_DIR}/Tabman/Tabman.framework

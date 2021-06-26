@@ -41,28 +41,28 @@ final class OrderBookCellViewModel {
 extension OrderBookCellViewModel {
     var formattedBidQuantity: String? {
         guard !isPlaceholder else {
-            return "--"
+            return AppConstants.placeholderValue
         }
         return numberFormatter.quantityString(from: bidPriceLevel.quantity as NSDecimalNumber, of: currencyPair)
     }
     
     var formattedBidPrice: String? {
         guard !isPlaceholder else {
-            return "--"
+            return AppConstants.placeholderValue
         }
         return numberFormatter.priceString(from: bidPriceLevel.price as NSDecimalNumber, of: currencyPair)
     }
     
     var formattedAskQuantity: String? {
         guard !isPlaceholder else {
-            return "--"
+            return AppConstants.placeholderValue
         }
         return numberFormatter.quantityString(from: askPriceLevel.quantity as NSDecimalNumber, of: currencyPair)
     }
     
     var formattedAskPrice: String? {
         guard !isPlaceholder else {
-            return "--"
+            return AppConstants.placeholderValue
         }
         return numberFormatter.priceString(from: askPriceLevel.price as NSDecimalNumber, of: currencyPair)
     }

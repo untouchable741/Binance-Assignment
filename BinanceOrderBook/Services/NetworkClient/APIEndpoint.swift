@@ -26,6 +26,7 @@ protocol BinanceAPIEndpoint {
 
 enum BinanceOrderBook {
     case depthChart(symbol: String, limit: Int)
+    case aggregateTradeData(symbol: String, limit: Int)
 }
 
 extension BinanceOrderBook: BinanceAPIEndpoint {
@@ -42,6 +43,8 @@ extension BinanceOrderBook: BinanceAPIEndpoint {
         switch self {
         case .depthChart:
             return "/depth"
+        case .aggregateTradeData:
+            return "/aggTrades"
         }
     }
     
@@ -56,7 +59,8 @@ extension BinanceOrderBook: BinanceAPIEndpoint {
     
     var queryParameters: [String : String] {
         switch self {
-        case .depthChart(let symbol, let limit):
+        case .depthChart(let symbol, let limit),
+             .aggregateTradeData(let symbol,let limit):
             return [
                 "symbol": symbol,
                 "limit": String(limit)

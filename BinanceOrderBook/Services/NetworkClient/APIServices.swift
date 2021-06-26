@@ -10,10 +10,12 @@ import RxSwift
 
 protocol APIServices {
     func fetchDepthChartSnapshot(currencyPair: CurrencyPair, limit: Int) -> Single<DepthChartResponseData>
+    func fetchAggregateTradeData(currencyPair: CurrencyPair, limit: Int) -> Single<[AggregateTradeData]>
 }
 
 class APIClient: APIServices {
     private let sessionConfiguration: URLSessionConfiguration
+    
     init(configuration: URLSessionConfiguration = .default) {
         self.sessionConfiguration = configuration
     }
@@ -23,6 +25,13 @@ class APIClient: APIServices {
             return Single.error(APIError.invalidRequest)
         }
         return perform(request: depthChartRequest)
+    }
+    
+    func fetchAggregateTradeData(currencyPair: CurrencyPair, limit: Int) -> Single<[AggregateTradeData]> {
+        guard let aggregateTradeRequest = BinanceOrderBook.aggregateTradeData(symbol: currencyPair.rawValue, limit: limit).request else {
+            return Single.error(APIError.invalidRequest)
+        }
+        return perform(request: aggregateTradeRequest)
     }
 }
 
@@ -38,7 +47,7 @@ private extension APIClient {
                         guard let data = data else {
                             throw APIError.invalidResponse
                         }
-                        let decodedData = try JSONDecoder().decode(T.self, from: data)
+                        let decodedData = try JSONDecoder.shared.decode(T.self, from: data)
                         single(.success(decodedData))
                     }
                 } catch (let finalError){

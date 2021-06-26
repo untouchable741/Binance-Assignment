@@ -65,7 +65,7 @@ extension SocketManager: SocketDataProvider {
         
         return dataPublishSubject
             .filter { streamNames.contains($0.stream) }
-            .map { try JSONDecoder().decode(T.self, from: $0.data) }
+            .map { try JSONDecoder.shared.decode(T.self, from: $0.data) }
     }
     
     func unsubscribe(streamName streamNames: [String]) throws {

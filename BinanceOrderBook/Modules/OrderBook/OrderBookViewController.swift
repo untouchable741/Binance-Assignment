@@ -8,11 +8,19 @@
 import UIKit
 import RxSwift
 
-class OrderBookViewController: UIViewController {
+class OrderBookViewController: UIViewController, StoryboardInstantiable {
+    func configure(with currencyPair: CurrencyPair) {
+        viewModel = OrderBookViewModel(currencyPair: currencyPair)
+    }
+    
+    static var storyboardIdentifier: String {
+        return String(describing: self)
+    }
+    
     @IBOutlet weak var orderTableView: UITableView!
     @IBOutlet weak var loadingIndicatorView: UIView!
     
-    let viewModel: OrderBookViewModelProtocol = OrderBookViewModel(interactor: OrderBookInteractor())
+    var viewModel: OrderBookViewModelProtocol!
     let disposeBag = DisposeBag()
     
     override func viewDidLoad() {

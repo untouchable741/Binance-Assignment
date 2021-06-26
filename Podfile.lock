@@ -1,4 +1,5 @@
 PODS:
+  - Pageboy (3.6.2)
   - RxCocoa (6.2.0):
     - RxRelay (= 6.2.0)
     - RxSwift (= 6.2.0)
@@ -6,25 +7,32 @@ PODS:
     - RxSwift (= 6.2.0)
   - RxSwift (6.2.0)
   - Starscream (4.0.4)
+  - Tabman (2.11.1):
+    - Pageboy (~> 3.6.0)
 
 DEPENDENCIES:
   - RxCocoa (~> 6.2.0)
   - RxSwift (~> 6.2.0)
   - Starscream (~> 4.0.0)
+  - Tabman (~> 2.11.1)
 
 SPEC REPOS:
   trunk:
+    - Pageboy
     - RxCocoa
     - RxRelay
     - RxSwift
     - Starscream
+    - Tabman
 
 SPEC CHECKSUMS:
+  Pageboy: cf121b9dd48c63f3f281b2a9ec93d02e0f23879b
   RxCocoa: 4baf94bb35f2c0ab31bc0cb9f1900155f646ba42
   RxRelay: e72dbfd157807478401ef1982e1c61c945c94b2f
   RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
   Starscream: 5178aed56b316f13fa3bc55694e583d35dd414d9
+  Tabman: 792ac76fd1ec95af175c93db880a3c47cabedc91
 
-PODFILE CHECKSUM: 49d520c6a81e7dc21895619b1468f44404e8f828
+PODFILE CHECKSUM: ab59ebf1a283f4d08f8f69c2bfbf95e61b9b83e8
 
 COCOAPODS: 1.10.1

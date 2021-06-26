@@ -9,6 +9,7 @@ target 'BinanceOrderBook' do
   pod 'Starscream', '~> 4.0.0'
   pod 'RxSwift', '~> 6.2.0'
   pod 'RxCocoa', '~> 6.2.0'
+  pod 'Tabman', '~> 2.11.1'
   
   target 'BinanceOrderBookTests' do
     inherit! :search_paths
