@@ -10,6 +10,7 @@ import RxSwift
 
 protocol MarketHistoryInteractorProtocol {
     func subscribeStream(currencyPair: CurrencyPair) -> Observable<AggregateTradeData>
+    func unsubscribeStream(currencyPair: CurrencyPair) throws
     func getAggregateTradeData(currencyPair: CurrencyPair) -> Single<[AggregateTradeData]>
 }
 
@@ -29,6 +30,10 @@ class MarketHistoryInteractor: MarketHistoryInteractorProtocol {
     
     func subscribeStream(currencyPair: CurrencyPair) -> Observable<AggregateTradeData> {
         return socketService.subscribe(streamName: [currencyPair.aggregateTrade])
+    }
+    
+    func unsubscribeStream(currencyPair: CurrencyPair) throws {
+        return try socketService.unsubscribe(streamName: [currencyPair.rawValue])
     }
     
     func getAggregateTradeData(currencyPair: CurrencyPair) -> Single<[AggregateTradeData]> {

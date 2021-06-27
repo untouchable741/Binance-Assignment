@@ -45,6 +45,8 @@
 		D1B81CE42688187A0036F2BA /* ReusableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B81CE32688187A0036F2BA /* ReusableCell.swift */; };
 		D1B81CE6268819BA0036F2BA /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B81CE5268819BA0036F2BA /* UITableViewExtension.swift */; };
 		D1B81CE826883ABC0036F2BA /* RxObservableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B81CE726883ABC0036F2BA /* RxObservableExtension.swift */; };
+		D1B81CEA268871470036F2BA /* CollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B81CE9268871470036F2BA /* CollectionExtension.swift */; };
+		D1B81CEC268873290036F2BA /* OptionalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B81CEB268873290036F2BA /* OptionalExtension.swift */; };
 		D1E49143268419D0006CD105 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E49142268419D0006CD105 /* AppDelegate.swift */; };
 		D1E49145268419D0006CD105 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E49144268419D0006CD105 /* SceneDelegate.swift */; };
 		D1E4914A268419D0006CD105 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1E49148268419D0006CD105 /* Main.storyboard */; };
@@ -117,6 +119,8 @@
 		D1B81CE32688187A0036F2BA /* ReusableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableCell.swift; sourceTree = "<group>"; };
 		D1B81CE5268819BA0036F2BA /* UITableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
 		D1B81CE726883ABC0036F2BA /* RxObservableExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxObservableExtension.swift; sourceTree = "<group>"; };
+		D1B81CE9268871470036F2BA /* CollectionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionExtension.swift; sourceTree = "<group>"; };
+		D1B81CEB268873290036F2BA /* OptionalExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalExtension.swift; sourceTree = "<group>"; };
 		D1E4913F268419D0006CD105 /* BinanceOrderBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BinanceOrderBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1E49142268419D0006CD105 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D1E49144268419D0006CD105 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -406,6 +410,8 @@
 				D1B0281626876A1300B9AA82 /* ColorExtension.swift */,
 				D1B81CE5268819BA0036F2BA /* UITableViewExtension.swift */,
 				D1B81CE726883ABC0036F2BA /* RxObservableExtension.swift */,
+				D1B81CE9268871470036F2BA /* CollectionExtension.swift */,
+				D1B81CEB268873290036F2BA /* OptionalExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -686,7 +692,9 @@
 				D14CB1B42684D4E200EA4538 /* OrderBookViewController.swift in Sources */,
 				D1B0280526867F7100B9AA82 /* MarketHistoryTableViewCell.swift in Sources */,
 				D19445BB268654E200482A02 /* OrderBookCellViewModel.swift in Sources */,
+				D1B81CEC268873290036F2BA /* OptionalExtension.swift in Sources */,
 				D1F3195A26844B630082E527 /* StreamRequest.swift in Sources */,
+				D1B81CEA268871470036F2BA /* CollectionExtension.swift in Sources */,
 				D1B027FE268674B100B9AA82 /* MarketHistoryViewModel.swift in Sources */,
 				D1B81CE42688187A0036F2BA /* ReusableCell.swift in Sources */,
 			);

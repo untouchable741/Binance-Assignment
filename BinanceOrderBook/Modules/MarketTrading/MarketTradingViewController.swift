@@ -37,7 +37,7 @@ private extension MarketTradingViewController {
         let bar = TMBar.ButtonBar()
         bar.layout.transitionStyle = .progressive
         bar.layout.alignment = .centerDistributed
-        bar.layout.contentInset = .zero
+        bar.layout.contentInset = .init(top: 0, left: 0, bottom: 10, right: 0)
         bar.buttons.customize {
             $0.contentInset = .zero
             $0.font = theme.tabBarFont

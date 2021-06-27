@@ -10,6 +10,7 @@ import RxSwift
 
 protocol OrderBookInteractorProtocol {
     func subscribeStream(currencyPair: CurrencyPair) -> Observable<DepthChartSocketResponse>
+    func unsubscribeStream(currencyPair: CurrencyPair) throws
     func getDepthData(currencyPair: CurrencyPair) -> Single<DepthChartResponseData>
     func updateLocalSnapshot(_ snapshot: DepthChartResponseData, with socketData: DepthChartSocketResponse) -> DepthChartResponseData?
 }
@@ -33,6 +34,10 @@ final class OrderBookInteractor: OrderBookInteractorProtocol {
             .subscribe(streamName: [currencyPair.depthStream])
     }
     
+    func unsubscribeStream(currencyPair: CurrencyPair) throws {
+        return try socketService.unsubscribe(streamName: [currencyPair.rawValue])
+    }
+    
     func getDepthData(currencyPair: CurrencyPair) -> Single<DepthChartResponseData> {
         return apiServices
             .fetchDepthChartSnapshot(currencyPair: currencyPair, limit: AppConfiguration.orderBookDefaultRowsCount)
@@ -42,30 +47,43 @@ final class OrderBookInteractor: OrderBookInteractorProtocol {
 // MARK: - Merge business logic
 extension OrderBookInteractor {
     func updateLocalSnapshot(_ snapshot: DepthChartResponseData, with socketData: DepthChartSocketResponse) -> DepthChartResponseData? {
-        print("Updated from snapshot lastUpdateID \(snapshot.lastUpdateId)")
-        print("With SocketData firstUpdateID \(socketData.firstUpdateID)")
-        print("With SocketData finalUpdateID \(socketData.finalUpdateID)")
-        if socketData.firstUpdateID <= snapshot.lastUpdateId + 1 && socketData.finalUpdateID >=  snapshot.lastUpdateId + 1 {
+        print("****")
+        print("Snapshot last update \(snapshot.lastUpdateId)")
+        print("Socket  first update \(socketData.firstUpdateID)")
+        print("Socket  last  update \(socketData.finalUpdateID)")
+        print("****")
+        
+        // Drop event if socketData.finalUpdateID <= snapshot.lastUpdateId
+        // It's mean data from socket somehow outdated (e.g: network reason)
+        guard socketData.finalUpdateID > snapshot.lastUpdateId else {
             return snapshot
         }
         
         var asks = snapshot.asks
-        // Merge ask
+        // Updating asks data by looping through socketData.ask
         for i in 0..<socketData.asks.count {
             var snapshotIndex = 0
+            // Until we found approriate index for current socketData.ask[i]
             while snapshotIndex < asks.count && socketData.asks[i].price > asks[snapshotIndex].price {
                 snapshotIndex += 1
             }
+            
+            // If its index out of desired rowCounts, we don't need to process anymore
             if snapshotIndex >= AppConfiguration.orderBookDefaultRowsCount {
-                if i == 0 { print("Break because reaching more than \(AppConfiguration.orderBookDefaultRowsCount) asks") }
                 break
             }
+            
+            // Make sure snapshotIndex still in bound of ask.count
+            // If this socket data price is equal to local ask at snapshotIndex
             if snapshotIndex < asks.count && socketData.asks[i].price == asks[snapshotIndex].price {
+                // If quantity is zero, then remove this price
                 if socketData.asks[i].quantity == 0 {
                     asks.remove(at: snapshotIndex)
                 } else {
+                    // Otherwise, update it's information
                     asks[snapshotIndex] = socketData.asks[i]
                 }
+                // If socketData is valid quantity, we need to insert it into local ask at approriate index to maintain the orders
             } else if socketData.asks[i].quantity > 0 {
                 asks.insert(socketData.asks[i], at: snapshotIndex)
             }
@@ -79,7 +97,6 @@ extension OrderBookInteractor {
                 snapshotIndex += 1
             }
             if snapshotIndex >= AppConfiguration.orderBookDefaultRowsCount {
-                if i == 0 { print("Break because reaching more than \(AppConfiguration.orderBookDefaultRowsCount) bids") }
                 break
             }
             if snapshotIndex < bids.count && socketData.bids[i].price == bids[snapshotIndex].price {
@@ -92,6 +109,7 @@ extension OrderBookInteractor {
                 bids.insert(socketData.bids[i], at: snapshotIndex)
             }
         }
+        
         return DepthChartResponseData(
             lastUpdateId: socketData.finalUpdateID,
             bids: Array(bids.prefix(AppConfiguration.orderBookDefaultRowsCount)),

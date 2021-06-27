@@ -105,6 +105,7 @@ extension SocketManager: WebSocketDelegate {
                 connectionStatusRelay.accept(.disconnected)
                 print("websocket is disconnected: \(reason) with code: \(code)")
             case .text(let string):
+                print("Receiving response from socket")
                 let jsonResponse = string.jsonObject
                 if let streamName = jsonResponse?["stream"] as? String,
                    let dataJsonResponse = jsonResponse?["data"],
