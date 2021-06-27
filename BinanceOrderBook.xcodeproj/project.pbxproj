@@ -47,6 +47,10 @@
 		D1B81CE826883ABC0036F2BA /* RxObservableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B81CE726883ABC0036F2BA /* RxObservableExtension.swift */; };
 		D1B81CEA268871470036F2BA /* CollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B81CE9268871470036F2BA /* CollectionExtension.swift */; };
 		D1B81CEC268873290036F2BA /* OptionalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B81CEB268873290036F2BA /* OptionalExtension.swift */; };
+		D1B81CF22688C3A00036F2BA /* APIServicesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B81CF12688C3A00036F2BA /* APIServicesTests.swift */; };
+		D1B81D342688EAAD0036F2BA /* depth.json in Resources */ = {isa = PBXBuildFile; fileRef = D1B81D332688EAAD0036F2BA /* depth.json */; };
+		D1B81D372688EADC0036F2BA /* StubLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B81D362688EADC0036F2BA /* StubLoader.swift */; };
+		D1B81D392688FA190036F2BA /* aggTrades.json in Resources */ = {isa = PBXBuildFile; fileRef = D1B81D382688FA190036F2BA /* aggTrades.json */; };
 		D1E49143268419D0006CD105 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E49142268419D0006CD105 /* AppDelegate.swift */; };
 		D1E49145268419D0006CD105 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E49144268419D0006CD105 /* SceneDelegate.swift */; };
 		D1E4914A268419D0006CD105 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1E49148268419D0006CD105 /* Main.storyboard */; };
@@ -121,6 +125,11 @@
 		D1B81CE726883ABC0036F2BA /* RxObservableExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxObservableExtension.swift; sourceTree = "<group>"; };
 		D1B81CE9268871470036F2BA /* CollectionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionExtension.swift; sourceTree = "<group>"; };
 		D1B81CEB268873290036F2BA /* OptionalExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalExtension.swift; sourceTree = "<group>"; };
+		D1B81CF12688C3A00036F2BA /* APIServicesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServicesTests.swift; sourceTree = "<group>"; };
+		D1B81D2F2688E9FD0036F2BA /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		D1B81D332688EAAD0036F2BA /* depth.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = depth.json; sourceTree = "<group>"; };
+		D1B81D362688EADC0036F2BA /* StubLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubLoader.swift; sourceTree = "<group>"; };
+		D1B81D382688FA190036F2BA /* aggTrades.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = aggTrades.json; sourceTree = "<group>"; };
 		D1E4913F268419D0006CD105 /* BinanceOrderBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BinanceOrderBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1E49142268419D0006CD105 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D1E49144268419D0006CD105 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -187,6 +196,7 @@
 		5539BF10FD3A1AA253A1F9E6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D1B81D2F2688E9FD0036F2BA /* XCTest.framework */,
 				D3F5FBFCD77BA141487F3E7A /* Pods_BinanceOrderBook.framework */,
 				4CCD03B24057936D546EBDB2 /* Pods_BinanceOrderBook_BinanceOrderBookUITests.framework */,
 				E42F6E12A2E3F146362EB2A4 /* Pods_BinanceOrderBookTests.framework */,
@@ -302,6 +312,31 @@
 			path = CustomView;
 			sourceTree = "<group>";
 		};
+		D1B81CEF2688C3670036F2BA /* Stubs */ = {
+			isa = PBXGroup;
+			children = (
+				D1B81D332688EAAD0036F2BA /* depth.json */,
+				D1B81D382688FA190036F2BA /* aggTrades.json */,
+			);
+			path = Stubs;
+			sourceTree = "<group>";
+		};
+		D1B81CF02688C3760036F2BA /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				D1B81CF12688C3A00036F2BA /* APIServicesTests.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		D1B81D352688EAC80036F2BA /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				D1B81D362688EADC0036F2BA /* StubLoader.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		D1E49136268419D0006CD105 = {
 			isa = PBXGroup;
 			children = (
@@ -343,6 +378,9 @@
 		D1E49158268419D1006CD105 /* BinanceOrderBookTests */ = {
 			isa = PBXGroup;
 			children = (
+				D1B81D352688EAC80036F2BA /* Helpers */,
+				D1B81CF02688C3760036F2BA /* Services */,
+				D1B81CEF2688C3670036F2BA /* Stubs */,
 				D1E49159268419D1006CD105 /* BinanceOrderBookTests.swift */,
 				D1E4915B268419D1006CD105 /* Info.plist */,
 			);
@@ -446,6 +484,7 @@
 				D1E49151268419D1006CD105 /* Sources */,
 				D1E49152268419D1006CD105 /* Frameworks */,
 				D1E49153268419D1006CD105 /* Resources */,
+				CF014BB75100328E9639077E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -534,6 +573,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1B81D342688EAAD0036F2BA /* depth.json in Resources */,
+				D1B81D392688FA190036F2BA /* aggTrades.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -647,6 +688,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BinanceOrderBook/Pods-BinanceOrderBook-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		CF014BB75100328E9639077E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BinanceOrderBookTests/Pods-BinanceOrderBookTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BinanceOrderBookTests/Pods-BinanceOrderBookTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BinanceOrderBookTests/Pods-BinanceOrderBookTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -704,7 +762,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1B81CF22688C3A00036F2BA /* APIServicesTests.swift in Sources */,
 				D1E4915A268419D1006CD105 /* BinanceOrderBookTests.swift in Sources */,
+				D1B81D372688EADC0036F2BA /* StubLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -802,7 +862,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -857,7 +917,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

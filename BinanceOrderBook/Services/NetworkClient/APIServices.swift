@@ -13,7 +13,7 @@ protocol APIServices {
     func fetchAggregateTradeData(currencyPair: CurrencyPair, limit: Int) -> Single<[AggregateTradeData]>
 }
 
-class APIClient: APIServices {
+final class APIClient: APIServices {
     private let sessionConfiguration: URLSessionConfiguration
     
     init(configuration: URLSessionConfiguration = .default) {

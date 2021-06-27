@@ -11,9 +11,11 @@ target 'BinanceOrderBook' do
   pod 'RxCocoa', '~> 6.2.0'
   pod 'Tabman', '~> 2.11.1'
   
+  
   target 'BinanceOrderBookTests' do
     inherit! :search_paths
     # Pods for testing
+    pod 'Mockingjay', '~> 3.0.0-alpha.1'
   end
 
   target 'BinanceOrderBookUITests' do
