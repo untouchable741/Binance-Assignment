@@ -75,7 +75,7 @@ extension OrderBookViewController: StoryboardInstantiable {
     
     func configure(with currencyPair: CurrencyPair) {
         // Set titlte so it will be shown on the MarketTrading tab
-        title = "Order Book"
+        title = "Order Book (\(currencyPair.rawValue))"
         viewModel = OrderBookViewModel(currencyPair: currencyPair)
     }
 }

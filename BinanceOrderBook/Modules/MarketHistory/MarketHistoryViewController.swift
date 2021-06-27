@@ -72,7 +72,7 @@ extension MarketHistoryViewController: StoryboardInstantiable {
     
     func configure(with currencyPair: CurrencyPair) {
         // Set titlte so it will be shown on the MarketTrading tab
-        title = "Order Book"
+        title = "Market History (\(currencyPair.rawValue))"
         viewModel = MarketHistoryViewModel(currencyPair: currencyPair)
     }
 }
