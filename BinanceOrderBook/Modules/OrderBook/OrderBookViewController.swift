@@ -7,65 +7,104 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
-class OrderBookViewController: UIViewController, StoryboardInstantiable {
-    func configure(with currencyPair: CurrencyPair) {
-        viewModel = OrderBookViewModel(currencyPair: currencyPair)
-    }
+final class OrderBookViewController: UIViewController {
     
-    static var storyboardIdentifier: String {
-        return String(describing: self)
-    }
+    
+    // MARK: - IBOutlets
     
     @IBOutlet weak var orderTableView: UITableView!
-    @IBOutlet weak var loadingIndicatorView: UIView!
+    @IBOutlet var statusView: StatusView?
     
     var viewModel: OrderBookViewModelProtocol!
     let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        bindViewModel()
-        
-        orderTableView.tableFooterView = UIView(frame: .zero)
-    }
-    
-    func bindViewModel() {
-        viewModel
-            .viewModelStateObservable
-            .observe(on: MainScheduler.instance)
-            .bind { [weak self] state in
-            switch state {
-            case .loadedData:
-                UIView.animate(withDuration: 0.5) {
-                    self?.loadingIndicatorView.isHidden = true
-                }
-                self?.orderTableView.reloadData()
-            case .loading(_):
-                UIView.animate(withDuration: 0.5) {
-                    self?.loadingIndicatorView.isHidden = false
-                }
-            case .initial:
-                self?.loadingIndicatorView.isHidden = true
-            case .error(let error):
-                break
-            }
-        }.disposed(by: disposeBag)
-        
-        viewModel.loadData()
+        bindViewModelState()
+            .disposed(by: disposeBag)
+        setupUI()
+        bindData()
+        viewModel.loadData(isForcedRefresh: false)
     }
 }
 
-extension OrderBookViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfOrders
+// MARK: - Private
+
+extension OrderBookViewController {
+    func setupUI() {
+        setupPullToRefresh()
+        setupTableView()
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "OrderBookTableViewCell", for: indexPath) as! OrderBookTableViewCell
-        if let cellViewModel = viewModel.cellViewModel(at: indexPath.row) {
-            cell.configure(viewModel: cellViewModel)
+    func setupTableView() {
+        orderTableView.tableFooterView = UIView(frame: .zero)
+    }
+    
+    func setupPullToRefresh() {
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = AppConstants.currentTheme.tintColor
+        refreshControl.addTarget(self, action: #selector(refreshHandler(sender:)), for: .valueChanged)
+        orderTableView.refreshControl = refreshControl
+    }
+    
+    @objc func refreshHandler(sender: UIRefreshControl) {
+        viewModel.loadData(isForcedRefresh: true)
+        sender.endRefreshing()
+    }
+    
+    func bindData() {
+        viewModel.cellViewModelsDriver
+            .drive(orderTableView.rx.items) { tableView, index, orderBookCellViewModel in
+                let orderBookTableViewCell: OrderBookTableViewCell = tableView.dequeReusableCell(indexPath: IndexPath(row: index, section: 0))
+                orderBookTableViewCell.configure(viewModel: orderBookCellViewModel)
+                return orderBookTableViewCell
+            }
+            .disposed(by: disposeBag)
+    }
+}
+
+// MARK: - StoryboardInstantiable conformance
+
+extension OrderBookViewController: StoryboardInstantiable {
+    
+    static var storyboardIdentifier: String {
+        return String(describing: self)
+    }
+    
+    func configure(with currencyPair: CurrencyPair) {
+        // Set titlte so it will be shown on the MarketTrading tab
+        title = "Order Book"
+        viewModel = OrderBookViewModel(currencyPair: currencyPair)
+    }
+}
+
+// MARK: - RxViewController conformance
+
+extension OrderBookViewController: RxViewController {
+    var viewModelStateObservable: Observable<RxViewModelState> {
+        return viewModel.viewModelStateObservable
+    }
+
+    func onFinishedLoadData() {
+        // Do additional things after data is loaded
+        // We don't need to reload tableView here because we're all have cellViewModelsDriver
+    }
+    
+    func onLoadingChanged(status: String?, isLoading: Bool) {
+        UIView.animate(withDuration: 0.5) {
+            if isLoading {
+                self.statusView?.updateState(.loading(status))
+            } else {
+                self.statusView?.updateState(.hidden)
+            }
         }
-        return cell
+    }
+    
+    func onError(_ error: Error) {
+        UIView.animate(withDuration: 0.5) {
+            self.statusView?.updateState(.error(error.localizedDescription))
+        }
     }
 }

@@ -11,7 +11,7 @@ import RxSwift
 protocol OrderBookInteractorProtocol {
     func subscribeStream(currencyPair: CurrencyPair) -> Observable<DepthChartSocketResponse>
     func getDepthData(currencyPair: CurrencyPair) -> Single<DepthChartResponseData>
-    func merge(snapshot: DepthChartResponseData, socketData: DepthChartSocketResponse) -> DepthChartResponseData?
+    func updateLocalSnapshot(_ snapshot: DepthChartResponseData, with socketData: DepthChartSocketResponse) -> DepthChartResponseData?
 }
 
 final class OrderBookInteractor: OrderBookInteractorProtocol {
@@ -29,17 +29,19 @@ final class OrderBookInteractor: OrderBookInteractorProtocol {
     }
     
     func subscribeStream(currencyPair: CurrencyPair) -> Observable<DepthChartSocketResponse> {
-        return socketService.subscribe(streamName: [currencyPair.depthStream])
+        return socketService
+            .subscribe(streamName: [currencyPair.depthStream])
     }
     
     func getDepthData(currencyPair: CurrencyPair) -> Single<DepthChartResponseData> {
-        return apiServices.fetchDepthChartSnapshot(currencyPair: currencyPair, limit: AppConfiguration.orderBookDefaultRowsCount)
+        return apiServices
+            .fetchDepthChartSnapshot(currencyPair: currencyPair, limit: AppConfiguration.orderBookDefaultRowsCount)
     }
 }
 
 // MARK: - Merge business logic
 extension OrderBookInteractor {
-    func merge(snapshot: DepthChartResponseData, socketData: DepthChartSocketResponse) -> DepthChartResponseData? {
+    func updateLocalSnapshot(_ snapshot: DepthChartResponseData, with socketData: DepthChartSocketResponse) -> DepthChartResponseData? {
         print("Updated from snapshot lastUpdateID \(snapshot.lastUpdateId)")
         print("With SocketData firstUpdateID \(socketData.firstUpdateID)")
         print("With SocketData finalUpdateID \(socketData.finalUpdateID)")

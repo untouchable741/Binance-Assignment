@@ -10,28 +10,31 @@ import RxSwift
 import RxCocoa
 
 protocol OrderBookViewModelProtocol: RxViewModel {
-    var numberOfOrders: Int { get }
-    func cellViewModel(at index: Int) -> OrderBookCellViewModel?
-    func loadData()
+    // Binding
+    var cellViewModelsDriver: Driver<[OrderBookCellViewModelProtocol]> { get }
+    
+    // Public method
+    func loadData(isForcedRefresh: Bool)
 }
 
 final class OrderBookViewModel: OrderBookViewModelProtocol {
-    
     // Store properties
     private let currencyPair: CurrencyPair
     private let interactor: OrderBookInteractorProtocol
     @ThreadSafety(value: generatePlaceholderViewModels())
-    private var orderBookCellViewModels: [OrderBookCellViewModel] {
+    private var orderBookCellViewModels: [OrderBookCellViewModelProtocol] {
         didSet {
-            viewModelStateRelay.accept(.loadedData)
+            cellViewModelsRelay.accept(orderBookCellViewModels)
+            viewModelStateRelay.accept(.finishedLoadData)
         }
     }
     
     // Relays
     
-    private let disposedBag = DisposeBag()
+    private var disposedBag = DisposeBag()
     private let snapshotRelay = BehaviorRelay<DepthChartResponseData?>(value: nil)
     private let socketRelay = BehaviorRelay<DepthChartSocketResponse?>(value: nil)
+    private let cellViewModelsRelay = BehaviorRelay<[OrderBookCellViewModelProtocol]>(value: generatePlaceholderViewModels())
     
     // RxViewModel properties
     
@@ -45,60 +48,77 @@ final class OrderBookViewModel: OrderBookViewModelProtocol {
         self.interactor = interactor
     }
     
-    func loadData() {
-        // Trigger update state
-        update(newState: .loading("Loading data"))
+    func loadData(isForcedRefresh: Bool) {
+        // Clear old data if this is forcedRefresh
+        if isForcedRefresh {
+            orderBookCellViewModels = OrderBookViewModel.generatePlaceholderViewModels()
+            // Disposed all previous disposables
+            disposedBag = DisposeBag()
+        }
         
-        // Create observable to retrieve data
+        // Trigger update state
+        update(newState: .loading("Loading order book data"))
+        
+        // Create observables to retrieve data
         let socketStreamObservable = interactor.subscribeStream(currencyPair: currencyPair)
         let snapshotObservable = interactor.getDepthData(currencyPair: currencyPair)
         
-        // Firstly subscribe to socket stream
+        // Firstly subscribe to socket stream and observe values
         socketStreamObservable
             .bind(to: socketRelay)
             .disposed(by: disposedBag)
         
-        // Fetch DepthChart Snapshot but make sure snapshot wont fired until first socket stream is fired
+        // Fetch DepthChart Snapshot from REST API
         snapshotObservable
             .asObservable()
+            // According to documentation, make sure socket is connected and received data before firing snapshot REST API so we use take(until:)
+            // https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-streams.md#how-to-manage-a-local-order-book-correctly
             .take(until: socketStreamObservable)
             .bind(to: snapshotRelay)
             .disposed(by: disposedBag)
         
-        // Combine latest both and ignore if either of them is nil
-        // Ignore initial nil value of snapshot and take 1 to get only the first value from api callback
-        // The subsequent value will be updated manually after each merge completed and should not trigger combine latest.
+        // Combine latest both so data will periodly get updated with socket callback and the very first snapshot REST API data.
         Observable.combineLatest(
-            snapshotRelay.filter { $0 != nil }.take(1),
-            socketRelay
+            // Take 1 because snapshot REST API is Single and should only fired once, subsequent fired should be ignores
+            snapshotRelay.unwrap().take(1),
+            // Convenient unwrap socket data so we don't need to check nil manually
+            socketRelay.unwrap()
         )
-        .filter({ $0.0 != nil && $0.1 != nil })
+        // Simulate network delay when forceRefreshing
+        .delay(.seconds(isForcedRefresh ? 1 : 0), scheduler: ConcurrentMainScheduler.instance)
         .bind(onNext: { [weak self] snapshotData, socketData in
-            guard let snapshotData = snapshotData, let socketData = socketData else {
-                return
-            }
-            if let mergedLocalOrderBook = self?.interactor.merge(snapshot: snapshotData, socketData: socketData) {
-                let totalBidQuantity = mergedLocalOrderBook.bids.reduce(0, { $0 + $1.quantity })
-                let totalAskQuantity = mergedLocalOrderBook.asks.reduce(0, { $0 + $1.quantity })
+            guard let self = self else { return }
+            // Forward snapshotData and socketData to Interactor for keeping local snapshot updated
+            // https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-streams.md#how-to-manage-a-local-order-book-correctly
+            if let updatedLocalSnapshot = self.interactor.updateLocalSnapshot(snapshotData, with: socketData){
+                let totalBidQuantity = updatedLocalSnapshot.bids.reduce(0, { $0 + $1.quantity })
+                let totalAskQuantity = updatedLocalSnapshot.asks.reduce(0, { $0 + $1.quantity })
                 var accumulateTotalBid: Decimal = 0
                 var accumulateTotalAsk: Decimal = 0
-                self?.orderBookCellViewModels = (0..<AppConfiguration.orderBookDefaultRowsCount).map { i in
-                    accumulateTotalBid += mergedLocalOrderBook.bids[i].quantity
-                    accumulateTotalAsk += mergedLocalOrderBook.asks[i].quantity
+                self.orderBookCellViewModels = (0..<AppConfiguration.orderBookDefaultRowsCount).map { i in
+                    accumulateTotalBid += updatedLocalSnapshot.bids[i].quantity
+                    accumulateTotalAsk += updatedLocalSnapshot.asks[i].quantity
                     return OrderBookCellViewModel(
-                        bidPriceLevel: mergedLocalOrderBook.bids[i],
-                        askPriceLevel: mergedLocalOrderBook.asks[i],
+                        bidPriceLevel: updatedLocalSnapshot.bids[i],
+                        askPriceLevel: updatedLocalSnapshot.asks[i],
                         bidQuantityPercentage: accumulateTotalBid / totalBidQuantity,
                         askQuantityPercentage: accumulateTotalAsk / totalAskQuantity,
-                        currencyPair: .BTCUSDT
+                        currencyPair: self.currencyPair
                     )
                 }
+                // Update latest localSnashot into relay but this time it won't trigger bind(onNex:) because we previously defined take(1)
+                // Next bind(onNext:) should be triggered only when receive data from socket stream
+                self.snapshotRelay.accept(updatedLocalSnapshot)
+            } else {
+                // Unconsistent error detected after trying to update localSnapshot
+                // We will force refreshing here
+                self.loadData(isForcedRefresh: true)
             }
         })
         .disposed(by: disposedBag)
     }
     
-    static func generatePlaceholderViewModels() -> [OrderBookCellViewModel] {
+    static func generatePlaceholderViewModels() -> [OrderBookCellViewModelProtocol] {
         return (0..<AppConfiguration.orderBookDefaultRowsCount).map { i in
             return OrderBookCellViewModel(
                 isPlaceholder: true,
@@ -115,11 +135,7 @@ final class OrderBookViewModel: OrderBookViewModelProtocol {
 // MARK: - DataSource
 
 extension OrderBookViewModel {
-    var numberOfOrders: Int {
-        return orderBookCellViewModels.count
-    }
-    
-    func cellViewModel(at index: Int) -> OrderBookCellViewModel? {
-        return orderBookCellViewModels[index]
+    var cellViewModelsDriver: Driver<[OrderBookCellViewModelProtocol]> {
+        return cellViewModelsRelay.asDriver()
     }
 }

@@ -10,9 +10,11 @@ import RxSwift
 import RxCocoa
 
 protocol MarketHistoryViewModelProtocol: RxViewModel {
-    var numberOfOrders: Int { get }
-    func model(at index: Int) -> MarketHistoryCellViewModelProtocol?
-    func loadData()
+    // Binding
+    var cellViewModelsDriver: Driver<[MarketHistoryCellViewModelProtocol]> { get }
+    
+    // Public method
+    func loadData(isForcedRefresh: Bool)
 }
 
 final class MarketHistoryViewModel: MarketHistoryViewModelProtocol {
@@ -21,7 +23,8 @@ final class MarketHistoryViewModel: MarketHistoryViewModelProtocol {
     @ThreadSafety(value: generatePlaceholderViewModels())
     private var cellViewModels: [MarketHistoryCellViewModelProtocol] {
         didSet {
-            viewModelStateRelay.accept(.loadedData)
+            cellViewModelsRelay.accept(cellViewModels)
+            viewModelStateRelay.accept(.finishedLoadData)
         }
     }
     
@@ -29,9 +32,10 @@ final class MarketHistoryViewModel: MarketHistoryViewModelProtocol {
     
     // Relays
     
-    private let disposedBag = DisposeBag()
+    private var disposedBag = DisposeBag()
     private let snapshotRelay = BehaviorRelay<[AggregateTradeData]?>(value: nil)
     private let socketRelay = BehaviorRelay<AggregateTradeData?>(value: nil)
+    private let cellViewModelsRelay = BehaviorRelay<[MarketHistoryCellViewModelProtocol]>(value: MarketHistoryViewModel.generatePlaceholderViewModels())
     
     init(
         currencyPair: CurrencyPair = .BTCUSDT,
@@ -41,45 +45,61 @@ final class MarketHistoryViewModel: MarketHistoryViewModelProtocol {
         self.interactor = interactor
     }
     
-    func loadData() {
-        // Trigger update state
-        update(newState: .loading("Loading data"))
+    func loadData(isForcedRefresh: Bool) {
+        // Clear old data if this is forcedRefresh
+        if isForcedRefresh {
+            cellViewModels = MarketHistoryViewModel.generatePlaceholderViewModels()
+            // Disposed all previous disposables
+            disposedBag = DisposeBag()
+        }
         
-        // Create observable to retrieve data
+        // Trigger update state
+        update(newState: .loading("Loading market history data"))
+        
+        // Create observables to retrieve data
         let socketStreamObservable = interactor.subscribeStream(currencyPair: currencyPair)
         let snapshotObservable = interactor.getAggregateTradeData(currencyPair: currencyPair)
         
-        // Firstly subscribe to socket stream
+        // Firstly subscribe to socket stream and observe values
         socketStreamObservable
             .bind(to: socketRelay)
             .disposed(by: disposedBag)
         
-        // Fetch aggregateTrade Snapshot
+        // Fetch aggregateTrade Snapshot from REST API
         snapshotObservable
             .asObservable()
+            // AggregateTrade snapshot don't need to wait for socket connection open like DepthChart
+            // So we don't need to take(until:) here, outdated data will be simply ignore in bind(onNext:)
             .bind(to: snapshotRelay)
             .disposed(by: disposedBag)
         
-        // Combine latest both and ignore if either of them is nil
-        // Ignore initial nil value of snapshot and take 1 to get only the first value from api callback
-        // The subsequent value will be updated manually after each merge completed and should not trigger combine latest.
+        // Combine latest both so data will periodly get updated with socket callback and the very first snapshot REST API data.
         Observable.combineLatest(
-            snapshotRelay.compactMap { $0 }.take(1).map { Array($0.reversed()) },
-            socketRelay.compactMap { $0 }
+            // Take 1 because snapshot REST API is Single and should only fired once, subsequent fired should be ignores
+            // Reversed here so all subsequent data after this fire will be in correct order
+            snapshotRelay.unwrap().take(1).map { Array($0.reversed()) },
+            // Convenient unwrap socket data so we don't need to check nil manually
+            socketRelay.unwrap()
         )
+        // Simulate network delay when forceRefreshing
+        .delay(.seconds(isForcedRefresh ? 1 : 0), scheduler: ConcurrentMainScheduler.instance)
         .bind(onNext: { [weak self] snapshotData, socketData in
-            var snapshot: [AggregateTradeData] = self?.snapshotRelay.value ?? []
+            guard let self = self else { return }
+            var snapshot: [AggregateTradeData] = self.snapshotRelay.value ?? []
             if socketData.tradeTime.timeIntervalSince1970 > snapshot.first?.tradeTime.timeIntervalSince1970 ?? 0 {
                 snapshot.insert(socketData, at: 0)
                 snapshot.removeLast()
             }
-            self?.snapshotRelay.accept(snapshot)
-            self?.cellViewModels = snapshot
+            // Update snapshot relay with latest data for subsequent data processing
+            self.snapshotRelay.accept(snapshot)
+            // Generate cellViewModels on updated snapshot
+            let currencyPair = self.currencyPair
+            self.cellViewModels = snapshot
                 .prefix(AppConfiguration.marketHistoryDefaultRowsCount)
                 .map { model in
                 MarketHistoryCellViewModel(
                     aggregateData: model,
-                    currencyPair: .BTCUSDT
+                    currencyPair: currencyPair
                 )
             }
         })
@@ -96,11 +116,7 @@ final class MarketHistoryViewModel: MarketHistoryViewModelProtocol {
 // MARK: - DataSource
 
 extension MarketHistoryViewModel {
-    var numberOfOrders: Int {
-        return cellViewModels.count
-    }
-    
-    func model(at index: Int) -> MarketHistoryCellViewModelProtocol? {
-        return cellViewModels[index]
+    var cellViewModelsDriver: Driver<[MarketHistoryCellViewModelProtocol]> {
+        return cellViewModelsRelay.asDriver()
     }
 }

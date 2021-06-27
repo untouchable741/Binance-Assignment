@@ -6,6 +6,10 @@
 //
 
 import Foundation
+ 
+/// We can use multiple xcconfig for thos configurations to separate it multiple environment
+/// E.g: development.xcconfig , production.xcconfig
+/// But in scope of this coding assignment i will just keep it simple by an AppConfiguration enum
 
 enum AppConfiguration {
     static let websocketUrlString = "wss://stream.binance.com/stream"

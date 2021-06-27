@@ -23,10 +23,21 @@ class MarketHistoryTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configure(viewModel: MarketHistoryCellViewModelProtocol) {
+    func configure(
+        viewModel: MarketHistoryCellViewModelProtocol,
+        theme: AppThemeConfiguration = AppConstants.currentTheme
+    ) {
+        let isPlaceholder = (viewModel is PlacaholderMarketHistoryCellViewModel)
         timeLabel.text = viewModel.formattedTradeTime
         priceLabel.text = viewModel.formattedPrice
         quantityLabel.text = viewModel.formattedQuantity
-        priceLabel.textColor = viewModel.isBuyer ? .green : .red
+        priceLabel.textColor = isPlaceholder ? theme.normalTextColor :
+                            viewModel.isBuyer ? theme.bidTextColor : theme.askTextColor
+    }
+}
+
+extension MarketHistoryTableViewCell: ReusableCell {
+    static var reuseIdentifier: String {
+        return String(describing: self)
     }
 }

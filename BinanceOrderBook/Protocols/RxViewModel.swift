@@ -23,11 +23,23 @@ import RxCocoa
 /// But that will have a drawback because where we define ViewModel that conform to this RxViewModel
 /// We won't be able to define let viewModel: OrderBookViewModel<DepthResponse> <= swift does not support specify protocol associatedType on definition like this.
 /// In that case we won't be able to use protocol but instead need to define a concrete ViewModel.
-enum RxViewModelState {
+enum RxViewModelState: Equatable {
     case initial
-    case loading(String)
-    case loadedData
+    case loading(String?)
+    case finishedLoadData
     case error(Error)
+    
+    static func == (lhs: RxViewModelState, rhs: RxViewModelState) -> Bool {
+        switch (lhs, rhs) {
+        case (.initial, .initial),
+             (.loading, .loading),
+             (.finishedLoadData, .finishedLoadData),
+             (.error, .error):
+            return true
+        default:
+            return false
+        }
+    }
 }
 
 protocol RxViewModel {

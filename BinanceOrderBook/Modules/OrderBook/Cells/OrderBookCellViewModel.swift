@@ -7,6 +7,15 @@
 
 import Foundation
 
+protocol OrderBookCellViewModelProtocol {
+    var formattedBidQuantity: String? { get }
+    var formattedBidPrice: String? { get }
+    var formattedAskQuantity: String? { get }
+    var formattedAskPrice: String? { get }
+    var bidQuantityPercentage: Decimal { get }
+    var askQuantityPercentage: Decimal { get }
+}
+
 final class OrderBookCellViewModel {
     private let isPlaceholder: Bool
     let bidPriceLevel: PriceLevel
@@ -38,7 +47,7 @@ final class OrderBookCellViewModel {
 
 // MARK: - Computed properties
 
-extension OrderBookCellViewModel {
+extension OrderBookCellViewModel: OrderBookCellViewModelProtocol {
     var formattedBidQuantity: String? {
         guard !isPlaceholder else {
             return AppConstants.placeholderValue
