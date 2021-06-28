@@ -50,7 +50,6 @@ final class OrderBookViewModel: OrderBookViewModelProtocol {
     // Relays
     
     private var disposedBag = DisposeBag()
-    private let socketRelay = BehaviorRelay<DepthChartSocketResponse?>(value: nil)
     private let cellViewModelsRelay = BehaviorRelay<[OrderBookCellViewModelProtocol]>(value: generatePlaceholderViewModels())
     
     // RxViewModel properties
@@ -72,12 +71,9 @@ final class OrderBookViewModel: OrderBookViewModelProtocol {
     func prepareState(for reloadReason: ReloadReason) {
         switch reloadReason {
         case .corruptedData:
-            // unsubscribe stream but dont need to dispose disposeBag as we need to keep the socketRelay alive
             try? interactor.unsubscribeStream(currencyPair: currencyPair)
         case .forcedRefresh:
-            // unsubscribe stream but dont need to dispose disposeBag as we need to keep the socketRelay alive
             try? interactor.unsubscribeStream(currencyPair: currencyPair)
-            // Update UI with placeholder model
             orderBookCellViewModels = Self.generatePlaceholderViewModels()
         case .initial:
             break
@@ -89,36 +85,29 @@ final class OrderBookViewModel: OrderBookViewModelProtocol {
     }
     
     func loadData(reloadReason: ReloadReason) {
-        // Clear old data if this is forcedRefresh
+        // Set internal state for reload purpose
         prepareState(for: reloadReason)
         
-        // Trigger update state
+        // Trigger loading state on UI
         update(newState: .loading(reloadReason.status))
         
-        // Create observables to retrieve data
-        let socketStreamObservable = interactor
-            .subscribeStream(currencyPair: currencyPair)
-        
-        // Firstly subscribe to socket stream and observe values
-        socketStreamObservable
-            .bind(to: socketRelay)
-            .disposed(by: disposedBag)
-        
-        // Fetch DepthChart Snapshot from REST API
-        // According to documentation, make sure socket is connected and received data before firing snapshot REST API so we use take(until:)
         // https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-streams.md#how-to-manage-a-local-order-book-correctly
+        // According to documentation about how to manage local orderBook
+        // Socket data should be open first but it data will be skipped until receiving first snapshot from API
         let snapshotObservable = interactor
             .getDepthData(currencyPair: currencyPair)
             .asObservable()
-            .take(until: socketStreamObservable)
         
-        // Combine latest both so data will periodly get updated with socket callback and the very first snapshot REST API data.
+        let socketObservable = interactor
+            .subscribeStream(currencyPair: currencyPair)
+            .skip(until: snapshotObservable)
+        
+        // Combine latest both of them so everytime new socket data came, we will receive (previousSnapshot, latestSocketData)
+        // Then use latestSocketData to update previousSnapshot to create updated snapshot Data.
         Observable.combineLatest(
             snapshotObservable,
-            // Convenient unwrap socket data so we don't need to check nil manually
-            socketRelay.unwrap()
+            socketObservable
         )
-        // Simulate network delay when forceRefreshing
         .delay(.seconds(reloadReason == .initial ? 0 : 2), scheduler: ConcurrentMainScheduler.instance)
         .catch({ [weak self] error in
             self?.update(newState: .error(error))
@@ -127,7 +116,6 @@ final class OrderBookViewModel: OrderBookViewModelProtocol {
         .bind(onNext: { [weak self] snapshotData, socketData in
             guard let self = self else { return }
             // Forward snapshotData and socketData to Interactor for keeping local snapshot updated
-            // https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-streams.md#how-to-manage-a-local-order-book-correctly
             let snapshot = self.localOrderBook ?? snapshotData
             if let updatedLocalSnapshot = self.interactor.updateLocalSnapshot(snapshot, with: socketData) {
                 self.handleUpdatedLocalSnapshot(updatedLocalSnapshot)

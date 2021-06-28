@@ -34,7 +34,6 @@ final class MarketHistoryViewModel: MarketHistoryViewModelProtocol {
     // Relays
     
     private var disposedBag = DisposeBag()
-    private let socketRelay = BehaviorRelay<AggregateTradeData?>(value: nil)
     private let cellViewModelsRelay = BehaviorRelay<[MarketHistoryCellViewModelProtocol]>(value: generatePlaceholderViewModels())
     
     deinit {
@@ -59,27 +58,20 @@ final class MarketHistoryViewModel: MarketHistoryViewModelProtocol {
         // Trigger update state
         update(newState: .loading("Loading market history data"))
         
-        // Create observables to retrieve data
-        let socketStreamObservable = interactor.subscribeStream(currencyPair: currencyPair)
-
         // Firstly subscribe to socket stream and observe values
-        socketStreamObservable
-            .bind(to: socketRelay)
-            .disposed(by: disposedBag)
+        let socketStreamObservable = interactor.subscribeStream(currencyPair: currencyPair)
         
         // Fetch aggregateTrade Snapshot from REST API
         // AggregateTrade snapshot don't need to wait for socket connection open like DepthChart
-        // So we don't need to take(until:) here, outdated data will be simply ignore in bind(onNext:)
+        // So we don't need to skip(until:) here, outdated data will be simply ignore in bind(onNext:)
         let snapshotObservable = interactor
             .getAggregateTradeData(currencyPair: currencyPair)
             .map { Array($0.reversed()) }
             .asObservable()
         
-        // Combine latest both so data will periodly get updated with socket callback and the very first snapshot REST API data.
         Observable.combineLatest(
             snapshotObservable,
-            // Convenient unwrap socket data so we don't need to check nil manually
-            socketRelay.unwrap()
+            socketStreamObservable
         )
         // Simulate network delay when forceRefreshing
         .delay(.seconds(isForcedRefresh ? 1 : 0), scheduler: ConcurrentMainScheduler.instance)
@@ -92,7 +84,9 @@ final class MarketHistoryViewModel: MarketHistoryViewModelProtocol {
             var snapshot: [AggregateTradeData] = self.localTradeData ?? snapshotData
             if socketData.tradeTime.timeIntervalSince1970 > snapshot.first?.tradeTime.timeIntervalSince1970 ?? 0 {
                 snapshot.insert(socketData, at: 0)
-                snapshot.removeLast()
+                if snapshot.count >= AppConfiguration.marketHistoryDefaultRowsCount {
+                    snapshot.removeLast()
+                }
             }
             
             // Update snapshot relay with latest data for subsequent data processing
