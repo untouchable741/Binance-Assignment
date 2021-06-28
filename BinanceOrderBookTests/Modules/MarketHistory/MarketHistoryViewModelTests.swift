@@ -27,7 +27,7 @@ final class MarketHistoryViewModelTests: XCTestCase {
         super.tearDown()
     }
     
-    func testLoadData_whenInsertHappened() {
+    func testLoadData_whenInsertionHappened() {
         // Given
         let givenDate = Date()
         mockInteractor.stubGetAggregateTradeData = Single<[AggregateTradeData]>.just(
@@ -38,19 +38,19 @@ final class MarketHistoryViewModelTests: XCTestCase {
              .mock(
                 tradeTime: givenDate.addingTimeInterval(3)
              )
-        ])
+        ]).delay(.seconds(1), scheduler: ConcurrentMainScheduler.instance)
         mockInteractor.stubSubscribeStreamAggregateTradeData = Observable.just(
             .mock(
                 price: "999.00",
                 tradeTime: givenDate.addingTimeInterval(4)
             )
-        )
+        ).delay(.seconds(1), scheduler: ConcurrentMainScheduler.instance)
         
         // When
-        sut.loadData(isForcedRefresh: false)
+        sut.loadData()
         
         // Then
-        let results = try! sut.viewModelStateObservable.take(2).toBlocking(timeout: 1).toArray()
+        let results = try! sut.viewModelStateObservable.take(2).toBlocking(timeout: 2).toArray()
         let cellViewModels = try! sut.cellViewModelsDriver.toBlocking().first()
         XCTAssertEqual(results, [
             .loading("Loading market history data"),
@@ -60,7 +60,7 @@ final class MarketHistoryViewModelTests: XCTestCase {
         XCTAssertEqual(cellViewModels?.first?.formattedPrice, "999,00")
     }
     
-    func testLoadData_whenNoInsertNotHappened() {
+    func testLoadData_whenInsertionNotHappened() {
         // Given
         let givenDate = Date()
         mockInteractor.stubGetAggregateTradeData = Single<[AggregateTradeData]>.just(
@@ -73,19 +73,19 @@ final class MarketHistoryViewModelTests: XCTestCase {
                 price: "777.00",
                 tradeTime: givenDate.addingTimeInterval(3)
              )
-        ])
+        ]).delay(.seconds(1), scheduler: ConcurrentMainScheduler.instance)
         mockInteractor.stubSubscribeStreamAggregateTradeData = Observable.just(
             .mock(
                 price: "999.00",
                 tradeTime: givenDate.addingTimeInterval(1)
             )
-        )
+        ).delay(.seconds(1), scheduler: ConcurrentMainScheduler.instance)
         
         // When
-        sut.loadData(isForcedRefresh: false)
+        sut.loadData()
         
         // Then
-        let results = try! sut.viewModelStateObservable.take(2).toBlocking(timeout: 1).toArray()
+        let results = try! sut.viewModelStateObservable.take(2).toBlocking(timeout: 2).toArray()
         let cellViewModels = try! sut.cellViewModelsDriver.toBlocking().first()
         XCTAssertEqual(results, [
             .loading("Loading market history data"),

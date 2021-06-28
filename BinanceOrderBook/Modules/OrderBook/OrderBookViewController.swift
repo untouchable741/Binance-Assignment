@@ -26,7 +26,7 @@ final class OrderBookViewController: UIViewController {
             .disposed(by: disposeBag)
         setupUI()
         bindData()
-        viewModel.loadData(isForcedRefresh: false)
+        viewModel.loadData()
     }
 }
 
@@ -50,7 +50,7 @@ extension OrderBookViewController {
     }
     
     @objc func refreshHandler(sender: UIRefreshControl) {
-        viewModel.loadData(isForcedRefresh: true)
+        viewModel.forceRefreshSnapshotData()
         sender.endRefreshing()
     }
     

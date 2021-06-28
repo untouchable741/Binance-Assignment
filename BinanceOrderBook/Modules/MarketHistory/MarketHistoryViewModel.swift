@@ -14,17 +14,19 @@ protocol MarketHistoryViewModelProtocol: RxViewModel {
     var cellViewModelsDriver: Driver<[MarketHistoryCellViewModelProtocol]> { get }
     
     // Public method
-    func loadData(isForcedRefresh: Bool)
+    func forceRefreshSnapshotData()
+    func loadData()
 }
 
 final class MarketHistoryViewModel: MarketHistoryViewModelProtocol {
     private let currencyPair: CurrencyPair
     private let interactor: MarketHistoryInteractorProtocol
+    private var waitingSnapshotUpdate: Bool = false
     @ThreadSafety(value: generatePlaceholderViewModels())
     private var cellViewModels: [MarketHistoryCellViewModelProtocol] {
         didSet {
             cellViewModelsRelay.accept(cellViewModels)
-            viewModelStateRelay.accept(.finishedLoadData)
+            update(newState: .finishedLoadData)
         }
     }
     private var localTradeData: [AggregateTradeData]?
@@ -48,15 +50,9 @@ final class MarketHistoryViewModel: MarketHistoryViewModelProtocol {
         self.interactor = interactor
     }
     
-    func loadData(isForcedRefresh: Bool) {
-        // Clear old data if this is forcedRefresh
-        if isForcedRefresh {
-            cellViewModels = Self.generatePlaceholderViewModels()
-            // Disposed all previous disposables
-        }
-        
+    func loadData() {
         // Trigger update state
-        update(newState: .loading("Loading market history data"))
+        update(newState: .loading("Loading MarketHistory data..."))
         
         // Firstly subscribe to socket stream and observe values
         let socketStreamObservable = interactor.subscribeStream(currencyPair: currencyPair)
@@ -73,12 +69,11 @@ final class MarketHistoryViewModel: MarketHistoryViewModelProtocol {
             snapshotObservable,
             socketStreamObservable
         )
-        // Simulate network delay when forceRefreshing
-        .delay(.seconds(isForcedRefresh ? 1 : 0), scheduler: ConcurrentMainScheduler.instance)
         .catch({ [weak self] error in
             self?.update(newState: .error(error))
             return Observable.empty()
         })
+        .skip(while: { [weak self] _ in self?.waitingSnapshotUpdate == true })
         .bind(onNext: { [weak self] snapshotData, socketData in
             guard let self = self else { return }
             var snapshot: [AggregateTradeData] = self.localTradeData ?? snapshotData
@@ -104,6 +99,18 @@ final class MarketHistoryViewModel: MarketHistoryViewModelProtocol {
             }
         })
         .disposed(by: disposedBag)
+    }
+    
+    func forceRefreshSnapshotData() {
+        cellViewModels = Self.generatePlaceholderViewModels()
+        update(newState: .loading("Refreshing MarketHistory data..."))
+        interactor
+            .getAggregateTradeData(currencyPair: currencyPair)
+            .map { Array($0.reversed()) }
+            .subscribe(onSuccess: { [weak self] data in
+            self?.localTradeData = data
+            self?.waitingSnapshotUpdate = false
+        }).disposed(by: disposedBag)
     }
     
     static func generatePlaceholderViewModels() -> [MarketHistoryCellViewModelProtocol] {

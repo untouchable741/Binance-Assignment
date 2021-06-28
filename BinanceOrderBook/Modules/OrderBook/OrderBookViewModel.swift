@@ -14,38 +14,24 @@ protocol OrderBookViewModelProtocol: RxViewModel {
     var cellViewModelsDriver: Driver<[OrderBookCellViewModelProtocol]> { get }
     
     // Public method
-    func loadData(isForcedRefresh: Bool)
+    func forceRefreshSnapshotData()
+    func loadData()
 }
 
 final class OrderBookViewModel: OrderBookViewModelProtocol {
-    enum ReloadReason {
-        case initial
-        case forcedRefresh
-        case corruptedData
-        
-        var status: String? {
-            switch self {
-            case .initial:
-                return "Loading order book data"
-            case .corruptedData:
-                return "Data corrupted, re-fetching data"
-            case .forcedRefresh:
-                return "Refreshing order book data"
-            }
-        }
-    }
-    
+
     // Store properties
     private let currencyPair: CurrencyPair
     private let interactor: OrderBookInteractorProtocol
+    private var waitingSnapshotUpdate: Bool = false
     @ThreadSafety(value: generatePlaceholderViewModels())
     private var orderBookCellViewModels: [OrderBookCellViewModelProtocol] {
         didSet {
             cellViewModelsRelay.accept(orderBookCellViewModels)
-            viewModelStateRelay.accept(.finishedLoadData)
+            update(newState: .finishedLoadData)
         }
     }
-    private var localOrderBook: DepthChartResponseData?
+    private var localSnapshot: DepthChartResponseData?
     
     // Relays
     
@@ -68,28 +54,9 @@ final class OrderBookViewModel: OrderBookViewModelProtocol {
         self.interactor = interactor
     }
     
-    func prepareState(for reloadReason: ReloadReason) {
-        switch reloadReason {
-        case .corruptedData:
-            try? interactor.unsubscribeStream(currencyPair: currencyPair)
-        case .forcedRefresh:
-            try? interactor.unsubscribeStream(currencyPair: currencyPair)
-            orderBookCellViewModels = Self.generatePlaceholderViewModels()
-        case .initial:
-            break
-        }
-    }
-    
-    func loadData(isForcedRefresh: Bool) {
-        loadData(reloadReason: isForcedRefresh ? .forcedRefresh : .initial)
-    }
-    
-    func loadData(reloadReason: ReloadReason) {
-        // Set internal state for reload purpose
-        prepareState(for: reloadReason)
-        
+    func loadData() {
         // Trigger loading state on UI
-        update(newState: .loading(reloadReason.status))
+        update(newState: .loading("Loading OrderBook data ..."))
         
         // https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-streams.md#how-to-manage-a-local-order-book-correctly
         // According to documentation about how to manage local orderBook
@@ -108,26 +75,37 @@ final class OrderBookViewModel: OrderBookViewModelProtocol {
             snapshotObservable,
             socketObservable
         )
-        .delay(.seconds(reloadReason == .initial ? 0 : 2), scheduler: ConcurrentMainScheduler.instance)
         .catch({ [weak self] error in
             self?.update(newState: .error(error))
             return Observable.empty()
         })
+        .skip(while: { [weak self] _ in self?.waitingSnapshotUpdate == true })
         .bind(onNext: { [weak self] snapshotData, socketData in
             guard let self = self else { return }
             // Forward snapshotData and socketData to Interactor for keeping local snapshot updated
-            let snapshot = self.localOrderBook ?? snapshotData
+            let snapshot = self.localSnapshot ?? snapshotData
             if let updatedLocalSnapshot = self.interactor.updateLocalSnapshot(snapshot, with: socketData) {
                 self.handleUpdatedLocalSnapshot(updatedLocalSnapshot)
                 // Update localOrderBook for next processing
-                self.localOrderBook = updatedLocalSnapshot
+                self.localSnapshot = updatedLocalSnapshot
             } else {
                 // Unconsistent error detected after trying to update localSnapshot
-                // We will force refreshing here
-                self.loadData(reloadReason: .corruptedData)
+                // Need to update the snapshot
+                self.waitingSnapshotUpdate = true
+                self.forceRefreshSnapshotData()
             }
         })
         .disposed(by: disposedBag)
+    }
+    
+    func forceRefreshSnapshotData() {
+        update(newState: .loading("Refreshing OrderBook data ..."))
+        interactor
+            .getDepthData(currencyPair: currencyPair)
+            .subscribe(onSuccess: { [weak self] data in
+            self?.localSnapshot = data
+            self?.waitingSnapshotUpdate = false
+        }).disposed(by: disposedBag)
     }
     
     func handleUpdatedLocalSnapshot(_ snapshot: DepthChartResponseData) {

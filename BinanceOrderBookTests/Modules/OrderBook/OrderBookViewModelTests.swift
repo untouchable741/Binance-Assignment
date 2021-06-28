@@ -39,7 +39,7 @@ class OrderBookViewModelTests: XCTestCase {
         )
         
         // When
-        sut.loadData(isForcedRefresh: false)
+        sut.loadData()
         
         // Then
         let results = try! sut.viewModelStateObservable.take(2).toBlocking(timeout: 1).toArray()
@@ -74,7 +74,7 @@ class OrderBookViewModelTests: XCTestCase {
         mockInteractor.stubUpdatedLocalSnapshot = nil
         
         // When
-        sut.loadData(isForcedRefresh: false)
+        sut.loadData()
         
         // Then
         let results = try! sut.viewModelStateObservable.take(2).toBlocking(timeout: 1).toArray()

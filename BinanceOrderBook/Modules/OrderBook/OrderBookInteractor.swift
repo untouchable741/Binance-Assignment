@@ -110,6 +110,10 @@ extension OrderBookInteractor {
             }
         }
         
+        if bids.first?.price ?? 0 >= asks.first?.price ?? 0 {
+            return nil
+        }
+        
         return DepthChartResponseData(
             lastUpdateId: socketData.finalUpdateID,
             bids: Array(bids.prefix(AppConfiguration.orderBookDefaultRowsCount)),

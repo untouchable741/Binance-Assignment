@@ -24,7 +24,7 @@ class MarketHistoryViewController: UIViewController {
             .disposed(by: disposeBag)
         setupUI()
         bindData()
-        viewModel.loadData(isForcedRefresh: false)
+        viewModel.loadData()
     }
     
     func bindData() {
@@ -57,7 +57,7 @@ extension MarketHistoryViewController {
     }
     
     @objc func refreshHandler(sender: UIRefreshControl) {
-        viewModel.loadData(isForcedRefresh: true)
+        viewModel.forceRefreshSnapshotData()
         sender.endRefreshing()
     }
 }
