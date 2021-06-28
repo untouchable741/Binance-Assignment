@@ -44,7 +44,7 @@ extension SocketManager: SocketDataProvider {
         socket?.disconnect()
     }
     
-    func subscribe<T: Decodable>(streamName streamNames: [String]) -> Observable<T> {
+    func subscribe<T: Decodable>(streamNames: [String]) -> Observable<T> {
         let subscribeRequest = StreamRequest(
             id: Int(Date.timeIntervalBetween1970AndReferenceDate),
             method: .subscribe,
@@ -68,7 +68,7 @@ extension SocketManager: SocketDataProvider {
             .map { try JSONDecoder.shared.decode(T.self, from: $0.data) }
     }
     
-    func unsubscribe(streamName streamNames: [String]) throws {
+    func unsubscribe(streamNames: [String]) throws {
         guard let socket = socket else {
             return
         }

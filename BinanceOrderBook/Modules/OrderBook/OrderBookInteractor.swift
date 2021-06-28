@@ -31,11 +31,11 @@ final class OrderBookInteractor: OrderBookInteractorProtocol {
     
     func subscribeStream(currencyPair: CurrencyPair) -> Observable<DepthChartSocketResponse> {
         return socketService
-            .subscribe(streamName: [currencyPair.depthStream])
+            .subscribe(streamNames: [currencyPair.depthStream])
     }
     
     func unsubscribeStream(currencyPair: CurrencyPair) throws {
-        return try socketService.unsubscribe(streamName: [currencyPair.rawValue])
+        return try socketService.unsubscribe(streamNames: [currencyPair.depthStream])
     }
     
     func getDepthData(currencyPair: CurrencyPair) -> Single<DepthChartResponseData> {

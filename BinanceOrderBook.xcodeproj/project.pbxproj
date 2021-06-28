@@ -51,12 +51,15 @@
 		D1B81D342688EAAD0036F2BA /* depth.json in Resources */ = {isa = PBXBuildFile; fileRef = D1B81D332688EAAD0036F2BA /* depth.json */; };
 		D1B81D372688EADC0036F2BA /* StubLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B81D362688EADC0036F2BA /* StubLoader.swift */; };
 		D1B81D392688FA190036F2BA /* aggTrades.json in Resources */ = {isa = PBXBuildFile; fileRef = D1B81D382688FA190036F2BA /* aggTrades.json */; };
+		D1B81D41268954EE0036F2BA /* OrderBookInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B81D40268954EE0036F2BA /* OrderBookInteractorTests.swift */; };
+		D1B81D44268955590036F2BA /* MockAPIServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B81D43268955590036F2BA /* MockAPIServices.swift */; };
+		D1B81D462689567E0036F2BA /* MockSocketProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B81D452689567E0036F2BA /* MockSocketProvider.swift */; };
+		D1B81D4926895CC20036F2BA /* MarketHistoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B81D4826895CC20036F2BA /* MarketHistoryTests.swift */; };
 		D1E49143268419D0006CD105 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E49142268419D0006CD105 /* AppDelegate.swift */; };
 		D1E49145268419D0006CD105 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E49144268419D0006CD105 /* SceneDelegate.swift */; };
 		D1E4914A268419D0006CD105 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1E49148268419D0006CD105 /* Main.storyboard */; };
 		D1E4914C268419D1006CD105 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1E4914B268419D1006CD105 /* Assets.xcassets */; };
 		D1E4914F268419D1006CD105 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1E4914D268419D1006CD105 /* LaunchScreen.storyboard */; };
-		D1E4915A268419D1006CD105 /* BinanceOrderBookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E49159268419D1006CD105 /* BinanceOrderBookTests.swift */; };
 		D1E49165268419D1006CD105 /* BinanceOrderBookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E49164268419D1006CD105 /* BinanceOrderBookUITests.swift */; };
 		D1E491772684445B006CD105 /* SocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E491762684445B006CD105 /* SocketManager.swift */; };
 		D1F3195826844AB20082E527 /* SocketConnectionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F3195726844AB20082E527 /* SocketConnectionProvider.swift */; };
@@ -130,6 +133,10 @@
 		D1B81D332688EAAD0036F2BA /* depth.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = depth.json; sourceTree = "<group>"; };
 		D1B81D362688EADC0036F2BA /* StubLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubLoader.swift; sourceTree = "<group>"; };
 		D1B81D382688FA190036F2BA /* aggTrades.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = aggTrades.json; sourceTree = "<group>"; };
+		D1B81D40268954EE0036F2BA /* OrderBookInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookInteractorTests.swift; sourceTree = "<group>"; };
+		D1B81D43268955590036F2BA /* MockAPIServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIServices.swift; sourceTree = "<group>"; };
+		D1B81D452689567E0036F2BA /* MockSocketProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSocketProvider.swift; sourceTree = "<group>"; };
+		D1B81D4826895CC20036F2BA /* MarketHistoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketHistoryTests.swift; sourceTree = "<group>"; };
 		D1E4913F268419D0006CD105 /* BinanceOrderBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BinanceOrderBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1E49142268419D0006CD105 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D1E49144268419D0006CD105 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -138,7 +145,6 @@
 		D1E4914E268419D1006CD105 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D1E49150268419D1006CD105 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D1E49155268419D1006CD105 /* BinanceOrderBookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BinanceOrderBookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D1E49159268419D1006CD105 /* BinanceOrderBookTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinanceOrderBookTests.swift; sourceTree = "<group>"; };
 		D1E4915B268419D1006CD105 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D1E49160268419D1006CD105 /* BinanceOrderBookUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BinanceOrderBookUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1E49164268419D1006CD105 /* BinanceOrderBookUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinanceOrderBookUITests.swift; sourceTree = "<group>"; };
@@ -337,6 +343,40 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		D1B81D3E268954B70036F2BA /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				D1B81D4726895CAF0036F2BA /* MarketHistory */,
+				D1B81D3F268954C40036F2BA /* OrderBook */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		D1B81D3F268954C40036F2BA /* OrderBook */ = {
+			isa = PBXGroup;
+			children = (
+				D1B81D40268954EE0036F2BA /* OrderBookInteractorTests.swift */,
+			);
+			path = OrderBook;
+			sourceTree = "<group>";
+		};
+		D1B81D422689554A0036F2BA /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				D1B81D43268955590036F2BA /* MockAPIServices.swift */,
+				D1B81D452689567E0036F2BA /* MockSocketProvider.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		D1B81D4726895CAF0036F2BA /* MarketHistory */ = {
+			isa = PBXGroup;
+			children = (
+				D1B81D4826895CC20036F2BA /* MarketHistoryTests.swift */,
+			);
+			path = MarketHistory;
+			sourceTree = "<group>";
+		};
 		D1E49136268419D0006CD105 = {
 			isa = PBXGroup;
 			children = (
@@ -379,10 +419,11 @@
 			isa = PBXGroup;
 			children = (
 				D1B81D352688EAC80036F2BA /* Helpers */,
+				D1E4915B268419D1006CD105 /* Info.plist */,
+				D1B81D422689554A0036F2BA /* Mocks */,
+				D1B81D3E268954B70036F2BA /* Modules */,
 				D1B81CF02688C3760036F2BA /* Services */,
 				D1B81CEF2688C3670036F2BA /* Stubs */,
-				D1E49159268419D1006CD105 /* BinanceOrderBookTests.swift */,
-				D1E4915B268419D1006CD105 /* Info.plist */,
 			);
 			path = BinanceOrderBookTests;
 			sourceTree = "<group>";
@@ -763,7 +804,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1B81CF22688C3A00036F2BA /* APIServicesTests.swift in Sources */,
-				D1E4915A268419D1006CD105 /* BinanceOrderBookTests.swift in Sources */,
+				D1B81D44268955590036F2BA /* MockAPIServices.swift in Sources */,
+				D1B81D462689567E0036F2BA /* MockSocketProvider.swift in Sources */,
+				D1B81D41268954EE0036F2BA /* OrderBookInteractorTests.swift in Sources */,
+				D1B81D4926895CC20036F2BA /* MarketHistoryTests.swift in Sources */,
 				D1B81D372688EADC0036F2BA /* StubLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

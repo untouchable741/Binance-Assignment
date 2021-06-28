@@ -29,11 +29,11 @@ class MarketHistoryInteractor: MarketHistoryInteractorProtocol {
     }
     
     func subscribeStream(currencyPair: CurrencyPair) -> Observable<AggregateTradeData> {
-        return socketService.subscribe(streamName: [currencyPair.aggregateTrade])
+        return socketService.subscribe(streamNames: [currencyPair.aggregateTrade])
     }
     
     func unsubscribeStream(currencyPair: CurrencyPair) throws {
-        return try socketService.unsubscribe(streamName: [currencyPair.rawValue])
+        return try socketService.unsubscribe(streamNames: [currencyPair.aggregateTrade])
     }
     
     func getAggregateTradeData(currencyPair: CurrencyPair) -> Single<[AggregateTradeData]> {

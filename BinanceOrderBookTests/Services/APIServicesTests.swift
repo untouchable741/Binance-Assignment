@@ -7,7 +7,6 @@
 
 import XCTest
 import Mockingjay
-
 @testable import BinanceOrderBook
 
 final class APIServicesTests: XCTestCase {

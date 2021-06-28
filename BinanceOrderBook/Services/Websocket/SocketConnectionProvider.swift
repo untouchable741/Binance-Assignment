@@ -30,6 +30,6 @@ protocol SocketDataProvider {
     func disconnect()
     
     // Public methods to handle subscribe and unsubscribe stream
-    func subscribe<T: Decodable>(streamName streamNames: [String]) -> Observable<T>
-    func unsubscribe(streamName: [String]) throws
+    func subscribe<T: Decodable>(streamNames: [String]) -> Observable<T>
+    func unsubscribe(streamNames: [String]) throws
 }
