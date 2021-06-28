@@ -130,26 +130,7 @@ final class OrderBookViewModel: OrderBookViewModelProtocol {
             // https://github.com/binance/binance-spot-api-docs/blob/master/web-socket-streams.md#how-to-manage-a-local-order-book-correctly
             let snapshot = self.localOrderBook ?? snapshotData
             if let updatedLocalSnapshot = self.interactor.updateLocalSnapshot(snapshot, with: socketData) {
-                // Calculate total bid/ask quantity in order to determine the depth level
-                let totalBidQuantity = updatedLocalSnapshot.bids.reduce(0, { $0 + $1.quantity })
-                let totalAskQuantity = updatedLocalSnapshot.asks.reduce(0, { $0 + $1.quantity })
-                var accumulateTotalBid: Decimal = 0
-                var accumulateTotalAsk: Decimal = 0
-                let currencyPair = self.currencyPair
-                self.orderBookCellViewModels = (0..<AppConfiguration.orderBookDefaultRowsCount).map { i in
-                    let bidPriceLevel = updatedLocalSnapshot.bids[safe: i]
-                    let askPriceLevel = updatedLocalSnapshot.asks[safe: i]
-                    accumulateTotalBid += (bidPriceLevel?.quantity ?? 0)
-                    accumulateTotalAsk += (askPriceLevel?.quantity ?? 0)
-                    // Create cellViewModel with corresponding information
-                    return OrderBookCellViewModel(
-                        bidPriceLevel: bidPriceLevel,
-                        askPriceLevel: askPriceLevel,
-                        bidQuantityPercentage: !bidPriceLevel.isNil ? accumulateTotalBid / totalBidQuantity : 0,
-                        askQuantityPercentage: !askPriceLevel.isNil ? accumulateTotalAsk / totalAskQuantity : 0,
-                        currencyPair: currencyPair
-                    )
-                }
+                self.handleUpdatedLocalSnapshot(updatedLocalSnapshot)
                 // Update localOrderBook for next processing
                 self.localOrderBook = updatedLocalSnapshot
             } else {
@@ -161,6 +142,30 @@ final class OrderBookViewModel: OrderBookViewModelProtocol {
         .disposed(by: disposedBag)
     }
     
+    func handleUpdatedLocalSnapshot(_ snapshot: DepthChartResponseData) {
+        // Calculate total bid/ask quantity in order to determine the depth level
+        let totalBidQuantity = snapshot.bids.reduce(0, { $0 + $1.quantity })
+        let totalAskQuantity = snapshot.asks.reduce(0, { $0 + $1.quantity })
+        var accumulateTotalBid: Decimal = 0
+        var accumulateTotalAsk: Decimal = 0
+        let currencyPair = currencyPair
+        self.orderBookCellViewModels = (0..<AppConfiguration.orderBookDefaultRowsCount).map { i in
+            let bidPriceLevel = snapshot.bids[safe: i]
+            let askPriceLevel = snapshot.asks[safe: i]
+            accumulateTotalBid += (bidPriceLevel?.quantity ?? 0)
+            accumulateTotalAsk += (askPriceLevel?.quantity ?? 0)
+            // Create cellViewModel with corresponding information
+            return OrderBookCellViewModel(
+                bidPriceLevel: bidPriceLevel,
+                askPriceLevel: askPriceLevel,
+                bidQuantityPercentage: !bidPriceLevel.isNil ? accumulateTotalBid / totalBidQuantity : 0,
+                askQuantityPercentage: !askPriceLevel.isNil ? accumulateTotalAsk / totalAskQuantity : 0,
+                currencyPair: currencyPair
+            )
+        }
+    }
+    
+    // In order to be reused inside @ThreadSafety propertyWrapper we need to make it static func
     static func generatePlaceholderViewModels() -> [OrderBookCellViewModelProtocol] {
         return (0..<AppConfiguration.orderBookDefaultRowsCount).map { _ in PlacaholderOrderBookCellViewModel() }
     }
