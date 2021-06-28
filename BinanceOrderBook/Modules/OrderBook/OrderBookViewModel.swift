@@ -122,7 +122,6 @@ final class OrderBookViewModel: OrderBookViewModelProtocol {
         let totalAskQuantity = snapshot.asks.reduce(0, { $0 + $1.quantity })
         var accumulateTotalBid: Decimal = 0
         var accumulateTotalAsk: Decimal = 0
-        let currencyPair = currencyPair
         self.orderBookCellViewModels = (0..<AppConfiguration.orderBookDefaultRowsCount).map { i in
             let bidPriceLevel = snapshot.bids[safe: i]
             let askPriceLevel = snapshot.asks[safe: i]
