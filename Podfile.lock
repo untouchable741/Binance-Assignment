@@ -7,12 +7,16 @@ PODS:
   - Mockingjay/XCTest (3.0.0-alpha.1):
     - Mockingjay/Core
   - Pageboy (3.6.2)
+  - RxBlocking (6.2.0):
+    - RxSwift (= 6.2.0)
   - RxCocoa (6.2.0):
     - RxRelay (= 6.2.0)
     - RxSwift (= 6.2.0)
   - RxRelay (6.2.0):
     - RxSwift (= 6.2.0)
   - RxSwift (6.2.0)
+  - RxTest (6.2.0):
+    - RxSwift (= 6.2.0)
   - Starscream (4.0.4)
   - Tabman (2.11.1):
     - Pageboy (~> 3.6.0)
@@ -20,8 +24,10 @@ PODS:
 
 DEPENDENCIES:
   - Mockingjay (~> 3.0.0-alpha.1)
+  - RxBlocking (~> 6.2.0)
   - RxCocoa (~> 6.2.0)
   - RxSwift (~> 6.2.0)
+  - RxTest (~> 6.2.0)
   - Starscream (~> 4.0.0)
   - Tabman (~> 2.11.1)
 
@@ -29,9 +35,11 @@ SPEC REPOS:
   trunk:
     - Mockingjay
     - Pageboy
+    - RxBlocking
     - RxCocoa
     - RxRelay
     - RxSwift
+    - RxTest
     - Starscream
     - Tabman
     - URITemplate
@@ -39,13 +47,15 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Mockingjay: 0f7c5aa49c7f1b95621cee3c79b557141f5a225c
   Pageboy: cf121b9dd48c63f3f281b2a9ec93d02e0f23879b
+  RxBlocking: 0b29f7d2079109a8de49c411381bed7c33ef1eeb
   RxCocoa: 4baf94bb35f2c0ab31bc0cb9f1900155f646ba42
   RxRelay: e72dbfd157807478401ef1982e1c61c945c94b2f
   RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
+  RxTest: 0c692fa672b694373ba86d2b00033595297a2831
   Starscream: 5178aed56b316f13fa3bc55694e583d35dd414d9
   Tabman: 792ac76fd1ec95af175c93db880a3c47cabedc91
   URITemplate: 58e0d47f967006c5d59888af5356c4a8ed3b197d
 
-PODFILE CHECKSUM: aaa81fa4d762a21d385bdc8c8843882a4e519c39
+PODFILE CHECKSUM: 772a3c230f3e55f3224a52c90a9a727b5543d033
 
 COCOAPODS: 1.10.1

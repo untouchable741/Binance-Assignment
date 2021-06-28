@@ -16,6 +16,8 @@ target 'BinanceOrderBook' do
     inherit! :search_paths
     # Pods for testing
     pod 'Mockingjay', '~> 3.0.0-alpha.1'
+    pod 'RxBlocking', '~> 6.2.0'
+    pod 'RxTest', '~> 6.2.0'
   end
 
 end
