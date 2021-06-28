@@ -35,3 +35,24 @@ extension DepthChartSocketResponse {
         )
     }
 }
+
+extension AggregateTradeData {
+    static func mock(
+        tradeID: Int = 0,
+        price: String = "",
+        tradeTime: Date = Date()
+    ) -> Self {
+        return AggregateTradeData(
+            eventType: "event_type",
+            eventTime: Date(),
+            symbol: .BTCUSDT,
+            tradeID: tradeID,
+            price: price,
+            quantity: "2",
+            firstTradeID: 2,
+            lastTradeID: 3,
+            tradeTime: tradeTime,
+            isBuyer: true
+        )
+    }
+}

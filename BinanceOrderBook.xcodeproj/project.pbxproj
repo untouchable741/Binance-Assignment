@@ -21,6 +21,9 @@
 		D14CB1B72684D4F500EA4538 /* OrderBookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14CB1B62684D4F500EA4538 /* OrderBookViewModel.swift */; };
 		D14CB1B92684D4FD00EA4538 /* OrderBookInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14CB1B82684D4FD00EA4538 /* OrderBookInteractor.swift */; };
 		D14CB1BC2685003900EA4538 /* OrderBookTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14CB1BB2685003900EA4538 /* OrderBookTableViewCell.swift */; };
+		D16D08472689CA770023FFEF /* MarketHistoryViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16D08462689CA770023FFEF /* MarketHistoryViewModelTests.swift */; };
+		D16D08492689CB960023FFEF /* MockMarketHistoryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16D08482689CB960023FFEF /* MockMarketHistoryInteractor.swift */; };
+		D16D084B2689DB030023FFEF /* OrderBookViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16D084A2689DB030023FFEF /* OrderBookViewModelTests.swift */; };
 		D19445B126860DF000482A02 /* RxViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19445B026860DF000482A02 /* RxViewModel.swift */; };
 		D19445B52686132100482A02 /* NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19445B42686132100482A02 /* NumberFormatter.swift */; };
 		D19445B726861D9600482A02 /* ThreadSafety.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19445B626861D9600482A02 /* ThreadSafety.swift */; };
@@ -106,6 +109,9 @@
 		D14CB1B62684D4F500EA4538 /* OrderBookViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookViewModel.swift; sourceTree = "<group>"; };
 		D14CB1B82684D4FD00EA4538 /* OrderBookInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookInteractor.swift; sourceTree = "<group>"; };
 		D14CB1BB2685003900EA4538 /* OrderBookTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookTableViewCell.swift; sourceTree = "<group>"; };
+		D16D08462689CA770023FFEF /* MarketHistoryViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketHistoryViewModelTests.swift; sourceTree = "<group>"; };
+		D16D08482689CB960023FFEF /* MockMarketHistoryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMarketHistoryInteractor.swift; sourceTree = "<group>"; };
+		D16D084A2689DB030023FFEF /* OrderBookViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookViewModelTests.swift; sourceTree = "<group>"; };
 		D19445B026860DF000482A02 /* RxViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxViewModel.swift; sourceTree = "<group>"; };
 		D19445B42686132100482A02 /* NumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatter.swift; sourceTree = "<group>"; };
 		D19445B626861D9600482A02 /* ThreadSafety.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSafety.swift; sourceTree = "<group>"; };
@@ -362,6 +368,7 @@
 			children = (
 				D1B81D64268989B50036F2BA /* OrderBookCellViewModelTests.swift */,
 				D1B81D40268954EE0036F2BA /* OrderBookInteractorTests.swift */,
+				D16D084A2689DB030023FFEF /* OrderBookViewModelTests.swift */,
 			);
 			path = OrderBook;
 			sourceTree = "<group>";
@@ -370,9 +377,10 @@
 			isa = PBXGroup;
 			children = (
 				D1B81D43268955590036F2BA /* MockAPIServices.swift */,
-				D1B81D452689567E0036F2BA /* MockSocketProvider.swift */,
-				D1B81D6A2689A7250036F2BA /* MockOrderBookInteractor.swift */,
+				D16D08482689CB960023FFEF /* MockMarketHistoryInteractor.swift */,
 				D1B81D6C2689AC760036F2BA /* MockModels.swift */,
+				D1B81D6A2689A7250036F2BA /* MockOrderBookInteractor.swift */,
+				D1B81D452689567E0036F2BA /* MockSocketProvider.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -380,8 +388,9 @@
 		D1B81D4726895CAF0036F2BA /* MarketHistory */ = {
 			isa = PBXGroup;
 			children = (
-				D1B81D4826895CC20036F2BA /* MarketHistoryInteractorTests.swift */,
 				D1B81D62268987A10036F2BA /* MarketHistoryCellViewModelTests.swift */,
+				D1B81D4826895CC20036F2BA /* MarketHistoryInteractorTests.swift */,
+				D16D08462689CA770023FFEF /* MarketHistoryViewModelTests.swift */,
 			);
 			path = MarketHistory;
 			sourceTree = "<group>";
@@ -782,7 +791,9 @@
 				D1B81D61268986460036F2BA /* OptionalExtensionTests.swift in Sources */,
 				D1B81D44268955590036F2BA /* MockAPIServices.swift in Sources */,
 				D1B81D65268989B50036F2BA /* OrderBookCellViewModelTests.swift in Sources */,
+				D16D084B2689DB030023FFEF /* OrderBookViewModelTests.swift in Sources */,
 				D1B81D5526897B960036F2BA /* CodableExtensionTests.swift in Sources */,
+				D16D08492689CB960023FFEF /* MockMarketHistoryInteractor.swift in Sources */,
 				D1B81D5D2689833E0036F2BA /* ObservableExtensionTests.swift in Sources */,
 				D1B81D5926897EF00036F2BA /* JSONDecoderExtensionTests.swift in Sources */,
 				D1B81D6D2689AC760036F2BA /* MockModels.swift in Sources */,
@@ -791,6 +802,7 @@
 				D1B81D50268972530036F2BA /* NumberFormatterTests.swift in Sources */,
 				D1B81D4926895CC20036F2BA /* MarketHistoryInteractorTests.swift in Sources */,
 				D1B81D372688EADC0036F2BA /* StubLoader.swift in Sources */,
+				D16D08472689CA770023FFEF /* MarketHistoryViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
