@@ -76,3 +76,30 @@ extension OrderBookCellViewModel: OrderBookCellViewModelProtocol {
         return numberFormatter.priceString(from: askPriceLevel.price as NSDecimalNumber, of: currencyPair)
     }
 }
+
+final class PlacaholderOrderBookCellViewModel: OrderBookCellViewModelProtocol {
+
+    var formattedBidQuantity: String? {
+        return AppConstants.placeholderValue
+    }
+    
+    var formattedBidPrice: String? {
+        return AppConstants.placeholderValue
+    }
+    
+    var formattedAskQuantity: String? {
+        return AppConstants.placeholderValue
+    }
+    
+    var formattedAskPrice: String? {
+        return AppConstants.placeholderValue
+    }
+    
+    var bidQuantityPercentage: Decimal {
+        return 0
+    }
+    
+    var askQuantityPercentage: Decimal {
+        return 0
+    }
+}

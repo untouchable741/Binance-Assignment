@@ -162,16 +162,7 @@ final class OrderBookViewModel: OrderBookViewModelProtocol {
     }
     
     static func generatePlaceholderViewModels() -> [OrderBookCellViewModelProtocol] {
-        return (0..<AppConfiguration.orderBookDefaultRowsCount).map { i in
-            return OrderBookCellViewModel(
-                isPlaceholder: true,
-                bidPriceLevel: PriceLevel(price: 0, quantity: 0),
-                askPriceLevel: PriceLevel(price: 0, quantity: 0),
-                bidQuantityPercentage: 0,
-                askQuantityPercentage: 0,
-                currencyPair: .BTCUSDT
-            )
-        }
+        return (0..<AppConfiguration.orderBookDefaultRowsCount).map { _ in PlacaholderOrderBookCellViewModel() }
     }
 }
 

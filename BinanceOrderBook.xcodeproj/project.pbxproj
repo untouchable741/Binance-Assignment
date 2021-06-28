@@ -54,7 +54,7 @@
 		D1B81D41268954EE0036F2BA /* OrderBookInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B81D40268954EE0036F2BA /* OrderBookInteractorTests.swift */; };
 		D1B81D44268955590036F2BA /* MockAPIServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B81D43268955590036F2BA /* MockAPIServices.swift */; };
 		D1B81D462689567E0036F2BA /* MockSocketProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B81D452689567E0036F2BA /* MockSocketProvider.swift */; };
-		D1B81D4926895CC20036F2BA /* MarketHistoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B81D4826895CC20036F2BA /* MarketHistoryTests.swift */; };
+		D1B81D4926895CC20036F2BA /* MarketHistoryInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B81D4826895CC20036F2BA /* MarketHistoryInteractorTests.swift */; };
 		D1B81D4C268970960036F2BA /* CurrencyPairTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B81D4B268970960036F2BA /* CurrencyPairTests.swift */; };
 		D1B81D50268972530036F2BA /* NumberFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B81D4F268972530036F2BA /* NumberFormatterTests.swift */; };
 		D1B81D522689734C0036F2BA /* DateFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B81D512689734C0036F2BA /* DateFormatterTests.swift */; };
@@ -64,6 +64,8 @@
 		D1B81D5D2689833E0036F2BA /* ObservableExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B81D5C2689833E0036F2BA /* ObservableExtensionTests.swift */; };
 		D1B81D5F2689858E0036F2BA /* CollectionExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B81D5E2689858E0036F2BA /* CollectionExtensionTests.swift */; };
 		D1B81D61268986460036F2BA /* OptionalExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B81D60268986460036F2BA /* OptionalExtensionTests.swift */; };
+		D1B81D63268987A10036F2BA /* MarketHistoryCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B81D62268987A10036F2BA /* MarketHistoryCellViewModelTests.swift */; };
+		D1B81D65268989B50036F2BA /* OrderBookCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B81D64268989B50036F2BA /* OrderBookCellViewModelTests.swift */; };
 		D1E49143268419D0006CD105 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E49142268419D0006CD105 /* AppDelegate.swift */; };
 		D1E49145268419D0006CD105 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E49144268419D0006CD105 /* SceneDelegate.swift */; };
 		D1E4914A268419D0006CD105 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1E49148268419D0006CD105 /* Main.storyboard */; };
@@ -145,7 +147,7 @@
 		D1B81D40268954EE0036F2BA /* OrderBookInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookInteractorTests.swift; sourceTree = "<group>"; };
 		D1B81D43268955590036F2BA /* MockAPIServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIServices.swift; sourceTree = "<group>"; };
 		D1B81D452689567E0036F2BA /* MockSocketProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSocketProvider.swift; sourceTree = "<group>"; };
-		D1B81D4826895CC20036F2BA /* MarketHistoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketHistoryTests.swift; sourceTree = "<group>"; };
+		D1B81D4826895CC20036F2BA /* MarketHistoryInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketHistoryInteractorTests.swift; sourceTree = "<group>"; };
 		D1B81D4B268970960036F2BA /* CurrencyPairTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPairTests.swift; sourceTree = "<group>"; };
 		D1B81D4F268972530036F2BA /* NumberFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatterTests.swift; sourceTree = "<group>"; };
 		D1B81D512689734C0036F2BA /* DateFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterTests.swift; sourceTree = "<group>"; };
@@ -155,6 +157,8 @@
 		D1B81D5C2689833E0036F2BA /* ObservableExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableExtensionTests.swift; sourceTree = "<group>"; };
 		D1B81D5E2689858E0036F2BA /* CollectionExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionExtensionTests.swift; sourceTree = "<group>"; };
 		D1B81D60268986460036F2BA /* OptionalExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalExtensionTests.swift; sourceTree = "<group>"; };
+		D1B81D62268987A10036F2BA /* MarketHistoryCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketHistoryCellViewModelTests.swift; sourceTree = "<group>"; };
+		D1B81D64268989B50036F2BA /* OrderBookCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookCellViewModelTests.swift; sourceTree = "<group>"; };
 		D1E4913F268419D0006CD105 /* BinanceOrderBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BinanceOrderBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1E49142268419D0006CD105 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D1E49144268419D0006CD105 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -374,6 +378,7 @@
 			isa = PBXGroup;
 			children = (
 				D1B81D40268954EE0036F2BA /* OrderBookInteractorTests.swift */,
+				D1B81D64268989B50036F2BA /* OrderBookCellViewModelTests.swift */,
 			);
 			path = OrderBook;
 			sourceTree = "<group>";
@@ -390,7 +395,8 @@
 		D1B81D4726895CAF0036F2BA /* MarketHistory */ = {
 			isa = PBXGroup;
 			children = (
-				D1B81D4826895CC20036F2BA /* MarketHistoryTests.swift */,
+				D1B81D4826895CC20036F2BA /* MarketHistoryInteractorTests.swift */,
+				D1B81D62268987A10036F2BA /* MarketHistoryCellViewModelTests.swift */,
 			);
 			path = MarketHistory;
 			sourceTree = "<group>";
@@ -859,15 +865,17 @@
 				D1B81D5726897D1B0036F2BA /* StringExtensionTests.swift in Sources */,
 				D1B81D5F2689858E0036F2BA /* CollectionExtensionTests.swift in Sources */,
 				D1B81CF22688C3A00036F2BA /* APIServicesTests.swift in Sources */,
+				D1B81D63268987A10036F2BA /* MarketHistoryCellViewModelTests.swift in Sources */,
 				D1B81D61268986460036F2BA /* OptionalExtensionTests.swift in Sources */,
 				D1B81D44268955590036F2BA /* MockAPIServices.swift in Sources */,
+				D1B81D65268989B50036F2BA /* OrderBookCellViewModelTests.swift in Sources */,
 				D1B81D5526897B960036F2BA /* CodableExtensionTests.swift in Sources */,
 				D1B81D5D2689833E0036F2BA /* ObservableExtensionTests.swift in Sources */,
 				D1B81D5926897EF00036F2BA /* JSONDecoderExtensionTests.swift in Sources */,
 				D1B81D462689567E0036F2BA /* MockSocketProvider.swift in Sources */,
 				D1B81D41268954EE0036F2BA /* OrderBookInteractorTests.swift in Sources */,
 				D1B81D50268972530036F2BA /* NumberFormatterTests.swift in Sources */,
-				D1B81D4926895CC20036F2BA /* MarketHistoryTests.swift in Sources */,
+				D1B81D4926895CC20036F2BA /* MarketHistoryInteractorTests.swift in Sources */,
 				D1B81D372688EADC0036F2BA /* StubLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

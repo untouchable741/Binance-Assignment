@@ -15,20 +15,17 @@ protocol MarketHistoryCellViewModelProtocol {
 }
 
 final class MarketHistoryCellViewModel {
-    private let isPlaceholder: Bool
     let aggregateTradeData: AggregateTradeData
     let currencyPair: CurrencyPair
     let numberFormatter: NumberFormatter
     let dateFormatter: DateFormatter
     
     init(
-        isPlaceholder: Bool = false,
         aggregateData: AggregateTradeData,
         currencyPair: CurrencyPair,
         numberFormatter: NumberFormatter = NumberFormatter.sharedNumberFormatter,
         dateFormatter: DateFormatter = DateFormatter.sharedDateFormatter
     ) {
-        self.isPlaceholder = isPlaceholder
         self.aggregateTradeData = aggregateData
         self.numberFormatter = numberFormatter
         self.dateFormatter = dateFormatter
