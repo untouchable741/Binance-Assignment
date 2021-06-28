@@ -25,7 +25,8 @@ final class NumberFormatterTests: XCTestCase {
     func testSharedFormatter() {
         // When
         XCTAssertEqual(sut.numberStyle, .decimal)
-        XCTAssertTrue(sut.usesGroupingSeparator)
+        XCTAssertEqual(sut.groupingSeparator, ".")
+        XCTAssertEqual(sut.decimalSeparator, ",")
     }
     
     func testQuantityString() {

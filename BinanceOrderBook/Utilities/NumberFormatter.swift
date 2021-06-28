@@ -36,7 +36,8 @@ extension NumberFormatter {
     static let sharedNumberFormatter: NumberFormatter = {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
-        numberFormatter.usesGroupingSeparator = true
+        numberFormatter.decimalSeparator = ","
+        numberFormatter.groupingSeparator = "."
         return numberFormatter
     }()
 }
