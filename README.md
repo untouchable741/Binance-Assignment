@@ -1,6 +1,11 @@
 # Binance-Assignment
 This is coding assignment for Binance tech interview.
-### Check list 
+
+## Specifications
+- Xcode 12.5
+- Swift 5
+
+## Checklist
 - [x] OrderBook
 - [x] Market history
 - [x] Real-time data update with websocket
@@ -8,11 +13,12 @@ This is coding assignment for Binance tech interview.
 - [x] Loading state and error handling
 - [x] Pull to refresh
 - [x] Readme
+- [ ] UI Test
 
-## Architecture
-This project using MVVM-Interactor architecture with below technical highlighted points :
+## Project overview
+This project using MVVM-Interactor architecture with below technical highlights :
 - MVVM - Interactor as main architecture, powered by RxSwift behind the scene.
-- CLEAN architecture which utilize Protocol Oriented Programing and Dependency Injection for Unit Test : RxViewModel, RxViewController, ...
+- CLEAN architecture which utilize Protocol Oriented Programing and Dependency Injection for Unit Test
 - RxBlock for testing RxSwift Observable part and Mockingjay for stubbing network request
 - CLEAN architecture with Interactor taking care of business logics and separate it from ViewModel which is responsible for UI logics
 - XCTest for unit testing with mock and stub techniques
@@ -22,10 +28,6 @@ This project using MVVM-Interactor architecture with below technical highlighted
 - Unit testing code coverage 
 
 ![Screen Shot 2021-06-28 at 10 21 14 PM](https://user-images.githubusercontent.com/2222122/123661983-35245b80-d85f-11eb-9c5b-83e7590ecd4d.png)
-
-
-## Further enhancement
-- UI Test
 
 ## Third parties libraries
 - [RxSwift , RxCocoa , RxBlocking](https://github.com/ReactiveX/RxSwift)
