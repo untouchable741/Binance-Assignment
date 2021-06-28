@@ -31,7 +31,7 @@ class OrderBookViewModelTests: XCTestCase {
         // Given
         mockInteractor.stubGetDepthData = Single<DepthChartResponseData>.just(.mock())
         /// Because we use skil(until:), we need to delay socketData for 0.5s
-        mockInteractor.stubSubscribeStreamDepthChartSocketData = Observable.just(.mock()).delay(.milliseconds(500), scheduler: MainScheduler.instance)
+        mockInteractor.stubSubscribeStreamDepthChartSocketData = Observable.just(.mock()).delay(.milliseconds(500), scheduler: ConcurrentMainScheduler.instance)
         mockInteractor.stubUpdatedLocalSnapshot = DepthChartResponseData(
             lastUpdateId: 999,
             bids: [PriceLevel(price: 1826738.223, quantity: 0.32345)],
@@ -70,7 +70,7 @@ class OrderBookViewModelTests: XCTestCase {
         // Given
         mockInteractor.stubGetDepthData = Single<DepthChartResponseData>.just(.mock())
         /// Because we use skil(until:), we need to delay socketData for 0.5s
-        mockInteractor.stubSubscribeStreamDepthChartSocketData = Observable.just(.mock()).delay(.milliseconds(500), scheduler: MainScheduler.instance)
+        mockInteractor.stubSubscribeStreamDepthChartSocketData = Observable.just(.mock()).delay(.milliseconds(500), scheduler: ConcurrentMainScheduler.instance)
         mockInteractor.stubUpdatedLocalSnapshot = nil
         
         // When
@@ -88,20 +88,34 @@ class OrderBookViewModelTests: XCTestCase {
     
     func testLoadData_whenLocalSnapshotAPIError() {
         // Given
-        mockInteractor.stubGetDepthData = Single<DepthChartResponseData>.error(APIError.invalidRequest)
+        mockInteractor.stubGetDepthData = Single<DepthChartResponseData>.error(APIError.invalidRequest).delay(.milliseconds(500), scheduler: ConcurrentMainScheduler.instance)
         /// Because we use skil(until:), we need to delay socketData for 0.5s
-        mockInteractor.stubSubscribeStreamDepthChartSocketData = Observable.just(.mock()).delay(.milliseconds(500), scheduler: MainScheduler.instance)
+        mockInteractor.stubSubscribeStreamDepthChartSocketData = Observable.just(.mock()).delay(.milliseconds(500), scheduler: ConcurrentMainScheduler.instance)
         
         // When
         sut.loadData()
         
         // Then
-        let results = try! sut.viewModelStateObservable.take(2).toBlocking(timeout: 1).toArray()
-        let cellViewModels = try! sut.cellViewModelsDriver.toBlocking().first()
+        let results = try! sut.viewModelStateObservable.take(1).toBlocking(timeout: 1).toArray()
         XCTAssertEqual(results, [
-            .loading("Loading order book data"),
-            .loading("Data corrupted, re-fetching data")
+            .error(APIError.invalidRequest)
         ])
-        XCTAssertEqual(cellViewModels?.count, 25)
+    }
+    
+    func testLoadData_whenSocketStreamError() {
+        // Given
+        mockInteractor.stubGetDepthData = Single<DepthChartResponseData>.just(.mock()).delay(.milliseconds(500), scheduler: ConcurrentMainScheduler.instance)
+        /// Because we use skil(until:), we need to delay socketData for 0.5s
+        mockInteractor.stubSubscribeStreamDepthChartSocketData = Observable.error(APIError.conversionFailure).delay(.milliseconds(500), scheduler: ConcurrentMainScheduler.instance)
+        mockInteractor.stubUpdatedLocalSnapshot = nil
+        
+        // When
+        sut.loadData()
+        
+        // Then
+        let results = try! sut.viewModelStateObservable.take(1).toBlocking(timeout: 1).toArray()
+        XCTAssertEqual(results, [
+            .error(APIError.conversionFailure)
+        ])
     }
 }
