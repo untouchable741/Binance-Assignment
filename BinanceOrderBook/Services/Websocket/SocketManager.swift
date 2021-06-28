@@ -55,7 +55,8 @@ extension SocketManager: SocketDataProvider {
             return Observable.error(SocketError.invalidRequest)
         }
         
-        if let socket = socket {
+        if let socket = socket, connectionStatusRelay.value == .connected {
+            print("Send subscribe request \(subscribeRequestJSONString)")
             socket.write(string: subscribeRequestJSONString)
         } else {
             // Socket not available, put message into stream and processs later
