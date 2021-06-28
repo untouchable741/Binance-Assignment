@@ -10,6 +10,11 @@ import RxSwift
 @testable import BinanceOrderBook
 
 final class MockOrderBookInteractor: OrderBookInteractorProtocol {
+    var stubIsSocketConnected: Bool = false
+    var isSocketConnected: Bool {
+        return stubIsSocketConnected
+    }
+    
     private(set) var subscribeStreamCalledCount: Int = 0
     private(set) var subscribeStreamCurrencyPair: CurrencyPair?
     var stubSubscribeStreamDepthChartSocketData: Observable<DepthChartSocketResponse>?

@@ -9,6 +9,7 @@ import Foundation
 import RxSwift
 
 protocol OrderBookInteractorProtocol {
+    var isSocketConnected: Bool { get }
     func subscribeStream(currencyPair: CurrencyPair) -> Observable<DepthChartSocketResponse>
     func unsubscribeStream(currencyPair: CurrencyPair) throws
     func getDepthData(currencyPair: CurrencyPair) -> Single<DepthChartResponseData>
@@ -27,6 +28,10 @@ final class OrderBookInteractor: OrderBookInteractorProtocol {
     ) {
         self.apiServices = apiServices
         self.socketService = socketService
+    }
+        
+    var isSocketConnected: Bool {
+        return socketService.isSocketConnected
     }
     
     func subscribeStream(currencyPair: CurrencyPair) -> Observable<DepthChartSocketResponse> {

@@ -99,12 +99,20 @@ final class OrderBookViewModel: OrderBookViewModelProtocol {
     }
     
     func forceRefreshSnapshotData() {
+        // If socket is not connecting, loadData again
+        guard interactor.isSocketConnected else {
+            return loadData()
+        }
+        
+        // Otherwise, just need to refresh snapshot
         update(newState: .loading("Refreshing OrderBook data ..."))
         interactor
             .getDepthData(currencyPair: currencyPair)
             .subscribe(onSuccess: { [weak self] data in
-            self?.localSnapshot = data
-            self?.waitingSnapshotUpdate = false
+                self?.localSnapshot = data
+                self?.waitingSnapshotUpdate = false
+            }, onFailure: { [weak self] error in
+            self?.update(newState: .error(error))
         }).disposed(by: disposedBag)
     }
     

@@ -102,14 +102,22 @@ final class MarketHistoryViewModel: MarketHistoryViewModelProtocol {
     }
     
     func forceRefreshSnapshotData() {
+        // If socket is not connecting, loadData again
+        guard interactor.isSocketConnected else {
+            return loadData()
+        }
+        
+        // Otherwise, just need to refresh snapshot
         cellViewModels = Self.generatePlaceholderViewModels()
         update(newState: .loading("Refreshing MarketHistory data..."))
         interactor
             .getAggregateTradeData(currencyPair: currencyPair)
             .map { Array($0.reversed()) }
             .subscribe(onSuccess: { [weak self] data in
-            self?.localTradeData = data
-            self?.waitingSnapshotUpdate = false
+                self?.localTradeData = data
+                self?.waitingSnapshotUpdate = false
+            }, onFailure: { [weak self] error in
+            self?.update(newState: .error(error))
         }).disposed(by: disposedBag)
     }
     

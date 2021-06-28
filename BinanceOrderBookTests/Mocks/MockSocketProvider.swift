@@ -10,6 +10,11 @@ import RxSwift
 @testable import BinanceOrderBook
 
 final class MockSocketProvider: SocketDataProvider {
+    var stubIsSocketConnected: Bool = false
+    var isSocketConnected: Bool {
+        return stubIsSocketConnected
+    }
+    
     var stubConnectionStatusObservable: Observable<SocketConnectionStatus>!
     var connectionStatusObservable: Observable<SocketConnectionStatus> {
         return stubConnectionStatusObservable

@@ -22,6 +22,9 @@ enum SocketError: Error {
 }
 
 protocol SocketDataProvider {
+    // Convenient computed property to check for socket connected state
+    var isSocketConnected: Bool { get }
+    
     // Observable to receive latest status of socket connection
     var connectionStatusObservable: Observable<SocketConnectionStatus> { get }
     

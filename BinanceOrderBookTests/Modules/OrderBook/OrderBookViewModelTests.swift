@@ -85,4 +85,23 @@ class OrderBookViewModelTests: XCTestCase {
         ])
         XCTAssertEqual(cellViewModels?.count, 25)
     }
+    
+    func testLoadData_whenLocalSnapshotAPIError() {
+        // Given
+        mockInteractor.stubGetDepthData = Single<DepthChartResponseData>.error(APIError.invalidRequest)
+        /// Because we use skil(until:), we need to delay socketData for 0.5s
+        mockInteractor.stubSubscribeStreamDepthChartSocketData = Observable.just(.mock()).delay(.milliseconds(500), scheduler: MainScheduler.instance)
+        
+        // When
+        sut.loadData()
+        
+        // Then
+        let results = try! sut.viewModelStateObservable.take(2).toBlocking(timeout: 1).toArray()
+        let cellViewModels = try! sut.cellViewModelsDriver.toBlocking().first()
+        XCTAssertEqual(results, [
+            .loading("Loading order book data"),
+            .loading("Data corrupted, re-fetching data")
+        ])
+        XCTAssertEqual(cellViewModels?.count, 25)
+    }
 }

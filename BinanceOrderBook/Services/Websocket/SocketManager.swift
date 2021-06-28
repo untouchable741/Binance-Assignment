@@ -21,10 +21,15 @@ final class SocketManager {
 }
 
 extension SocketManager: SocketDataProvider {
+
+    var isSocketConnected: Bool {
+        return connectionStatusRelay.value == .connected
+    }
     
     var connectionStatusObservable: Observable<SocketConnectionStatus> {
         return connectionStatusRelay.asObservable()
     }
+    
     
     func connectIfNeeded() {
         guard connectionStatusRelay.value != .connected,
