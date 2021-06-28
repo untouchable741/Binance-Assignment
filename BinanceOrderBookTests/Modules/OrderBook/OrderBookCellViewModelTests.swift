@@ -26,10 +26,10 @@ final class OrderBookCellViewModelTests: XCTestCase {
         )
         
         // Then
-        XCTAssertEqual(sut.formattedBidPrice, "12,398.44")
-        XCTAssertEqual(sut.formattedBidQuantity, "0.231200")
-        XCTAssertEqual(sut.formattedAskPrice, "23,135.24")
-        XCTAssertEqual(sut.formattedAskQuantity, "0.123125")
+        XCTAssertEqual(sut.formattedBidPrice, "12.398,44")
+        XCTAssertEqual(sut.formattedBidQuantity, "0,231200")
+        XCTAssertEqual(sut.formattedAskPrice, "23.135,24")
+        XCTAssertEqual(sut.formattedAskQuantity, "0,123125")
         XCTAssertEqual(sut.askQuantityPercentage, 0.4)
         XCTAssertEqual(sut.bidQuantityPercentage, 0.5)
     }

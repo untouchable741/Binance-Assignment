@@ -35,8 +35,8 @@ final class MarketHistoryCellViewModelTests: XCTestCase {
         )
         
         // Then
-        XCTAssertEqual(sut.formattedPrice, "123,487.00")
-        XCTAssertEqual(sut.formattedQuantity, "0.323233")
+        XCTAssertEqual(sut.formattedPrice, "123.487,00")
+        XCTAssertEqual(sut.formattedQuantity, "0,323233")
         XCTAssertEqual(sut.formattedTradeTime, "20:20:19")
     }
     

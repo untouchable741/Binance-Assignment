@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		798540128843D4F0EA1806D3 /* Pods_BinanceOrderBook_BinanceOrderBookUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CCD03B24057936D546EBDB2 /* Pods_BinanceOrderBook_BinanceOrderBookUITests.framework */; };
 		917D8CE8B575F0406BAF6AF7 /* Pods_BinanceOrderBookTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E42F6E12A2E3F146362EB2A4 /* Pods_BinanceOrderBookTests.framework */; };
 		A2F450DD145975BA64A46BB8 /* Pods_BinanceOrderBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3F5FBFCD77BA141487F3E7A /* Pods_BinanceOrderBook.framework */; };
 		D14CB1A1268478B000EA4538 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14CB1A0268478B000EA4538 /* StringExtension.swift */; };
@@ -66,12 +65,12 @@
 		D1B81D61268986460036F2BA /* OptionalExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B81D60268986460036F2BA /* OptionalExtensionTests.swift */; };
 		D1B81D63268987A10036F2BA /* MarketHistoryCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B81D62268987A10036F2BA /* MarketHistoryCellViewModelTests.swift */; };
 		D1B81D65268989B50036F2BA /* OrderBookCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B81D64268989B50036F2BA /* OrderBookCellViewModelTests.swift */; };
+		D1B81D6B2689A7250036F2BA /* MockOrderBookInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B81D6A2689A7250036F2BA /* MockOrderBookInteractor.swift */; };
+		D1B81D6D2689AC760036F2BA /* MockModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B81D6C2689AC760036F2BA /* MockModels.swift */; };
 		D1E49143268419D0006CD105 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E49142268419D0006CD105 /* AppDelegate.swift */; };
-		D1E49145268419D0006CD105 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E49144268419D0006CD105 /* SceneDelegate.swift */; };
 		D1E4914A268419D0006CD105 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1E49148268419D0006CD105 /* Main.storyboard */; };
 		D1E4914C268419D1006CD105 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1E4914B268419D1006CD105 /* Assets.xcassets */; };
 		D1E4914F268419D1006CD105 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1E4914D268419D1006CD105 /* LaunchScreen.storyboard */; };
-		D1E49165268419D1006CD105 /* BinanceOrderBookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E49164268419D1006CD105 /* BinanceOrderBookUITests.swift */; };
 		D1E491772684445B006CD105 /* SocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E491762684445B006CD105 /* SocketManager.swift */; };
 		D1F3195826844AB20082E527 /* SocketConnectionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F3195726844AB20082E527 /* SocketConnectionProvider.swift */; };
 		D1F3195A26844B630082E527 /* StreamRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F3195926844B630082E527 /* StreamRequest.swift */; };
@@ -80,13 +79,6 @@
 
 /* Begin PBXContainerItemProxy section */
 		D1E49156268419D1006CD105 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D1E49137268419D0006CD105 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D1E4913E268419D0006CD105;
-			remoteInfo = BinanceOrderBook;
-		};
-		D1E49161268419D1006CD105 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D1E49137268419D0006CD105 /* Project object */;
 			proxyType = 1;
@@ -159,16 +151,16 @@
 		D1B81D60268986460036F2BA /* OptionalExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalExtensionTests.swift; sourceTree = "<group>"; };
 		D1B81D62268987A10036F2BA /* MarketHistoryCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketHistoryCellViewModelTests.swift; sourceTree = "<group>"; };
 		D1B81D64268989B50036F2BA /* OrderBookCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookCellViewModelTests.swift; sourceTree = "<group>"; };
+		D1B81D6A2689A7250036F2BA /* MockOrderBookInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockOrderBookInteractor.swift; sourceTree = "<group>"; };
+		D1B81D6C2689AC760036F2BA /* MockModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockModels.swift; sourceTree = "<group>"; };
 		D1E4913F268419D0006CD105 /* BinanceOrderBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BinanceOrderBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1E49142268419D0006CD105 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D1E49144268419D0006CD105 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D1E49149268419D0006CD105 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D1E4914B268419D1006CD105 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D1E4914E268419D1006CD105 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D1E49150268419D1006CD105 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D1E49155268419D1006CD105 /* BinanceOrderBookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BinanceOrderBookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1E4915B268419D1006CD105 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D1E49160268419D1006CD105 /* BinanceOrderBookUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BinanceOrderBookUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1E49164268419D1006CD105 /* BinanceOrderBookUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinanceOrderBookUITests.swift; sourceTree = "<group>"; };
 		D1E49166268419D1006CD105 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D1E491762684445B006CD105 /* SocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketManager.swift; sourceTree = "<group>"; };
@@ -194,14 +186,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				917D8CE8B575F0406BAF6AF7 /* Pods_BinanceOrderBookTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D1E4915D268419D1006CD105 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				798540128843D4F0EA1806D3 /* Pods_BinanceOrderBook_BinanceOrderBookUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,7 +260,6 @@
 			isa = PBXGroup;
 			children = (
 				D1E49142268419D0006CD105 /* AppDelegate.swift */,
-				D1E49144268419D0006CD105 /* SceneDelegate.swift */,
 				D1B027F526866A9700B9AA82 /* AppConfiguration.swift */,
 				D1B027F8268672AF00B9AA82 /* AppConstants.swift */,
 			);
@@ -377,8 +360,8 @@
 		D1B81D3F268954C40036F2BA /* OrderBook */ = {
 			isa = PBXGroup;
 			children = (
-				D1B81D40268954EE0036F2BA /* OrderBookInteractorTests.swift */,
 				D1B81D64268989B50036F2BA /* OrderBookCellViewModelTests.swift */,
+				D1B81D40268954EE0036F2BA /* OrderBookInteractorTests.swift */,
 			);
 			path = OrderBook;
 			sourceTree = "<group>";
@@ -388,6 +371,8 @@
 			children = (
 				D1B81D43268955590036F2BA /* MockAPIServices.swift */,
 				D1B81D452689567E0036F2BA /* MockSocketProvider.swift */,
+				D1B81D6A2689A7250036F2BA /* MockOrderBookInteractor.swift */,
+				D1B81D6C2689AC760036F2BA /* MockModels.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -448,7 +433,6 @@
 			children = (
 				D1E4913F268419D0006CD105 /* BinanceOrderBook.app */,
 				D1E49155268419D1006CD105 /* BinanceOrderBookTests.xctest */,
-				D1E49160268419D1006CD105 /* BinanceOrderBookUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -594,26 +578,6 @@
 			productReference = D1E49155268419D1006CD105 /* BinanceOrderBookTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		D1E4915F268419D1006CD105 /* BinanceOrderBookUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D1E4916F268419D1006CD105 /* Build configuration list for PBXNativeTarget "BinanceOrderBookUITests" */;
-			buildPhases = (
-				4BED3A36008F51F817C4A0E5 /* [CP] Check Pods Manifest.lock */,
-				D1E4915C268419D1006CD105 /* Sources */,
-				D1E4915D268419D1006CD105 /* Frameworks */,
-				D1E4915E268419D1006CD105 /* Resources */,
-				0C332C5DC9AC5E33E6F41F28 /* [CP] Embed Pods Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D1E49162268419D1006CD105 /* PBXTargetDependency */,
-			);
-			name = BinanceOrderBookUITests;
-			productName = BinanceOrderBookUITests;
-			productReference = D1E49160268419D1006CD105 /* BinanceOrderBookUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -627,10 +591,6 @@
 						CreatedOnToolsVersion = 12.5;
 					};
 					D1E49154268419D1006CD105 = {
-						CreatedOnToolsVersion = 12.5;
-						TestTargetID = D1E4913E268419D0006CD105;
-					};
-					D1E4915F268419D1006CD105 = {
 						CreatedOnToolsVersion = 12.5;
 						TestTargetID = D1E4913E268419D0006CD105;
 					};
@@ -651,7 +611,6 @@
 			targets = (
 				D1E4913E268419D0006CD105 /* BinanceOrderBook */,
 				D1E49154268419D1006CD105 /* BinanceOrderBookTests */,
-				D1E4915F268419D1006CD105 /* BinanceOrderBookUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -676,33 +635,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D1E4915E268419D1006CD105 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0C332C5DC9AC5E33E6F41F28 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BinanceOrderBook-BinanceOrderBookUITests/Pods-BinanceOrderBook-BinanceOrderBookUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BinanceOrderBook-BinanceOrderBookUITests/Pods-BinanceOrderBook-BinanceOrderBookUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BinanceOrderBook-BinanceOrderBookUITests/Pods-BinanceOrderBook-BinanceOrderBookUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		3A8B598B7069B1912AD58FCA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -741,28 +676,6 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-BinanceOrderBook-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4BED3A36008F51F817C4A0E5 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-BinanceOrderBook-BinanceOrderBookUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -842,7 +755,6 @@
 				D1B027F626866A9700B9AA82 /* AppConfiguration.swift in Sources */,
 				D1E491772684445B006CD105 /* SocketManager.swift in Sources */,
 				D1B028072686D23500B9AA82 /* DateFormatter.swift in Sources */,
-				D1E49145268419D0006CD105 /* SceneDelegate.swift in Sources */,
 				D1B0280B2686DEFD00B9AA82 /* JSONDecoderExtension.swift in Sources */,
 				D1B028092686D45200B9AA82 /* MarketHistoryCellViewModel.swift in Sources */,
 				D14CB1B42684D4E200EA4538 /* OrderBookViewController.swift in Sources */,
@@ -865,6 +777,7 @@
 				D1B81D5726897D1B0036F2BA /* StringExtensionTests.swift in Sources */,
 				D1B81D5F2689858E0036F2BA /* CollectionExtensionTests.swift in Sources */,
 				D1B81CF22688C3A00036F2BA /* APIServicesTests.swift in Sources */,
+				D1B81D6B2689A7250036F2BA /* MockOrderBookInteractor.swift in Sources */,
 				D1B81D63268987A10036F2BA /* MarketHistoryCellViewModelTests.swift in Sources */,
 				D1B81D61268986460036F2BA /* OptionalExtensionTests.swift in Sources */,
 				D1B81D44268955590036F2BA /* MockAPIServices.swift in Sources */,
@@ -872,19 +785,12 @@
 				D1B81D5526897B960036F2BA /* CodableExtensionTests.swift in Sources */,
 				D1B81D5D2689833E0036F2BA /* ObservableExtensionTests.swift in Sources */,
 				D1B81D5926897EF00036F2BA /* JSONDecoderExtensionTests.swift in Sources */,
+				D1B81D6D2689AC760036F2BA /* MockModels.swift in Sources */,
 				D1B81D462689567E0036F2BA /* MockSocketProvider.swift in Sources */,
 				D1B81D41268954EE0036F2BA /* OrderBookInteractorTests.swift in Sources */,
 				D1B81D50268972530036F2BA /* NumberFormatterTests.swift in Sources */,
 				D1B81D4926895CC20036F2BA /* MarketHistoryInteractorTests.swift in Sources */,
 				D1B81D372688EADC0036F2BA /* StubLoader.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D1E4915C268419D1006CD105 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D1E49165268419D1006CD105 /* BinanceOrderBookUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -895,11 +801,6 @@
 			isa = PBXTargetDependency;
 			target = D1E4913E268419D0006CD105 /* BinanceOrderBook */;
 			targetProxy = D1E49156268419D1006CD105 /* PBXContainerItemProxy */;
-		};
-		D1E49162268419D1006CD105 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D1E4913E268419D0006CD105 /* BinanceOrderBook */;
-			targetProxy = D1E49161268419D1006CD105 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1121,46 +1022,6 @@
 			};
 			name = Release;
 		};
-		D1E49170268419D1006CD105 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1050A3AA75E14FD7A6E30A59 /* Pods-BinanceOrderBook-BinanceOrderBookUITests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = BinanceOrderBookUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = huutaivuong.BinanceOrderBookUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = BinanceOrderBook;
-			};
-			name = Debug;
-		};
-		D1E49171268419D1006CD105 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A956EAE008776750ED137845 /* Pods-BinanceOrderBook-BinanceOrderBookUITests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = BinanceOrderBookUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = huutaivuong.BinanceOrderBookUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = BinanceOrderBook;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1187,15 +1048,6 @@
 			buildConfigurations = (
 				D1E4916D268419D1006CD105 /* Debug */,
 				D1E4916E268419D1006CD105 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D1E4916F268419D1006CD105 /* Build configuration list for PBXNativeTarget "BinanceOrderBookUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D1E49170268419D1006CD105 /* Debug */,
-				D1E49171268419D1006CD105 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -18,8 +18,4 @@ target 'BinanceOrderBook' do
     pod 'Mockingjay', '~> 3.0.0-alpha.1'
   end
 
-  target 'BinanceOrderBookUITests' do
-    # Pods for testing
-  end
-
 end

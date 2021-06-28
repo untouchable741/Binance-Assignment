@@ -37,7 +37,7 @@ final class NumberFormatterTests: XCTestCase {
         let quantityString = sut.quantityString(from: number as NSDecimalNumber, of: currencyPair)
         
         // Then
-        XCTAssertEqual(quantityString, "0.418823")
+        XCTAssertEqual(quantityString, "0,418823")
     }
     
     func testPriceString() {
@@ -49,7 +49,7 @@ final class NumberFormatterTests: XCTestCase {
         let priceString = sut.priceString(from: number as NSDecimalNumber, of: currencyPair)
         
         // Then
-        XCTAssertEqual(priceString, "33,245.87")
+        XCTAssertEqual(priceString, "33.245,87")
     }
 
 }
