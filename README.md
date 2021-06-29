@@ -23,7 +23,8 @@ This project using MVVM-Interactor architecture with below technical highlights 
 - CLEAN architecture with Interactor taking care of business logics and separate it from ViewModel which is responsible for UI logics
 - XCTest for unit testing with mock and stub techniques
 - SocketManager was built from scratch, integrated with [RxSwift](https://github.com/ReactiveX/RxSwift) and using [StarScream](https://github.com/daltoniam/Starscream) as WebSocket client.
-- Posibile to customize app theme at one place.
+- Use propertyWrapper to handle threadsafe in read/write property [@ThreadSafety](https://github.com/untouchable741/Binance-Assignment/blob/develop/BinanceOrderBook/Utilities/ThreadSafety.swift)
+- Possibility to customize app theme at one place.
 - Using cocoapods as package manager
 - Unit testing code coverage 
 
