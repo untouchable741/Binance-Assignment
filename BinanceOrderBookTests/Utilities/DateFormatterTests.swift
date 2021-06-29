@@ -28,6 +28,7 @@ final class DateFormatterTests: XCTestCase {
     func testTimeString_whenHourLessThan12() {
         // When
         let givenDate = Date(timeIntervalSince1970: 1624849619)
+        sut.timeZone = TimeZone(identifier: "Asia/Bangkok")
         
         // When
         let timeString = sut.timeString(from: givenDate)
@@ -39,6 +40,7 @@ final class DateFormatterTests: XCTestCase {
     func testTimeString_whenHourGreaterThan12() {
         // When
         let givenDate = Date(timeIntervalSince1970: 1626009619)
+        sut.timeZone = TimeZone(identifier: "Asia/Bangkok")
         
         // When
         let timeString = sut.timeString(from: givenDate)
