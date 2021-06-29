@@ -1,6 +1,8 @@
 # Binance-Assignment
 This is coding assignment for Binance tech interview.
 
+@copyright Huu Tai Vuong - vhuutai@gmail.com
+
 ## Specifications
 - Xcode 12.5
 - Swift 5
@@ -18,14 +20,15 @@ This is coding assignment for Binance tech interview.
 ## Project overview
 This project using MVVM-Interactor architecture with below technical highlights :
 - MVVM - Interactor as main architecture, powered by RxSwift behind the scene.
-- CLEAN architecture which utilize Protocol Oriented Programing and Dependency Injection for Unit Test
-- RxBlock for testing RxSwift Observable part and Mockingjay for stubbing network request
-- CLEAN architecture with Interactor taking care of business logics and separate it from ViewModel which is responsible for UI logics
-- XCTest for unit testing with mock and stub techniques
+- Utilize Protocol Oriented Programing and Dependency Injection for Unit Test.
+- RxBlock for testing RxSwift Observable part and Mockingjay for stubbing network request.
+- CLEAN architecture with Interactor taking care of business logics and separate it from ViewModel which is responsible for UI logics.
+- XCTest for unit testing with mock and stub techniques.
 - SocketManager was built from scratch, integrated with [RxSwift](https://github.com/ReactiveX/RxSwift) and using [StarScream](https://github.com/daltoniam/Starscream) as WebSocket client.
-- Posibile to customize app theme at one place.
-- Using cocoapods as package manager
-- Unit testing code coverage 
+- Use propertyWrapper to handle threadsafe in read/write property [@ThreadSafety](https://github.com/untouchable741/Binance-Assignment/blob/develop/BinanceOrderBook/Utilities/ThreadSafety.swift)
+- Possibility to customize app theme at one place.
+- Using cocoapods as package manager.
+- Unit testing code coverage.
 
 ![Screen Shot 2021-06-28 at 10 21 14 PM](https://user-images.githubusercontent.com/2222122/123661983-35245b80-d85f-11eb-9c5b-83e7590ecd4d.png)
 
