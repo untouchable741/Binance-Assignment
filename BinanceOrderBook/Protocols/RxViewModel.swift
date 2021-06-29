@@ -32,10 +32,11 @@ enum RxViewModelState: Equatable {
     static func == (lhs: RxViewModelState, rhs: RxViewModelState) -> Bool {
         switch (lhs, rhs) {
         case (.initial, .initial),
-             (.loading, .loading),
              (.finishedLoadData, .finishedLoadData),
              (.error, .error):
             return true
+        case (.loading(let lhsStatus), .loading(let rhsStatus)):
+            return lhsStatus == rhsStatus
         default:
             return false
         }

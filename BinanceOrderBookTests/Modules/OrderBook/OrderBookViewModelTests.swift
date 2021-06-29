@@ -27,7 +27,7 @@ class OrderBookViewModelTests: XCTestCase {
         super.tearDown()
     }
     
-    func testLoadData_whenUpdatedLocalSnapshotNotNil() throws {
+    func testLoadData_whenStubbedUpdatedLocalSnapshotNotNil() throws {
         // Given
         mockInteractor.stubGetDepthData = Single<DepthChartResponseData>.just(.mock())
         /// Because we use skil(until:), we need to delay socketData for 0.5s
@@ -45,7 +45,7 @@ class OrderBookViewModelTests: XCTestCase {
         let results = try! sut.viewModelStateObservable.take(2).toBlocking(timeout: 1).toArray()
         let cellViewModels = try! sut.cellViewModelsDriver.toBlocking().first()
         XCTAssertEqual(results, [
-            .loading("Loading order book data"),
+            .loading("Loading OrderBook data ..."),
             .finishedLoadData
         ])
         XCTAssertEqual(cellViewModels?.count, 25)
@@ -66,10 +66,10 @@ class OrderBookViewModelTests: XCTestCase {
         }
     }
     
-    func testLoadData_whenUpdatedLocalSnapshotIsNil() {
+    func testLoadData_whenStubbedUpdatedLocalSnapshotIsNil() {
         // Given
         mockInteractor.stubGetDepthData = Single<DepthChartResponseData>.just(.mock())
-        /// Because we use skil(until:), we need to delay socketData for 0.5s
+            .delay(.milliseconds(500), scheduler: ConcurrentMainScheduler.instance)
         mockInteractor.stubSubscribeStreamDepthChartSocketData = Observable.just(.mock()).delay(.milliseconds(500), scheduler: ConcurrentMainScheduler.instance)
         mockInteractor.stubUpdatedLocalSnapshot = nil
         
@@ -77,11 +77,10 @@ class OrderBookViewModelTests: XCTestCase {
         sut.loadData()
         
         // Then
-        let results = try! sut.viewModelStateObservable.take(2).toBlocking(timeout: 1).toArray()
+        let results = try! sut.viewModelStateObservable.take(1).toBlocking(timeout: 2).toArray()
         let cellViewModels = try! sut.cellViewModelsDriver.toBlocking().first()
         XCTAssertEqual(results, [
-            .loading("Loading order book data"),
-            .loading("Data corrupted, re-fetching data")
+            .loading("Loading OrderBook data ...")
         ])
         XCTAssertEqual(cellViewModels?.count, 25)
     }

@@ -79,6 +79,7 @@ final class OrderBookViewModel: OrderBookViewModelProtocol {
             self?.update(newState: .error(error))
             return Observable.empty()
         })
+        // When there is corrupted data, skip combineLatest while waiting for snapshot to be updated.
         .skip(while: { [weak self] _ in self?.waitingSnapshotUpdate == true })
         .bind(onNext: { [weak self] snapshotData, socketData in
             guard let self = self else { return }

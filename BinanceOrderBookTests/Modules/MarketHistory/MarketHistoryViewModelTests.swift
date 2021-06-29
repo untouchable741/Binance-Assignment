@@ -53,7 +53,7 @@ final class MarketHistoryViewModelTests: XCTestCase {
         let results = try! sut.viewModelStateObservable.take(2).toBlocking(timeout: 2).toArray()
         let cellViewModels = try! sut.cellViewModelsDriver.toBlocking().first()
         XCTAssertEqual(results, [
-            .loading("Loading market history data"),
+            .loading("Loading MarketHistory data..."),
             .finishedLoadData
         ])
         XCTAssertEqual(cellViewModels?.count, 3)
@@ -88,7 +88,7 @@ final class MarketHistoryViewModelTests: XCTestCase {
         let results = try! sut.viewModelStateObservable.take(2).toBlocking(timeout: 2).toArray()
         let cellViewModels = try! sut.cellViewModelsDriver.toBlocking().first()
         XCTAssertEqual(results, [
-            .loading("Loading market history data"),
+            .loading("Loading MarketHistory data..."),
             .finishedLoadData
         ])
         XCTAssertEqual(cellViewModels?.count, 2)
