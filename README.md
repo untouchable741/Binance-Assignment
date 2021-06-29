@@ -1,6 +1,8 @@
 # Binance-Assignment
 This is coding assignment for Binance tech interview.
 
+@copyright Huu Tai Vuong - vhuutai@gmail.com
+
 ## Specifications
 - Xcode 12.5
 - Swift 5
